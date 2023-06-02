@@ -13,7 +13,6 @@
       grub = {
         enable = true;
         efiInstallAsRemovable = true;
-        version = 2;
         copyKernels = true;
         efiSupport = true;
         zfsSupport = true;

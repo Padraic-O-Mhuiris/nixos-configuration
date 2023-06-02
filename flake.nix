@@ -11,11 +11,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:NixOS/nixos-hardware";
-    hardware.inputs.nixpkgs.follows = "nixpkgs";
 
     sops.url = "github:Mic92/sops-nix";
-    sops.inputs.nixpkgs.follows = "nixpkgs";
 
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -29,9 +28,16 @@
         "x86_64-darwin"
       ];
     in rec {
+      inherit (nixpkgs) lib;
+
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; });
+        in ((import ./pkgs { inherit pkgs; })) // {
+          vm = pkgs.writeShellScriptBin "runVM" ''
+            CMD=${nixosConfigurations.Hydrogen.config.system.build.vm}/bin/run-Hydrogen-vm
+            exec $CMD -m 4096 -machine type=pc,accel=kvm -device virtio-vga-gl -display gtk,gl=on,grab-on-hover=on;
+          '';
+        });
 
       devShells = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
@@ -50,12 +56,12 @@
         };
       };
 
-      homeConfigurations = {
-        "padraic@Hydrogen" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home-manager/home.nix ];
-        };
-      };
+      # homeConfigurations = {
+      #   "padraic@Hydrogen" = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      #     extraSpecialArgs = { inherit inputs outputs; };
+      #     modules = [ (./home-manager + "/padraic@Hydrogen.nix") ];
+      #   };
+      # };
     };
 }

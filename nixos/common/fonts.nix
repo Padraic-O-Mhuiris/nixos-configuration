@@ -20,9 +20,9 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ config.os.ui.fonts.monospace ];
-        sansSerif = [ config.os.ui.fonts.sansSerif ];
-        serif = [ config.os.ui.fonts.serif ];
+        monospace = [ "Iosevka" ];
+        sansSerif = [ "Roboto" ];
+        serif = [ "Roboto" ];
       };
     };
   };

@@ -1,6 +1,8 @@
 { inputs, outputs, config, lib, pkgs, ... }:
 
 {
+  environment.systemPackages = with pkgs; [ cachix ];
+
   nixpkgs = {
     config = { allowUnfree = true; };
     overlays = [

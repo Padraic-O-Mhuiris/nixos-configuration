@@ -3,12 +3,8 @@
 {
   # TODO Discern what should go here
   environment.systemPackages = with pkgs; [
-    bat
     bc
-    bind
     binutils
-    cached-nix-shell
-    cachix
     coreutils
     clang
     cmake
@@ -16,13 +12,8 @@
     dmidecode
     entr
     exa
-    gcc
-    gnumake
     git
     file
-    libsecret
-    libgcc
-    libgccjit
     i7z
     iw
     jq

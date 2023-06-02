@@ -4,62 +4,49 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "rpool/nixos/root";
-      fsType = "zfs";
-    };
+  fileSystems."/" = {
+    device = "rpool/nixos/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/var/lib" =
-    { device = "rpool/nixos/var/lib";
-      fsType = "zfs";
-    };
+  fileSystems."/var/lib" = {
+    device = "rpool/nixos/var/lib";
+    fsType = "zfs";
+  };
 
-  fileSystems."/var/log" =
-    { device = "rpool/nixos/var/log";
-      fsType = "zfs";
-    };
+  fileSystems."/var/log" = {
+    device = "rpool/nixos/var/log";
+    fsType = "zfs";
+  };
 
-  fileSystems."/home" =
-    { device = "rpool/nixos/home";
-      fsType = "zfs";
-    };
+  fileSystems."/home" = {
+    device = "rpool/nixos/home";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "bpool/nixos/root";
-      fsType = "zfs";
-    };
+  fileSystems."/boot" = {
+    device = "bpool/nixos/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot/efis/pci-0000:02:00.0-nvme-1-part1" =
-    { device = "/dev/disk/by-uuid/77B8-65C6";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efis/pci-0000:02:00.0-nvme-1-part1" = {
+    device = "/dev/disk/by-uuid/77B8-65C6";
+    fsType = "vfat";
+  };
 
-  fileSystems."/boot/efi" =
-    { device = "/boot/efis/pci-0000:02:00.0-nvme-1-part1";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  fileSystems."/boot/efi" =
-    { device = "/boot/efis/pci-0000:02:00.0-nvme-1-part1";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  fileSystems."/boot/efis/pci-0000:02:00.0-nvme-1-part1" =
-    { device = "/boot/efis/pci-0000:02:00.0-nvme-1-part1";
-      fsType = "none";
-      options = [ "bind" ];
-    };
+  fileSystems."/boot/efi" = {
+    device = "/boot/efis/pci-0000:02:00.0-nvme-1-part1";
+    fsType = "none";
+    options = [ "bind" ];
+  };
 
   swapDevices = [ ];
 
@@ -75,5 +62,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

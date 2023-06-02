@@ -1,8 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  users.mutableUsers = false;
-  users.defaultUserShell = pkgs.zsh;
-  users.enforceIdUniqueness = true;
-  users.users.root.hashedPassword = null;
+  users = {
+    mutableUsers = false;
+    defaultUserShell = pkgs.zsh;
+    enforceIdUniqueness = true;
+    users.root.hashedPassword = null;
+  };
 }

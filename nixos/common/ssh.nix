@@ -8,8 +8,7 @@
     enable = true;
     openFirewall = !config.services.tailscale.enable;
     settings = {
-      PermitRootLogin =
-        if config.os.system.isDesktop then "no" else "prohibit-password";
+      PermitRootLogin = "prohibit-password";
       UseDns = true;
       PasswordAuthentication = false;
     };
