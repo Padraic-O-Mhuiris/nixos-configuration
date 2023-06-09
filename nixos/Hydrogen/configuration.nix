@@ -1,6 +1,15 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 
 {
+  defaultUser = {
+    name = "padraic";
+    email = "patrick.morris.310@gmail.com";
+    githubUser = "Padraic-O-Mhuiris";
+    sshKey =
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7";
+    gpgKey = "9A51DBF629888EE75982008D9DCE7055406806F8";
+  };
+
   imports = [
     outputs.nixosModules.defaultUser
 
@@ -17,11 +26,11 @@
     ../common
   ];
 
-  home-manager = {
-    users.${config.defaultUser.name} = import (../../home-manager
-      + "/${config.defaultUser.name}@${config.networking.hostName}.nix");
-    extraSpecialArgs = { inherit inputs outputs; };
-  };
+  # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems
+  services.dbus.packages = [ pkgs.gcr ];
+
+  # Required so zsh completion works for systemd
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # environment.systemPackages = with pkgs; [
   #   # nvidia
@@ -37,13 +46,6 @@
     latitude = 53.28;
     longitude = -9.03;
   };
-
-  defaultUser = {
-    name = "padraic";
-    sshKey =
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7";
-  };
-
   programs.zsh.enable = true;
   programs.hyprland.enable = true;
 

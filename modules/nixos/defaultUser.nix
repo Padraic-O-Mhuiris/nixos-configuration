@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, outputs, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -9,9 +9,21 @@ in {
       type = types.str;
       default = "";
     };
+    email = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+    };
     sshKey = mkOption {
-      type = types.str;
-      default = "";
+      type = types.nullOr types.str;
+      default = null;
+    };
+    gpgKey = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+    };
+    githubUser = mkOption {
+      type = types.nullOr types.str;
+      default = null;
     };
     groups = mkOption {
       type = types.listOf types.str;
@@ -21,6 +33,7 @@ in {
 
   config = {
     sops.secrets."user@${cfg.name}" = { neededForUsers = true; };
+
     users.users.${cfg.name} = {
       home = "/home/${cfg.name}";
       isNormalUser = true;
@@ -30,6 +43,15 @@ in {
       uid = 1000;
       extraGroups = [ "wheel" ] ++ cfg.groups;
       shell = pkgs.bashInteractive;
+    };
+
+    home-manager = {
+      users.${cfg.name} = import
+        (../../home-manager + "/${cfg.name}@${config.networking.hostName}.nix");
+      extraSpecialArgs = {
+        inherit inputs outputs;
+        defaultUser = cfg;
+      };
     };
   };
 }
