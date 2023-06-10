@@ -15,15 +15,12 @@
 
     inputs.home-manager.nixosModules.home-manager
     inputs.sops.nixosModules.sops
-    inputs.hardware.nixosModules.dell-xps-15-9520
 
-    inputs.hardware.nixosModules.common.hidpi
-    inputs.hardware.nixosModules.common.pc
-    inputs.hardware.nixosModules.common.pc.ssd
-    inputs.hardware.nixosModules.common.cpu.amd
-    inputs.hardware.nixosModules.common.gpu.prime
-
-    # inputs.hyprland.nixosModules.default
+    inputs.hardware.nixosModules.common-hidpi
+    inputs.hardware.nixosModules.common-pc
+    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-nvidia
 
     ./hardware-configuration.nix
     ./boot.nix
@@ -52,6 +49,17 @@
   networking = {
     hostName = "Hydrogen";
     hostId = "3f90d23a";
+  };
+
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    opengl.enable = true;
+    modesetting.enable = true;
+    prime = {
+      nvidiaBusId = "PCI:9:0:0";
+      amdgpuBusId = "PCI:0:2:0";
+    };
+
   };
   security.polkit.enable = true;
 

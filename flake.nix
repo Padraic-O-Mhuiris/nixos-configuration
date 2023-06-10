@@ -28,7 +28,7 @@
         "x86_64-darwin"
       ];
     in rec {
-      inherit (nixpkgs) lib;
+      # inherit (nixpkgs) lib;
 
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
@@ -64,13 +64,5 @@
           modules = [ ./nixos/Oxygen/configuration.nix ];
         };
       };
-
-      # homeConfigurations = {
-      #   "padraic@Hydrogen" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      #     extraSpecialArgs = { inherit inputs outputs; };
-      #     modules = [ (./home-manager + "/padraic@Hydrogen.nix") ];
-      #   };
-      # };
     };
 }

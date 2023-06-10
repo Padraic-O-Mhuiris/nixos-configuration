@@ -16,9 +16,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.sops.nixosModules.sops
     inputs.hardware.nixosModules.dell-xps-15-9520
-    inputs.hardware.nixosModules.dell-xps-15-9520.nvidia
-
-    # inputs.hyprland.nixosModules.default
+    inputs.hardware.nixosModules.dell-xps-15-9520-nvidia
 
     ./hardware-configuration.nix
     ./boot.nix
