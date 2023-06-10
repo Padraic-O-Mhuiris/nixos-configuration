@@ -58,6 +58,11 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./nixos/Hydrogen/configuration.nix ];
         };
+
+        Oxygen = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/Oxygen/configuration.nix ];
+        };
       };
 
       # homeConfigurations = {

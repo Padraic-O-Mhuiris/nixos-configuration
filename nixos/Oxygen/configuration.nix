@@ -16,7 +16,12 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.sops.nixosModules.sops
     inputs.hardware.nixosModules.dell-xps-15-9520
-    inputs.hardware.nixosModules.dell-xps-15-9520.nvidia
+
+    inputs.hardware.nixosModules.common.hidpi
+    inputs.hardware.nixosModules.common.pc
+    inputs.hardware.nixosModules.common.pc.ssd
+    inputs.hardware.nixosModules.common.cpu.amd
+    inputs.hardware.nixosModules.common.gpu.prime
 
     # inputs.hyprland.nixosModules.default
 
@@ -29,7 +34,7 @@
   # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems
   services.dbus.packages = [ pkgs.gcr ];
 
-  # Required so zsh completion works for systemd
+  # Required so zsh completion in home-manager works for systemd
   environment.pathsToLink = [ "/share/zsh" ];
 
   time.timeZone = "Europe/Dublin";
