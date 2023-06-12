@@ -38,8 +38,7 @@ in {
       home = "/home/${cfg.name}";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [ cfg.sshKey ];
-      # passwordFile = config.sops.secrets."user@${cfg.name}".path;
-      initialPassword = "abc123";
+      passwordFile = config.sops.secrets."user@${cfg.name}".path;
       uid = 1000;
       extraGroups = [ "wheel" ] ++ cfg.groups;
       shell = pkgs.bashInteractive;
