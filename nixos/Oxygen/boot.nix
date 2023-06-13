@@ -4,15 +4,15 @@
   boot = {
     initrd.luks.devices = {
       "crypted_home".device =
-        "/dev/disk/by-uuid/a2f08e24-0e7e-4a7d-88f9-2f9fbbada9df";
+        "/dev/disk/by-uuid/25e21acd-fef0-45ea-b7a6-ea8f1525d841";
       "crypted_system".device =
-        "/dev/disk/by-uuid/e3d5a8e2-63e2-449e-89ea-4c4390198134";
+        "/dev/disk/by-uuid/0bdb9af3-e808-4466-a8a7-19e330a33808";
     };
 
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     loader = {
       efi = {
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/efi";
         canTouchEfiVariables = true;
       };
       grub = {
