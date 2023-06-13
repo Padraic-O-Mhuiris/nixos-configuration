@@ -4,9 +4,9 @@
   boot = {
     initrd.luks.devices = {
       "crypted_home".device =
-        "/dev/disk/by-uuid/25e21acd-fef0-45ea-b7a6-ea8f1525d841";
+        "/dev/disk/by-uuid/9e337ee3-3c90-4003-836a-236888701cc9";
       "crypted_system".device =
-        "/dev/disk/by-uuid/0bdb9af3-e808-4466-a8a7-19e330a33808";
+        "/dev/disk/by-uuid/df171b85-b5f1-4132-a26f-4e16eebaac1e";
     };
 
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
