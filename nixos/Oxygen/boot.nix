@@ -12,7 +12,7 @@
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     loader = {
       efi = {
-        efiSysMountPoint = "/efi";
+        efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;
       };
       systemd-boot.enable = true;
