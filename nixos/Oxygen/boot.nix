@@ -16,12 +16,12 @@
         canTouchEfiVariables = true;
       };
       systemd-boot.enable = true;
-      grub = {
-        enable = true;
-        efiSupport = true;
-        device = "nodev";
-        theme = pkgs.nixos-grub2-theme;
-      };
+      # grub = {
+      #   enable = true;
+      #   efiSupport = true;
+      #   device = "nodev";
+      #   theme = pkgs.nixos-grub2-theme;
+      # };
     };
   };
 }
