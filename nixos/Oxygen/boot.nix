@@ -11,16 +11,17 @@
 
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     loader = {
+      systemd-boot.enable = true;
       efi = {
         efiSysMountPoint = "/efi";
         canTouchEfiVariables = true;
       };
-      grub = {
-        enable = true;
-        efiSupport = true;
-        device = "nodev";
-        theme = pkgs.nixos-grub2-theme;
-      };
+      # grub = {
+      #   enable = true;
+      #   efiSupport = true;
+      #   device = "nodev";
+      #   theme = pkgs.nixos-grub2-theme;
+      # };
     };
   };
 }
