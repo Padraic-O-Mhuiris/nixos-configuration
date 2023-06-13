@@ -23,11 +23,6 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1980-01-01-00-00-00-00";
-    fsType = "iso9660";
-  };
-
-  fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/6843-3D0D";
     fsType = "vfat";
   };
