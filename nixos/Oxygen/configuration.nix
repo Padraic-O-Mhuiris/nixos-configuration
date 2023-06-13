@@ -53,7 +53,6 @@
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    opengl.enable = true;
     modesetting.enable = true;
     prime = {
       nvidiaBusId = "PCI:9:0:0";
