@@ -39,14 +39,14 @@
         signByDefault = true;
       };
     };
-    gpg = {
-      enable = true;
-      # mutableKeys = false;
-      publicKeys = [{
-        text = defaultUser.gpgKey;
-        trust = 5;
-      }];
-    };
+    # gpg = {
+    #   enable = true;
+    #   # mutableKeys = false;
+    #   publicKeys = [{
+    #     text = defaultUser.gpgKey;
+    #     trust = 5;
+    #   }];
+    # };
     helix.enable = true;
     direnv = {
       enable = true;
