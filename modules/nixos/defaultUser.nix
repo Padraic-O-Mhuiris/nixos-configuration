@@ -46,8 +46,7 @@ in {
     };
 
     home-manager = {
-      users.${cfg.name} = import
-        (../../home-manager + "/${cfg.name}@${config.networking.hostName}.nix");
+      users.${cfg.name} = import (../../home-manager + "/${cfg.name}.nix");
       extraSpecialArgs = {
         inherit inputs outputs;
         defaultUser = cfg;
