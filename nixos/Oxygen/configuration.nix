@@ -47,7 +47,7 @@
   virtualisation.libvirtd.enable = true;
 
   networking = {
-    hostName = "Hydrogen";
+    hostName = "Oxygen";
     hostId = "3f90d23a";
   };
 
