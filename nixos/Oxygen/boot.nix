@@ -11,10 +11,7 @@
 
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     loader = {
-      efi = {
-        efiSysMountPoint = "/boot";
-        canTouchEfiVariables = true;
-      };
+      efi = { canTouchEfiVariables = true; };
       systemd-boot.enable = true;
       # grub = {
       #   enable = true;
