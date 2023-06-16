@@ -10,21 +10,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices = {
-    "crypted_home".device = ''
-      /dev/disk/by-uuid/d5870829-f3e1-48b0-957f-602d7654b457
-    '';
+    "crypted_home".device =
+      "/dev/disk/by-uuid/1572b005-ed31-4674-a90a-6c3f7d54f90b";
     "crypted_system".device =
-      "/dev/disk/by-uuid/0f63cffa-45d0-409b-aa16-c04682a41842";
+      "/dev/disk/by-uuid/ddcaadc0-8096-4ec7-bf11-1aef73931c88";
   };
 
-  networking.wireless.enable = true;
   networking.networkmanager.enable = true;
   services.xserver.enable = true;
 
   users.users.padraic = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ firefox tree ];
+    extraGroups = [ "wheel" ];
     initialPassword = "abc123";
   };
 

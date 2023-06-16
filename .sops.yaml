@@ -1,15 +1,15 @@
 keys:
   - &padraic age1sartew6ntahhyg06p72rpy77xuyw0gh28zp76ynl3na3v73l7ufqjm5sd5
   - &Hydrogen age1arrfttxu8v0873mr22xmmdn0mjretm8n3kgtks55c3e5s2wd23kq6vmypx
-  - &Oxygen age1ag9ev5har8qvzvcy2ls29wgwxsq6v32myrspcssaq4nt2xwtgvpqpx3wh7
+  - &Oxygen age1qvjrgqmptl6smunkxwlnyzju8fnl5ygnkdqgl837adpzqxrl5ycsetal0j
 creation_rules:
   - path_regex: nixos/Hydrogen/secrets.yaml$
     key_groups:
-    - age:
-      - *padraic
-      - *Hydrogen
+      - age:
+          - *padraic
+          - *Hydrogen
   - path_regex: nixos/Oxygen/secrets.yaml$
     key_groups:
-    - age:
-      - *padraic
-      - *Oxygen
+      - age:
+          - *padraic
+          - *Oxygen
