@@ -10,7 +10,7 @@
         "/dev/disk/by-uuid/0f63cffa-45d0-409b-aa16-c04682a41842";
     };
 
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     loader = {
       efi = {
         efiSysMountPoint = "/boot";
