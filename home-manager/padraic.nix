@@ -1,20 +1,13 @@
-{ inputs, outputs, lib, defaultUser, config, pkgs, ... }: {
+{ inputs, outputs, lib, defaultUser, config, pkgs, ... }:
 
-  imports = [ inputs.hyprland.homeManagerModules.default ./common ];
+{
+
+  imports =
+    [ inputs.hyprland.homeManagerModules.default ./common ./hyprland.nix ];
 
   home = {
     username = defaultUser.name;
     homeDirectory = "/home/${defaultUser.name}";
-  };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = true;
-    };
-    nvidiaPatches = true;
-    extraConfig = builtins.readFile ./hyprland.conf;
   };
 
   programs = {
