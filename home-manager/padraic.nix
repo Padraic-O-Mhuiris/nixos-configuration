@@ -196,7 +196,7 @@
     #   # TODO Add profiles
     # };
     network-manager-applet.enable = true;
-
+    mpd.enable = true;
     # TODO Add redshift service here
     udiskie = {
       enable = true;
