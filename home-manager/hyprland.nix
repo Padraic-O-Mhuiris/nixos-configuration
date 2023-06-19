@@ -6,7 +6,7 @@ let
   '';
   input = ''
     input {
-      kb_layout = uk
+      kb_layout = gb
       kb_options = ctrl:nocaps
       follow_mouse = 1
       sensitivity = 0
