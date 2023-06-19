@@ -3,6 +3,7 @@
 {
 
   boot = {
+    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
     initrd.luks.devices = {
       "crypted_home".device =
         "/dev/disk/by-uuid/a2cdfaa5-2566-46c9-828e-0aedda7964a3";
