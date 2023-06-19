@@ -1,18 +1,20 @@
 { config, lib, pkgs, ... }:
 
 let
+  monitor = ''
+    monitor=DP-1,5120x1440@60,0x0,1.1
+  '';
   input = ''
     input {
-      kb_layout = us
-      kb_variant =
-      kb_model =
-      kb_options =
-      kb_rules =
-
+      kb_layout = uk
+      kb_model = pc104
+      kb_options = ctrl:nocaps
       follow_mouse = 1
-
-      sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+      sensitivity = 0
     }
+  '';
+  autostart = ''
+    exec-once = dunst
   '';
   env = ''
     env = WLR_NO_HARDWARE_CURSORS,1
@@ -77,11 +79,14 @@ in {
     };
     nvidiaPatches = true;
     extraConfig = ''
-      monitor=DP-1,5120x1440@60,0x0,1
-
+      ${monitor}
       ${env}
       ${input}
       ${binds}
     '';
   };
+
+  home.packages = with pkgs; [ dunst ];
+
+  # programs = { waybar = { }; };
 }

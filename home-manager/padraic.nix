@@ -100,13 +100,6 @@
       '';
     };
 
-    waybar = {
-      enable = true;
-      systemd = { enable = true; };
-    };
-
-    wofi = { enable = true; };
-
     zoxide = {
       enable = true;
       enableZshIntegration = true;
