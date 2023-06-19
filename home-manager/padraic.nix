@@ -211,6 +211,7 @@
     enable = true;
     mime.enable = true;
     userDirs = {
+      enable = true;
       desktop = "${config.home.homeDirectory}/desktop";
       download = "${config.home.homeDirectory}/downloads";
       documents = "${config.home.homeDirectory}/documents";
