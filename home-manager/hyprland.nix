@@ -15,6 +15,7 @@ let
   '';
   autostart = ''
     exec-once = dunst
+    exec-once = waybar
   '';
   env = ''
     env = WLR_NO_HARDWARE_CURSORS,1
@@ -86,7 +87,7 @@ in {
     '';
   };
 
-  home.packages = with pkgs; [ dunst ];
+  home.packages = with pkgs; [ dunst waybar wofi libsForQt5.dolphin alacritty ];
 
   # programs = { waybar = { }; };
 }

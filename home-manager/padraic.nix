@@ -11,8 +11,6 @@
   };
 
   programs = {
-    kitty.enable = true;
-    alacritty.enable = true;
     bat.enable = true;
     btop.enable = true;
     htop.enable = true;
@@ -166,16 +164,15 @@
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk";
+  # };
 
   services = {
     batsignal.enable = true;
     blueman-applet.enable = true;
     clipman.enable = true;
-    dunst.enable = true;
     flameshot.enable = true;
     git-sync = {
       enable = true;
@@ -194,10 +191,10 @@
       '';
       verbose = true;
     };
-    kanshi = {
-      enable = true;
-      # TODO Add profiles
-    };
+    # kanshi = {
+    #   enable = true;
+    #   # TODO Add profiles
+    # };
     network-manager-applet.enable = true;
 
     # TODO Add redshift service here
