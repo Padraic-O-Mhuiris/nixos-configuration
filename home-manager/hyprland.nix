@@ -7,7 +7,6 @@ let
   input = ''
     input {
       kb_layout = uk
-      kb_model = pc104
       kb_options = ctrl:nocaps
       follow_mouse = 1
       sensitivity = 0
