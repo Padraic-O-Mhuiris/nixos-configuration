@@ -18,6 +18,7 @@ let
   '';
   env = ''
     env = WLR_NO_HARDWARE_CURSORS,1
+    env = HYPRLAND_LOG_WLR,1
   '';
   binds = ''
     $mod = SUPER
