@@ -24,11 +24,11 @@ let
     $mod = SUPER
 
     bind = $mod, Return, exec, alacritty
-    bind = $mod, C, killactive,
+    bind = $mod, Q, killactive,
     bind = $mod, M, exit,
     bind = $mod, E, exec, dolphin
     bind = $mod, V, togglefloating,
-    bind = $mod, R, exec, wofi --show drun
+    bind = $mod, D, exec, wofi --show drun
     bind = $mod, P, pseudo, # dwindle
     bind = $mod, J, togglesplit, # dwindle
 
@@ -81,6 +81,7 @@ in {
     nvidiaPatches = true;
     extraConfig = ''
       ${monitor}
+      ${autostart}
       ${env}
       ${input}
       ${binds}
