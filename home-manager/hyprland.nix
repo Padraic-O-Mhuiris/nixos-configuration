@@ -13,8 +13,33 @@ let
     }
   '';
   autostart = ''
+
+    exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once = dunst
     exec-once = waybar
+  '';
+  misc = ''
+    misc {
+      disable_autoreload = true
+      animate_mouse_windowdragging = false
+      vrr = 1
+    }
+  '';
+  decoration = ''
+    decoration {
+        rounding = 16
+        blur = true
+        blur_size = 3
+        blur_passes = 3
+        blur_new_optimizations = true
+
+        drop_shadow = true
+        shadow_ignore_window = true
+        shadow_offset = 0 5
+        shadow_range = 50
+        shadow_render_power = 3
+        col.shadow = rgba(00000099)
+      }
   '';
   env = ''
     env = WLR_NO_HARDWARE_CURSORS,1
@@ -27,7 +52,8 @@ let
     bind = $mod, Q, killactive,
     bind = $mod, M, exit,
     bind = $mod, E, exec, dolphin
-    bind = $mod, V, togglefloating,
+    bind = $mod, V, togglefloating
+    bind = $mod, F, fullscreen
     bind = $mod, D, exec, wofi --show drun
     bind = $mod, P, pseudo, # dwindle
     bind = $mod, J, togglesplit, # dwindle
@@ -82,6 +108,8 @@ in {
     extraConfig = ''
       ${monitor}
       ${autostart}
+      ${misc}
+      ${decoration}
       ${env}
       ${input}
       ${binds}
@@ -90,5 +118,10 @@ in {
 
   home.packages = with pkgs; [ dunst waybar wofi libsForQt5.dolphin alacritty ];
 
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+  };
   # programs = { waybar = { }; };
 }

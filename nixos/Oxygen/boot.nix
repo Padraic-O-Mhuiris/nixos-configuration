@@ -21,5 +21,6 @@
       #   theme = pkgs.nixos-grub2-theme;
       # };
     };
+    plymouth = { enable = true; };
   };
 }
