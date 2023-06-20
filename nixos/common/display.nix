@@ -3,12 +3,14 @@
 {
   services.xserver = {
     enable = true;
-    displayManager.sddm = {
-      enable = true;
-      enableHidpi = true;
+    displayManager = {
+      sddm = {
+        enable = true;
+        enableHidpi = true;
+        autoLogin.relogin = false;
+      };
       autoLogin = {
         enable = true;
-        relogin = false;
         user = config.defaultUser.name;
       };
     };
