@@ -1,9 +1,7 @@
 { inputs, outputs, lib, defaultUser, config, pkgs, ... }:
 
 {
-
-  imports =
-    [ inputs.hyprland.homeManagerModules.default ./common ./hyprland.nix ];
+  imports = [ ../common ];
 
   home = {
     username = defaultUser.name;
@@ -67,7 +65,7 @@
     };
 
     password-store.enable = true;
-    # ripgrep.enable = true;
+    ripgrep.enable = true;
     # rofi.enable = true;
 
     ssh.enable = true;
@@ -207,6 +205,7 @@
   };
 
   targets.genericLinux.enable = true;
+
   xdg = {
     enable = true;
     mime.enable = true;
