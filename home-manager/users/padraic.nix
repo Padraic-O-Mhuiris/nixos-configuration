@@ -65,7 +65,6 @@
     };
 
     password-store.enable = true;
-    ripgrep.enable = true;
     # rofi.enable = true;
 
     ssh.enable = true;
