@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, outputs, lib, defaultUser, config, pkgs, ... }:
 
 let
   monitor = ''
@@ -13,10 +13,9 @@ let
     }
   '';
   autostart = ''
-
     exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once = dunst
-    exec-once = waybar
+    exec-once = eww open bar
   '';
   misc = ''
     misc {
@@ -123,5 +122,10 @@ in {
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
-  # programs = { waybar = { }; };
+
+  programs.eww-hyprland = {
+    enable = true;
+    package = inputs.eww.packages.${pkgs.hostPlatform.system}.eww-wayland;
+  };
+
 }

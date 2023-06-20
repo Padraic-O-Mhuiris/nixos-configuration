@@ -60,6 +60,11 @@
     };
 
   };
+
+  hardware.opengl = {
+    extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+  };
+
   security.polkit.enable = true;
 
   system.stateVersion = "23.05";
