@@ -1,4 +1,4 @@
-{ outputs, config, lib, pkgs, ... }:
+{ inputs, outputs, config, lib, pkgs, ... }:
 
 {
   nixpkgs = {
@@ -7,6 +7,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       outputs.overlays.master-packages
+      inputs.xdph.overlays.default
     ];
 
     config = {

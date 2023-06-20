@@ -17,10 +17,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
     xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
-    eww = {
-      url = "github:elkowar/eww";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
