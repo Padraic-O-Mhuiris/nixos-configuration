@@ -3,7 +3,7 @@
 {
   services.xserver.displayManager = {
     enable = true;
-    displayManager.gdm = {
+    gdm = {
       enable = true;
       wayland = true;
     };
