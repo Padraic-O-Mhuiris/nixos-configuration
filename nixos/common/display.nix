@@ -1,18 +1,25 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.xserver = {
+  services.xserver.displayManager = {
     enable = true;
-    displayManager = {
-      sddm = {
-        enable = true;
-        enableHidpi = true;
-        # autoLogin.relogin = false;
-      };
-      # autoLogin = {
-      #   enable = true;
-      #   user = config.defaultUser.name;
-      # };
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
     };
   };
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager = {
+  #     sddm = {
+  #       enable = true;
+  #       enableHidpi = true;
+  #       # autoLogin.relogin = false;
+  #     };
+  #     # autoLogin = {
+  #     #   enable = true;
+  #     #   user = config.defaultUser.name;
+  #     # };
+  #   };
+  # };
 }
