@@ -53,7 +53,7 @@ let
     bind = $mod, E, exec, dolphin
     bind = $mod, V, togglefloating
     bind = $mod, F, fullscreen
-    bind = $mod, D, exec, ${pkgs.wofi}/bin/wofi --show drun
+    bind = $mod, D, exec, rofi --show drun
     bind = $mod, P, pseudo, # dwindle
     bind = $mod, J, togglesplit, # dwindle
 
@@ -120,6 +120,7 @@ in {
     waybar
     libsForQt5.dolphin
     alacritty
+    rofi-wayland
   ];
 
   home.sessionVariables = {
