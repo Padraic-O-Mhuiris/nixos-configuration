@@ -1,11 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.xserver.displayManager = {
+  services.xserver = {
     enable = true;
-    gdm = {
+    displayManager = {
       enable = true;
-      wayland = true;
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
     };
   };
   # services.xserver = {
