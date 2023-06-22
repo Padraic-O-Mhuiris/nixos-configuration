@@ -8,7 +8,6 @@
     ./fonts.nix
     ./networking.nix
     ./nix.nix
-    ./redshift.nix
     ./ssh.nix
     ./sops.nix
     ./user.nix
