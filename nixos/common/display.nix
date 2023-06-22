@@ -7,12 +7,12 @@
       sddm = {
         enable = true;
         enableHidpi = true;
-        autoLogin.relogin = false;
+        # autoLogin.relogin = false;
       };
-      autoLogin = {
-        enable = true;
-        user = config.defaultUser.name;
-      };
+      # autoLogin = {
+      #   enable = true;
+      #   user = config.defaultUser.name;
+      # };
     };
   };
 }
