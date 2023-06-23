@@ -10,6 +10,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       outputs.overlays.master-packages
+      inputs.xdph.overlays.default
     ];
   };
 
@@ -62,6 +63,7 @@
     libpulseaudio
     libuuid
     libusb1
+    lshw
     xorg.libxcb
     libxkbcommon
     mesa

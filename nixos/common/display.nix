@@ -1,27 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
-  services.xserver = {
+  services.xserver = { enable = true; };
+
+  xdg.portal = {
     enable = true;
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-    };
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
-  # services.xserver = {
-  #   enable = true;
-  #   displayManager = {
-  #     sddm = {
-  #       enable = true;
-  #       enableHidpi = true;
-  #       # autoLogin.relogin = false;
-  #     };
-  #     # autoLogin = {
-  #     #   enable = true;
-  #     #   user = config.defaultUser.name;
-  #     # };
-  #   };
-  # };
 }
