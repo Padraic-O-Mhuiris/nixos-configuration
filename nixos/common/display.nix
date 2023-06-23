@@ -4,14 +4,11 @@
 
   services.xserver = {
     enable = true;
-    xserver = {
+    displayManager.defaultSession = "Hyprland";
+    displayManager.sddm = {
       enable = true;
-      displayManager.defaultSession = "Hyprland";
-      displayManager.sddm = {
-        enable = true;
-        theme = "catppuccin-mocha";
-        autoNumlock = true;
-      };
+      theme = "catppuccin-mocha";
+      autoNumlock = true;
     };
   };
 
