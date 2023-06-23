@@ -5,10 +5,9 @@
   services.xserver = {
     enable = true;
     displayManager.defaultSession = "hyprland";
-    displayManager.sddm = {
+    displayManager.gdm = {
       enable = true;
-      theme = "catppuccin-mocha";
-      autoNumlock = true;
+      wayland = true;
     };
   };
 
