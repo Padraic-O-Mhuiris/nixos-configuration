@@ -1,9 +1,9 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
+
   services.xserver = {
     enable = true;
-    dbus.enable = true;
     xserver = {
       enable = true;
       displayManager.defaultSession = "Hyprland";
