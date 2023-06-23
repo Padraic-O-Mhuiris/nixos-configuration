@@ -4,7 +4,7 @@
 
   services.xserver = {
     enable = true;
-    displayManager.defaultSession = "Hyprland";
+    displayManager.defaultSession = "hyprland";
     displayManager.sddm = {
       enable = true;
       theme = "catppuccin-mocha";
