@@ -21,11 +21,7 @@ let
       sensitivity = 0
     }
   '';
-  autostart = ''
-    exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
-    exec-once = dunst
-    exec-once = waybar
-  '';
+  autostart = "";
   misc = ''
     misc {
       disable_autoreload = true
