@@ -1,7 +1,13 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
-  services.xserver = { enable = true; };
+  services.xserver = {
+    enable = true;
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+  };
 
   xdg.portal = {
     enable = true;
