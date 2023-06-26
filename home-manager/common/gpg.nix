@@ -11,20 +11,20 @@
     homedir = "${config.xdg.dataHome}/gnupg";
   };
 
-  services.gpg-agent = {
-    enable = true;
-    enableExtraSocket = true;
-    enableScDaemon = true;
-    enableZshIntegration = true;
-    grabKeyboardAndMouse = true;
-    defaultCacheTtl = 3600;
-    pinentryFlavor = "gnome3";
-    extraConfig = ''
-      allow-emacs-pinentry
-      allow-loopback-pinentry
-    '';
-    verbose = true;
-  };
+  # services.gpg-agent = {
+  #   enable = true;
+  #   enableExtraSocket = true;
+  #   enableScDaemon = true;
+  #   enableZshIntegration = true;
+  #   grabKeyboardAndMouse = true;
+  #   defaultCacheTtl = 3600;
+  #   pinentryFlavor = "gnome3";
+  #   extraConfig = ''
+  #     allow-emacs-pinentry
+  #     allow-loopback-pinentry
+  #   '';
+  #   verbose = true;
+  # };
 
   systemd.user.sessionVariables.GNUPGHOME = "${config.xdg.dataHome}/gnupg";
   # programs.zsh.sessionVariables.GNUPGHOME = "${config.xdg.dataHome}/gnupg";
