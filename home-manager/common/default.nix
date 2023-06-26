@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./nix.nix ];
+  imports = [ ./nix.nix ./gpg.nix ];
 }

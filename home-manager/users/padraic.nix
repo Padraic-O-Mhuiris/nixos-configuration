@@ -28,15 +28,6 @@
         signByDefault = true;
       };
     };
-    gpg = {
-      enable = true;
-      mutableKeys = true;
-      publicKeys = [{
-        source = ./padraic_pub_gpg.key;
-        trust = 5;
-      }];
-      homedir = "${config.xdg.dataHome}/gnupg";
-    };
     helix.enable = true;
     direnv = {
       enable = true;
@@ -176,20 +167,6 @@
     #   enable = true;
     #   repositories = { }; # TODO Add docs and nixos-config repo
     # };
-    gpg-agent = {
-      enable = true;
-      enableExtraSocket = true;
-      enableScDaemon = true;
-      enableZshIntegration = true;
-      grabKeyboardAndMouse = true;
-      defaultCacheTtl = 3600;
-      pinentryFlavor = "gnome3";
-      extraConfig = ''
-        allow-emacs-pinentry
-        allow-loopback-pinentry
-      '';
-      verbose = true;
-    };
     # kanshi = {
     #   enable = true;
     #   # TODO Add profiles
