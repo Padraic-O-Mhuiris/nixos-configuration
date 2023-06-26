@@ -30,11 +30,12 @@
     };
     gpg = {
       enable = true;
-      # mutableKeys = false;
+      mutableKeys = true;
       publicKeys = [{
         text = defaultUser.gpgKey;
         trust = 5;
       }];
+      homedir = "${config.xdg.dataHome}/gnupg";
     };
     helix.enable = true;
     direnv = {
@@ -171,15 +172,16 @@
     blueman-applet.enable = true;
     clipman.enable = true;
     flameshot.enable = true;
-    git-sync = {
-      enable = true;
-      repositories = { }; # TODO Add docs and nixos-config repo
-    };
+    # git-sync = {
+    #   enable = true;
+    #   repositories = { }; # TODO Add docs and nixos-config repo
+    # };
     gpg-agent = {
       enable = true;
       enableExtraSocket = true;
       enableScDaemon = true;
       enableZshIntegration = true;
+      grabKeyboardAndMouse = true;
       defaultCacheTtl = 3600;
       pinentryFlavor = "gnome3";
       extraConfig = ''
@@ -210,6 +212,7 @@
     mime.enable = true;
     userDirs = {
       enable = true;
+      createDirectories = true;
       desktop = "${config.home.homeDirectory}/desktop";
       download = "${config.home.homeDirectory}/downloads";
       documents = "${config.home.homeDirectory}/documents";
