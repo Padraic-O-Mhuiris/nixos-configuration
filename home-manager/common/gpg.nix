@@ -26,5 +26,5 @@
     verbose = true;
   };
 
-  home.sessionVariables.GNUGPGHOME = "${config.xdg.dataHome}/gnupg";
+  systemd.user.sessionVariables.GNUGPGHOME = "${config.xdg.dataHome}/gnupg";
 }

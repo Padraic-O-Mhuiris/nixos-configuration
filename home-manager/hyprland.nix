@@ -134,7 +134,7 @@ in {
     libsForQt5.qt5.qtwayland
   ];
 
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
