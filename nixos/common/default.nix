@@ -5,6 +5,7 @@
     ./base.nix
     ./bluetooth.nix
     ./display.nix
+    ./filemanager.nix
     ./fonts.nix
     ./networking.nix
     ./nix.nix
