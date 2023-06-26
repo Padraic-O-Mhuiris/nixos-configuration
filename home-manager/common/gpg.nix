@@ -27,4 +27,6 @@
   };
 
   systemd.user.sessionVariables.GNUGPGHOME = "${config.xdg.dataHome}/gnupg";
+  programs.zsh.sessionVariables.GNUGPGHOME = "${config.xdg.dataHome}/gnupg";
+  programs.bash.sessionVariables.GNUGPGHOME = "${config.xdg.dataHome}/gnupg";
 }
