@@ -3,11 +3,11 @@
 {
   programs.gpg = {
     enable = true;
-    # mutableKeys = true;
-    # publicKeys = [V
-    #   source = ../users/padraic_pub_gpg.key;
-    #   trust = 5;
-    # }];
+    mutableKeys = true;
+    publicKeys = [{
+      source = ../users/padraic_pub_gpg.key;
+      trust = 5;
+    }];
     homedir = "${config.xdg.dataHome}/gnupg";
   };
 
