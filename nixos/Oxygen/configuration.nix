@@ -7,7 +7,7 @@
     githubUser = "Padraic-O-Mhuiris";
     sshKey =
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7";
-    gpgKey = "9A51DBF629888EE75982008D9DCE7055406806F8";
+    gpgKey = "8544725A91D4B87821522A368DA36F90B33A4605";
   };
 
   imports = [
