@@ -41,8 +41,6 @@
     longitude = -9.03;
   };
 
-  # programs.hyprland.enable = true;
-
   virtualisation.libvirtd.enable = true;
 
   networking = {
