@@ -24,7 +24,6 @@
 
     ./hardware-configuration.nix
     ./boot.nix
-
     ../common
   ];
 
