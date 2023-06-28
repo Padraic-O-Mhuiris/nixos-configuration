@@ -6,7 +6,7 @@
   services.emacs = {
     enable = true;
     package = pkgs.emacsUnstable;
-    client = true;
+    client.enable = true;
     defaultEditor = true;
     socketActivation = true;
   };
