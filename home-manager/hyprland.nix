@@ -18,7 +18,7 @@ let
     killall xdg-desktop-portal
     ${pkgs.xdg-desktop-portal-hyprland}/bin/xdg-desktop-portal-hyprland &
     sleep 2
-    ${pkgs.xdg.desktop-portal}/bin/xdg-desktop-portal &
+    ${pkgs.xdg-desktop-portal}/bin/xdg-desktop-portal &
   '';
 
   monitor = ''
