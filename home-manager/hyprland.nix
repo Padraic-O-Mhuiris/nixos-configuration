@@ -35,6 +35,7 @@ let
   autostart = ''
     exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    exec-once = waybar
   '';
   misc = ''
     misc {
