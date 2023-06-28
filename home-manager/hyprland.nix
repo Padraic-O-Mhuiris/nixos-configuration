@@ -21,7 +21,9 @@ let
       sensitivity = 0
     }
   '';
-  autostart = "";
+  autostart = ''
+    exec-once = waybar
+  '';
   misc = ''
     misc {
       disable_autoreload = true

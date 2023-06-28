@@ -10,4 +10,6 @@
 
   # Must be set if defaultUserShell is set to true
   programs.zsh.enable = true;
+
+  defaultUser.groups = [ "input" ];
 }
