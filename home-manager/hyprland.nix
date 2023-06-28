@@ -10,6 +10,17 @@
 # /usr/lib/xdg-desktop-portal &
 
 let
+
+  launchHyprlandWM = pkgs.writeShellScriptBin "launchHyperlandWM" ''
+    sleep 1
+    killall xdg-desktop-portal-hyprland
+    killall xdg-desktop-portal-wlr
+    killall xdg-desktop-portal
+    ${pkgs.xdg-desktop-portal-hyprland}/bin/xdg-desktop-portal-hyprland &
+    sleep 2
+    ${pkgs.xdg.desktop-portal}/bin/xdg-desktop-portal &
+  '';
+
   monitor = ''
     monitor=DP-1,5120x1440@60,0x0,1.1
   '';
@@ -22,7 +33,8 @@ let
     }
   '';
   autostart = ''
-    exec-once = waybar
+    exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
+    exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   '';
   misc = ''
     misc {
@@ -106,6 +118,7 @@ let
     bindm = $mod, mouse:272, movewindow
     bindm = $mod, mouse:273, resizewindow
   '';
+
 in {
 
   wayland.windowManager.hyprland = {
