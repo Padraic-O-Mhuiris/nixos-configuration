@@ -5,5 +5,6 @@
     inputs.hyprland.homeManagerModules.default
     ./users/padraic.nix
     ./hyprland.nix
+    ./emacs.nix
   ];
 }
