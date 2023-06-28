@@ -8,6 +8,6 @@
     package = pkgs.emacsUnstable;
     client.enable = true;
     defaultEditor = true;
-    socketActivation = true;
+    socketActivation.enable = true;
   };
 }
