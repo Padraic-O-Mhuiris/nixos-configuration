@@ -90,7 +90,7 @@ in {
     profiles."${config.defaultUser.name}" = {
       id = 0;
       isDefault = true;
-      name = ${defaultUser.name};
+      name = config.defaultUser.name;
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         metamask
