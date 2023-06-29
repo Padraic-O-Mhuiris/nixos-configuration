@@ -1,7 +1,7 @@
 { inputs, outputs, lib, defaultUser, config, pkgs, ... }:
 
 {
-  imports = [ ../common ];
+  imports = [ ../../common ];
 
   home = {
     username = defaultUser.name;
