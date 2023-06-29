@@ -138,6 +138,24 @@ in {
               "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@no" ];
           };
+          "HomeManager Options" = {
+            urls = [{
+              template = "https://mipmip.github.io/home-manager-option-search/?query=sas";
+              params = [
+                {
+                  name = "type";
+                  value = "options";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }];
+            icon =
+              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@nho" ];
+          };
         };
       };
       bookmarks = [{
