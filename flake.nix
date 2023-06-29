@@ -18,6 +18,8 @@
     xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     emacs.url = "github:nix-community/emacs-overlay";
+
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

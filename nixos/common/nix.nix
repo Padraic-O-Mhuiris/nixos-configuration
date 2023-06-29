@@ -12,6 +12,7 @@
       outputs.overlays.master-packages
       inputs.xdph.overlays.default
       inputs.emacs.overlays.default
+      inputs.nur.overlay
     ];
   };
 

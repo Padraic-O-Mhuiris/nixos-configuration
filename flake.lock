@@ -281,6 +281,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1688039092,
+        "narHash": "sha256-LdSxF+4sScA7QIrIWc7dty+FDv1JURen6WXSScWFaV0=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "6725852be8625409b9df80a3d816c1a7716335f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "emacs": "emacs",
@@ -290,6 +305,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur": "nur",
         "sops": "sops",
         "xdph": "xdph_2"
       }

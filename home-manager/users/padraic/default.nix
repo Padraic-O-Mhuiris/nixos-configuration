@@ -34,7 +34,6 @@
       nix-direnv.enable = true;
       enableZshIntegration = true;
     };
-    firefox.enable = true;
     irssi.enable = true;
     jq.enable = true;
     man.enable = true;

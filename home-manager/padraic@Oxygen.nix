@@ -6,5 +6,6 @@
     ./users/padraic
     ./hyprland.nix
     ./emacs.nix
+    ./firefox.nix
   ];
 }
