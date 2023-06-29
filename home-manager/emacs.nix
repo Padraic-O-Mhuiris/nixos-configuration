@@ -10,4 +10,5 @@
     defaultEditor = true;
     socketActivation.enable = true;
   };
+
 }

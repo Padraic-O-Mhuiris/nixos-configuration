@@ -5,7 +5,7 @@
     enable = true;
     mutableKeys = false;
     publicKeys = [{
-      source = ../users/padraic_pub_gpg.key;
+      source = ../users/padraic/public.asc;
       trust = 5;
     }];
     homedir = "${config.xdg.dataHome}/gnupg";

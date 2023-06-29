@@ -3,7 +3,7 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ./users/padraic.nix
+    ./users/padraic
     ./hyprland.nix
   ];
 }
