@@ -12,7 +12,7 @@ let
   '';
 
   monitor = ''
-    monitor=DP-1,5120x1440@60,0x0,2
+    monitor=DP-1,5120x1440@60,0x0,1
   '';
   input = ''
     input {
