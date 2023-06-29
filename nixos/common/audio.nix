@@ -10,6 +10,12 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+extraConfig = "
+  load-module module-switch-on-connect
+";
+  };
   defaultUser.groups = [ "audio" ];
 }
