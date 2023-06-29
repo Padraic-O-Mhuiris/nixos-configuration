@@ -12,7 +12,7 @@ let
   '';
 
   monitor = ''
-    monitor=DP-1,5120x1440@60,0x0,1.1
+    monitor=DP-1,5120x1440@60,0x0,2,highres
   '';
   input = ''
     input {
@@ -25,6 +25,7 @@ let
   autostart = ''
     exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
     exec-once = waybar
   '';
   misc = ''
@@ -57,6 +58,8 @@ let
     env = XDG_SESSION_DESKTOP,Hyprland
     env = GDK_BACKEND=wayland,x11
     env = HYPRLAND_LOG_WLR,1
+    env = GDK_SCALE,2
+    env = XCURSOR_SIZE,32
   '';
   binds = ''
     $mod = SUPER

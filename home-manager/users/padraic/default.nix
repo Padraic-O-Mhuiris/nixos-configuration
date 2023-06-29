@@ -58,7 +58,7 @@
 
     password-store.enable = true;
     # rofi.enable = true;
-
+    ripgrep.enable = true;
     ssh.enable = true;
 
     starship = {
@@ -202,7 +202,10 @@
     };
   };
 
-  home = { enableNixpkgsReleaseCheck = true; };
+  home = {
+    enableNixpkgsReleaseCheck = true;
+    packages = with pkgs; [ fd ];
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
