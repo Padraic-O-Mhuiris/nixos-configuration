@@ -87,10 +87,10 @@ in {
   programs.firefox = {
     enable = true;
     package = firefoxPkg;
-    profiles."${config.defaultUser.name}" = {
+    profiles."${defaultUser.name}" = {
       id = 0;
       isDefault = true;
-      name = config.defaultUser.name;
+      name = defaultUser.name;
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         metamask
