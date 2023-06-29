@@ -4,21 +4,19 @@ let
 
   bookmarkUrls = lib.forEach [
     "https://mail.google.com/mail/u/0/?hl=en#inbox"
+    "https://chat.openai.com/"
     "https://www.youtube.com/"
     "https://twitter.com/home"
     "https://www.instagram.com/"
     "https://web.whatsapp.com/"
     "https://github.com/"
     "https://old.reddit.com/"
-    "https://chat.openai.com/"
     "https://www.twitch.tv/"
     "https://www.netflix.com/browse"
     "https://news.ycombinator.com/news"
-    "https://www.daft.ie/property-for-sale/galway-city"
     "https://lobste.rs/"
+    "https://www.daft.ie/property-for-sale/galway-city"
     "https://www.coingecko.com/en"
-    "https://www.chess.com/play"
-    "https://beaconcha.in/dashboard?validators=79330,79331,79332,79333"
 
   ] (url: {
     inherit url;
@@ -97,6 +95,8 @@ in {
         bitwarden
         old-reddit-redirect
         i-dont-care-about-cookies
+        reddit-enhancement-suite
+        org-capture
       ];
       search = {
         default = "DuckDuckGo";
@@ -140,12 +140,8 @@ in {
           };
           "HomeManager Options" = {
             urls = [{
-              template = "https://mipmip.github.io/home-manager-option-search/?query=sas";
+              template = "https://mipmip.github.io/home-manager-option-search/";
               params = [
-                {
-                  name = "type";
-                  value = "options";
-                }
                 {
                   name = "query";
                   value = "{searchTerms}";
