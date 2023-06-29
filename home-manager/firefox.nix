@@ -36,7 +36,7 @@ let
       BlockAboutSupport = true;
       Bookmarks = [ ];
       CaptivePortal = false;
-      DefaultDownloadDirectory = ${xdg.userDirs.download};
+      DefaultDownloadDirectory = config.xdg.userDirs.download;
       DisableAppUpdate = true;
       DisableFirefoxAccounts = true;
       DisableFirefoxStudies = true;
