@@ -58,7 +58,6 @@
 
     password-store.enable = true;
     # rofi.enable = true;
-    ripgrep.enable = true;
     ssh.enable = true;
 
     starship = {
@@ -204,7 +203,7 @@
 
   home = {
     enableNixpkgsReleaseCheck = true;
-    packages = with pkgs; [ fd ];
+    packages = with pkgs; [ fd ripgrep ];
   };
 
   # Nicely reload system units when changing configs
