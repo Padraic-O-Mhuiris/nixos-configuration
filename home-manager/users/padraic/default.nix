@@ -202,7 +202,7 @@
 
   home = {
     enableNixpkgsReleaseCheck = true;
-    packages = with pkgs; [ fd ripgrep ];
+    packages = with pkgs; [ fd ripgrep zoom-us pavucontrol spotify ];
   };
 
   # Nicely reload system units when changing configs
