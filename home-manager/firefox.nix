@@ -87,7 +87,7 @@ in {
   programs.firefox = {
     enable = true;
     package = firefoxPkg;
-    profiles.${defaultUser.name} = {
+    profiles."${config.defaultUser.name}" = {
       id = 0;
       isDefault = true;
       name = ${defaultUser.name};
