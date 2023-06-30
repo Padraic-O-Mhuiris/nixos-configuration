@@ -74,16 +74,6 @@ let
     bind = $mod, P, pseudo, # dwindle
     bind = $mod, J, togglesplit, # dwindle
 
-    bind=ALT,R,submap,resize
-    bind=,escape,submap,reset
-    submap=resize
-    submap=reset
-
-    binde=,right,resizeactive,10 0
-    binde=,left,resizeactive,-10 0
-    binde=,up,resizeactive,0 -10
-    binde=,down,resizeactive,0 10
-
     # Move focus with mod + arrow keys
     bind = $mod, left, movefocus, l
     bind = $mod, right, movefocus, r
@@ -122,14 +112,14 @@ let
     bindm = $mod, mouse:272, movewindow
     bindm = $mod, mouse:273, resizewindow
 
-    bind = $mod, H, movewindow, l
-    bind = $mod, L, movewindow, r
-    bind = $mod, K, movewindow, u
-    bind = $mod, J, movewindow, d
-    bind = $mod, left, movewindow, l
-    bind = $mod, right, movewindow, r
-    bind = $mod, up, movewindow, u
-    bind = $mod, down, movewindow, d
+    bind = $mod SHIFT, H, movewindow, l
+    bind = $mod SHIFT, L, movewindow, r
+    bind = $mod SHIFT, K, movewindow, u
+    bind = $mod SHIFT, J, movewindow, d
+    bind = $mod SHIFT, left, movewindow, l
+    bind = $mod SHIFT, right, movewindow, r
+    bind = $mod SHIFT, up, movewindow, u
+    bind = $mod SHIFT, down, movewindow, d
   '';
 
 in {
@@ -166,5 +156,4 @@ in {
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
-
 }

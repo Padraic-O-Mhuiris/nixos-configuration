@@ -159,9 +159,14 @@ in {
         toolbar = true;
         bookmarks = bookmarkUrls;
       }];
+      userChrome = '''';
+      userContent = '''';
       settings = {
         "browser.aboutConfig.showWarning" = false;
         "browser.shell.checkDefaultBrowser" = false;
+        "browser.tabs.tabMinWidth" = 66;
+        "browser.tabs.tabClipWidth" = 86;
+        "browser.tabs.tabmanager.enabled" = false;
       };
     };
   };
