@@ -41,6 +41,11 @@
       trusted-users = [ "@wheel" ];
       allowed-users = [ "@wheel" ];
     };
+
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
   };
 
   # https://github.com/Mic92/dotfiles/blob/main/nixos/modules/nix-ld.nix

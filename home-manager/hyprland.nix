@@ -122,7 +122,8 @@ let
     bind = $mod SHIFT, down, movewindow, d
   '';
 
-in {
+in
+{
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
@@ -145,7 +146,6 @@ in {
     xdg-desktop-portal-hyprland
     waybar
     libsForQt5.dolphin
-    alacritty
     rofi-wayland
     qt6.qtwayland
     libsForQt5.qt5.qtwayland

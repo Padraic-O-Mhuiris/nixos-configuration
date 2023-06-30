@@ -18,10 +18,11 @@ let
     "https://www.daft.ie/property-for-sale/galway-city"
     "https://www.coingecko.com/en"
 
-  ] (url: {
-    inherit url;
-    name = "";
-  });
+  ]
+    (url: {
+      inherit url;
+      name = "";
+    });
 
 
   firefoxPkg = pkgs.wrapFirefox pkgs.firefox-unwrapped {
@@ -81,7 +82,8 @@ let
     };
   };
 
-in {
+in
+{
   programs.firefox = {
     enable = true;
     package = firefoxPkg;

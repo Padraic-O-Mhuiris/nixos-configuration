@@ -29,11 +29,6 @@
       };
     };
     helix.enable = true;
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      enableZshIntegration = true;
-    };
     irssi.enable = true;
     jq.enable = true;
     man.enable = true;

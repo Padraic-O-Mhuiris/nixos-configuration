@@ -2,6 +2,23 @@
 
 {
   programs = {
+    alacritty = {
+      enable = true;
+      settings = {
+        font.size = 12;
+        window.padding = {
+          x = 10;
+          y = 10;
+        };
+      };
+    };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+    };
+
     tmux = {
       enable = true;
       baseIndex = 1;
@@ -36,7 +53,7 @@
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      useTheme = "pure";
+      useTheme = "agnoster";
     };
 
 
@@ -63,8 +80,7 @@
       initExtra = "";
       initExtraBeforeCompInit = "";
       initExtraFirst = "";
-      localVariables = {
-      };
+      localVariables = { };
       loginExtra = "";
       logoutExtra = "";
       plugins = [

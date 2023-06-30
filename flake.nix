@@ -32,7 +32,8 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-    in rec {
+    in
+    rec {
       # inherit (nixpkgs) lib;
 
       packages = forAllSystems (system:
@@ -53,6 +54,8 @@
         in import ./shell.nix { inherit pkgs; });
 
       overlays = import ./overlays { inherit inputs; };
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
       nixosModules = import ./modules/nixos;
 
