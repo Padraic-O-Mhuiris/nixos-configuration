@@ -97,7 +97,7 @@
       enableSyntaxHighlighting = true;
       enableVteIntegration = true;
       autocd = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       envExtra = "";
       history = {
         expireDuplicatesFirst = true;
@@ -113,7 +113,10 @@
       initExtra = "";
       initExtraBeforeCompInit = "";
       initExtraFirst = "";
-      localVariables = { };
+      localVariables = {
+        ZSH_TMUX_AUTOSTART = true;
+        ZSH_TMUX_AUTOSTART_ONCE = true;
+      };
       loginExtra = "";
       logoutExtra = "";
       oh-my-zsh = {
@@ -131,7 +134,7 @@
           "colored-man-pages"
           "command-not-found"
           "extract"
-          "nix"
+          "tmux"
         ];
       };
     };
