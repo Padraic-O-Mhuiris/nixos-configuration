@@ -37,7 +37,7 @@ let
   '';
   decoration = ''
     decoration {
-        rounding = 16
+        rounding = 2
         blur = true
         blur_size = 3
         blur_passes = 3

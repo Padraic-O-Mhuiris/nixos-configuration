@@ -6,7 +6,7 @@
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       corefonts
-      iosevka
+      # iosevka
       ubuntu_font_family
       dejavu_fonts
       liberation_ttf
@@ -16,11 +16,12 @@
       siji
       font-awesome
       cascadia-code
+      (nerdfonts.override { fonts = [ "Iosevka" ]; })
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "Iosevka" ];
+        monospace = [ "Iosevka NFP SemiBold" ];
         sansSerif = [ "Roboto" ];
         serif = [ "Roboto" ];
       };

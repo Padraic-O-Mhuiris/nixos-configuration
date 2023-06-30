@@ -7,5 +7,6 @@
     ./firefox
     ./hyprland.nix
     ./emacs.nix
+    ./zsh.nix
   ];
 }
