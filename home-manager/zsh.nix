@@ -36,6 +36,7 @@
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
+      useTheme = "catpuccin";
     };
 
 
@@ -46,7 +47,7 @@
       enableSyntaxHighlighting = true;
       enableVteIntegration = true;
       autocd = true;
-      dotDir = "${config.xdg.configHome}/zsh";
+      dotDir = ".config/zsh";
       envExtra = "";
       history = {
         expireDuplicatesFirst = true;
