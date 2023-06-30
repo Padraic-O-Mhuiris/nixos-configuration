@@ -159,14 +159,18 @@ in {
         toolbar = true;
         bookmarks = bookmarkUrls;
       }];
-      userChrome = '''';
-      userContent = '''';
+      userChrome = builtins.readFile ./userChrome.css;
+      userContent = builtins.readFile ./userContent.css;
       settings = {
         "browser.aboutConfig.showWarning" = false;
         "browser.shell.checkDefaultBrowser" = false;
         "browser.tabs.tabMinWidth" = 66;
         "browser.tabs.tabClipWidth" = 86;
         "browser.tabs.tabmanager.enabled" = false;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "layers.acceleration.force-enabled" = true;
+        "gfx.webrender.all" = true;
+        "svg.context-properties.content.enabled" = true;
       };
     };
   };

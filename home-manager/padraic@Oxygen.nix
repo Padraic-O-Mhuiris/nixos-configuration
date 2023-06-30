@@ -4,8 +4,8 @@
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./users/padraic
+    ./firefox
     ./hyprland.nix
     ./emacs.nix
-    ./firefox.nix
   ];
 }
