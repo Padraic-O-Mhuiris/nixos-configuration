@@ -41,7 +41,6 @@ in {
       passwordFile = config.sops.secrets."user@${cfg.name}".path;
       uid = 1000;
       extraGroups = [ "wheel" ] ++ cfg.groups;
-      shell = pkgs.bashInteractive;
     };
 
     home-manager = {
