@@ -34,20 +34,9 @@
       ];
     in
     rec {
-      # inherit (nixpkgs) lib;
-
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in ((import ./pkgs { inherit pkgs; })) // {
-          vm = pkgs.writeShellScriptBin "runVM" ''
-            FILE=Hydrogen.qcow2
-            if [ -f "$FILE" ]; then
-               rm $FILE
-            fi
-            CMD=${nixosConfigurations.Hydrogen.config.system.build.vm}/bin/run-Hydrogen-vm
-            exec $CMD -m 4096 -machine type=pc,accel=kvm -device virtio-vga-gl -display gtk,gl=on,grab-on-hover=on;
-          '';
-        });
+        in (import ./pkgs { inherit pkgs; }));
 
       devShells = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
