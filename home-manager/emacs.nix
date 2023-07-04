@@ -8,7 +8,5 @@
     package = pkgs.emacs-unstable-pgtk;
     client.enable = true;
     defaultEditor = true;
-    socketActivation.enable = true;
   };
-
 }
