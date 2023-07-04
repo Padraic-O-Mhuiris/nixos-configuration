@@ -6,7 +6,7 @@
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       corefonts
-      # iosevka
+      iosevka
       ubuntu_font_family
       dejavu_fonts
       liberation_ttf
