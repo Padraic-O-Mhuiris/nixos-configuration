@@ -13,6 +13,7 @@ let
 
   monitor = ''
     monitor=DP-1,5120x1440@60,0x0,1
+    monitor=HDMI-A-1,1920x1080@60,5120x0,1,transform,7
   '';
   input = ''
     input {
