@@ -43,7 +43,7 @@
       enable = true;
       enableZshIntegration = true;
     };
-    noti.enable = true;
+    # noti.enable = true;
     password-store.enable = true;
     ssh.enable = true;
   };

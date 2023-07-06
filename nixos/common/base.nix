@@ -17,6 +17,7 @@
     i7z
     iw
     jq
+    libnotify
     netcat
     nix-index
     nix-tree
