@@ -11,6 +11,13 @@ let
     ${pkgs.xdg-desktop-portal}/bin/xdg-desktop-portal &
   '';
 
+  term = ''
+    exec-once =[workspace special;] alacritty --class "term"
+    bind = $mod, X, togglespecialworkspace
+    windowrule = float,class:^(term)#
+
+  '';
+
   monitor = ''
     monitor=DP-1,5120x1440@60,0x0,1
     monitor=HDMI-A-1,1920x1080@60,5120x0,1,transform,1
@@ -27,7 +34,7 @@ let
     exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
-    exec-once = waybar
+    exec-once = eww daemon
   '';
   misc = ''
     misc {
@@ -65,15 +72,15 @@ let
   binds = ''
     $mod = SUPER
 
-    bind = $mod, Return, exec, alacritty
+    bind = $mod, Return, exec, alacritty --class "term"
     bind = $mod, Q, killactive,
     bind = $mod, M, exit,
     bind = $mod, E, exec, dolphin
     bind = $mod, V, togglefloating
     bind = $mod, F, fullscreen
     bind = $mod, D, exec, rofi -show drun
-    bind = $mod, P, pseudo, # dwindle
-    bind = $mod, J, togglesplit, # dwindle
+    bind = $mod, P, pseudo,
+    bind = $mod, J, togglesplit,
 
     # Move focus with mod + arrow keys
     bind = $mod, left, movefocus, l
@@ -151,6 +158,8 @@ in
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
   ];
+
+
 
   systemd.user.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
