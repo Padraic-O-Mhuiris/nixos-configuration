@@ -15,7 +15,6 @@ let
     exec-once =[workspace special;] alacritty --class "term"
     bind = $mod, X, togglespecialworkspace
     windowrule = float,class:^(term)#
-
   '';
 
   monitor = ''
@@ -34,8 +33,7 @@ let
     exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
-    exec-once = eww daemon
-    exec-once = eww open bar
+    exec-once = waybar -c ${config.xdg.configHome}/waybar/config
   '';
   misc = ''
     misc {
@@ -134,7 +132,7 @@ let
 in
 {
 
-  imports = [ ./eww ];
+  imports = [ ./waybar ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -157,17 +155,10 @@ in
 
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
-    waybar
     libsForQt5.dolphin
     rofi-wayland
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
-
-    # eww
-    socat
-    coreutils-full
-    jq
-    python39Full
   ];
 
 
