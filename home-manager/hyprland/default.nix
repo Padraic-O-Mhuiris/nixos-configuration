@@ -33,7 +33,7 @@ let
     exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
-    # exec-once = waybar
+    exec-once = waybar
   '';
   misc = ''
     misc {
@@ -132,7 +132,7 @@ let
 in
 {
 
-  imports = [ ./eww ];
+  imports = [ ./waybar ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -152,15 +152,12 @@ in
     '';
   };
 
-
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
     libsForQt5.dolphin
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
   ];
-
-
 
   systemd.user.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
