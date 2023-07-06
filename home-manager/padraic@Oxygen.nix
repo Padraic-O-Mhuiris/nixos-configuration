@@ -5,8 +5,7 @@
     inputs.hyprland.homeManagerModules.default
     ./users/padraic
     ./firefox
-    ./eww
-    ./hyprland.nix
+    ./hyprland
     ./emacs.nix
     ./cli.nix
   ];

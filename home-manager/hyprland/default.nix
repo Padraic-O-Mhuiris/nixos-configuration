@@ -35,6 +35,7 @@ let
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
     exec-once = eww daemon
+    exec-once = eww open bar
   '';
   misc = ''
     misc {
@@ -132,6 +133,9 @@ let
 
 in
 {
+
+  imports = [ ./eww ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
@@ -150,6 +154,7 @@ in
     '';
   };
 
+
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
     waybar
@@ -157,6 +162,12 @@ in
     rofi-wayland
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
+
+    # eww
+    socat
+    coreutils-full
+    jq
+    python39Full
   ];
 
 
