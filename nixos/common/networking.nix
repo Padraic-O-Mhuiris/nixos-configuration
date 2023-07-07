@@ -16,4 +16,6 @@
   programs.nm-applet.enable = true;
 
   defaultUser.groups = [ "networkManager" ];
+
+  environment.systemPackages = with pkgs; [ gnome-icon-theme ];
 }
