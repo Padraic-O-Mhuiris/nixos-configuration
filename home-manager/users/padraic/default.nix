@@ -102,7 +102,10 @@
       desktop = "${config.home.homeDirectory}/desktop";
       download = "${config.home.homeDirectory}/downloads";
       documents = "${config.home.homeDirectory}/documents";
-      extraConfig = { XDG_CODE_DIR = "${config.home.homeDirectory}/code"; };
+      extraConfig = {
+        XDG_CODE_DIR = "${config.home.homeDirectory}/code";
+        XDG_NOTE_DIR = "${config.home.homeDirectory}/documents/notes";
+      };
       music = "${config.home.homeDirectory}/music";
       pictures = "${config.home.homeDirectory}/pictures";
       publicShare = "${config.home.homeDirectory}/public";
