@@ -14,37 +14,49 @@
 
         # layout
         modules-left = [ "wlr/workspaces" ];
-        modules-center = [ "clock" "cpu" "temperature" "disk" "disk#nix" "disk#home" ];
-        modules-right = [ "hyprland/window" "sndio" "bluetooth" "network" "tray"];
+        modules-center = [ "hyprland/window" "cpu" "temperature" "disk" "disk#home" ];
+        modules-right = [ "pulseaudio" "bluetooth" "network" "clock" "tray" ];
 
         cpu = {
           interval = 2;
-          format = " | {icon} {avg_frequency} Ghz {usage}% ";
+          format = "{icon}  | {usage}% {load}";
           format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
           max-length = 30;
         };
 
+        pulseaudio = {
+          format = "{volume}% [ {icon} ]";
+          format-bluetooth = "{volume}% [ {icon}  ]";
+          format-muted = "";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = [ "" "" ];
+          };
+          scroll-step = 1;
+          on-click = "pavucontrol";
+          ignored-sinks = [ "Easy Effects Sink" ];
+        };
+
         temperature = {
           interval = 5;
-          format = " | {temperatureC} °C ";
+          format = " | {temperatureC}°C";
         };
 
         disk = {
           interval = 30;
-          format = " | {used} / {total} | {percentage_used} %";
+          format = " | {used} / {total} | {percentage_used}%";
           path = "/";
         };
 
         "disk#home" = {
           interval = 30;
-          format = " | {used} / {total} | {percentage_used} %";
+          format = " | {used} / {total} | {percentage_used}%";
           path = "/home";
-        };
-
-        "disk#nix" = {
-          interval = 30;
-          format = " | {used} / {total} | {percentage_used} %";
-          path = "/nix/store";
         };
 
         bluetooth = {
@@ -57,13 +69,10 @@
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
         };
 
-sndio = {
-    format = "{raw_value} 🎜";
-    scroll-step = 3;
-};
         tray = {
           icon-size = 15;
           spacing = 10;
+          show-passive-items = true;
         };
 
         network = {
@@ -125,16 +134,13 @@ sndio = {
       #memory,
       #temperature,
       #disk,
+      #disk-home
       #network,
       #pulseaudio,
-
-      #custom-media,
       #tray,
       #mode,
-      #custom-power,
-      #custom-menu,
-      #workspaces,
-      #idle_inhibitor {
+      #window,
+      #workspaces {
         padding: 0 20px;
       }
 
@@ -144,4 +150,10 @@ sndio = {
       }
     '';
   };
+
+  home.packages = with pkgs; [
+    pavucontrol
+    qpwgraph
+    wireplumber
+  ];
 }

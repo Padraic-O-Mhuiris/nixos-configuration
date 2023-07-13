@@ -24,6 +24,7 @@
     openssl
     pciutils
     patchelf
+    psmisc
     sd
     stdenv.cc.cc.lib
     tree

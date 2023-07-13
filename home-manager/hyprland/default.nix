@@ -6,9 +6,9 @@ let
     killall xdg-desktop-portal-hyprland
     killall xdg-desktop-portal-wlr
     killall xdg-desktop-portal
-    ${pkgs.xdg-desktop-portal-hyprland}/bin/xdg-desktop-portal-hyprland &
+    ${pkgs.xdg-desktop-portal-hyprland}/libexec/xdg-desktop-portal-hyprland &
     sleep 2
-    ${pkgs.xdg-desktop-portal}/bin/xdg-desktop-portal &
+    ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
   '';
 
   term = ''
@@ -155,8 +155,11 @@ in
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
     libsForQt5.dolphin
+    qt6.full
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
+    hyprland-protocols
+    hyprland-share-picker
   ];
 
   systemd.user.sessionVariables = {

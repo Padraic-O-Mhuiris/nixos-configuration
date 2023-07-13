@@ -10,7 +10,6 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       outputs.overlays.master-packages
-      inputs.xdph.overlays.default
       inputs.emacs.overlays.default
       inputs.nur.overlay
     ];

@@ -15,7 +15,6 @@
     sops.url = "github:Mic92/sops-nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    xdph.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     emacs.url = "github:nix-community/emacs-overlay";
 
