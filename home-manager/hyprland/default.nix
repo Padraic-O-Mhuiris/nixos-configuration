@@ -10,13 +10,6 @@ let
     sleep 2
     ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
   '';
-
-  term = ''
-    exec-once =[workspace special;] alacritty --class "term"
-    bind = $mod, X, togglespecialworkspace
-    windowrule = float,class:^(term)#
-  '';
-
   monitor = ''
     monitor=DP-1,5120x1440@60,0x0,1
     monitor=HDMI-A-1,1920x1080@60,5120x0,1,transform,1
@@ -33,7 +26,7 @@ let
     exec-once = ${launchHyprlandWM}/bin/launchHyperlandWM
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
-    #exec-once = waybar
+    exec-once = waybar
   '';
   misc = ''
     misc {
@@ -71,9 +64,8 @@ let
   binds = ''
     $mod = SUPER
 
-    bind = $mod, Return, exec, alacritty --class "term"
     bind = $mod, Q, killactive,
-    bind = $mod, M, exit,
+    bind = $mod SHIFT, ESC, exit,
     bind = $mod, E, exec, dolphin
     bind = $mod, V, togglefloating
     bind = $mod, F, fullscreen
@@ -129,6 +121,27 @@ let
     bind = $mod SHIFT, down, movewindow, d
   '';
 
+  term = ''
+    exec-once = [workspace special:term;] alacritty --class "term"
+    bind = $mod, X, togglespecialworkspace, term
+    bind = $mod SHIFT, X, movetoworkspace, term
+    windowrule = float,class:^(term)#
+  '';
+
+  obsidian = ''
+    exec-once = [workspace special:obsidian;] obsidian --class "obsidian"
+    bind = $mod, N, togglespecialworkspace, obsidian
+    bind = $mod SHIFT, N, movetoworkspace, obsidian
+    windowrule = float,class:^(obsidian)#
+  '';
+
+  spotify = ''
+    exec-once = [workspace special:spotify;] spotify --class "spotify"
+    bind = $mod, M, togglespecialworkspace, spotify
+    bind = $mod SHIFT, M, movetoworkspace, spotify
+    windowrule = float,class:^(spotify)#
+  '';
+
 in
 {
 
@@ -149,6 +162,9 @@ in
       ${env}
       ${input}
       ${binds}
+      ${term}
+      ${obsidian}
+      ${spotify}
     '';
   };
 

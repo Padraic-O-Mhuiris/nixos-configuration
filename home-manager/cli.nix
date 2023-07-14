@@ -77,12 +77,30 @@
         share = true;
       };
       historySubstringSearch = { enable = true; };
-      initExtra = "";
+      initExtra = ''
+        session_name="sesh"
+
+        tmux has-session -t=$session_name 2> /dev/null
+
+        if [[ $? -ne 0 ]]; then
+          unset TMUX
+          tmux new-session -d -s "$session_name"
+        fi
+
+        if [[ -z "$TMUX" ]]; then
+          tmux attach -t "$session_name"
+        else
+          tmux switch-client -t "$session_name"
+        fi
+      '';
       initExtraBeforeCompInit = "";
       initExtraFirst = "";
       localVariables = { };
       loginExtra = "";
       logoutExtra = "";
+      profileExtra = ''
+        tmux new-session -A -s main
+      '';
       plugins = [
         {
           name = "zsh-nix-shell";

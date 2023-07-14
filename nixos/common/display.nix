@@ -40,4 +40,6 @@
     #wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
+
+  defaultUser.groups = [ "video" ];
 }

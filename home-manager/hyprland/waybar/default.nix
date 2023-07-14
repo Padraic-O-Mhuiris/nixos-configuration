@@ -72,7 +72,6 @@
         tray = {
           icon-size = 15;
           spacing = 10;
-          show-passive-items = true;
         };
 
         network = {
@@ -122,7 +121,7 @@
     style = ''
       * {
         border: none;
-        border-radius: 1;
+        border-radius: 1px;
         font-family: Font Awesome, Iosevka, Arial, sans-serif;
         font-size: 13px;
         color: #000000;
@@ -141,7 +140,7 @@
       #mode,
       #window,
       #workspaces {
-        padding: 0 20px;
+        padding: 0px 20px;
       }
 
       #workspaces button.active {

@@ -39,12 +39,18 @@
       viAlias = true;
       vimAlias = true;
     };
+
     nix-index = {
       enable = true;
       enableZshIntegration = true;
     };
-    # noti.enable = true;
-    password-store.enable = true;
+    password-store = {
+      enable = true;
+      settings = {
+        PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+        PASSWORD_STORE_KEY = defaultUser.gpgKey;
+      };
+    };
     ssh.enable = true;
   };
 
@@ -72,17 +78,8 @@
     blueman-applet.enable = true;
     clipman.enable = true;
     flameshot.enable = true;
-    # git-sync = {
-    #   enable = true;
-    #   repositories = { }; # TODO Add docs and nixos-config repo
-    # };
-    # kanshi = {
-    #   enable = true;
-    #   # TODO Add profiles
-    # };
     network-manager-applet.enable = true;
     mpd.enable = true;
-    # TODO Add redshift service here
     udiskie = {
       enable = true;
       automount = true;
