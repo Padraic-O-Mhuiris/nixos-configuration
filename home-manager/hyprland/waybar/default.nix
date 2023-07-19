@@ -9,7 +9,7 @@
     settings = {
       main = {
         layout = "top";
-        height = 30;
+        height = 38;
         output = [ "DP-1" ];
 
         # layout

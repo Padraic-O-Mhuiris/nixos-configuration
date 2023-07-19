@@ -78,7 +78,7 @@
       };
       historySubstringSearch = { enable = true; };
       initExtra = ''
-        session_name="sesh"
+        session_name="MAIN"
 
         tmux has-session -t=$session_name 2> /dev/null
 

@@ -13,6 +13,9 @@ let
   monitor = ''
     monitor=DP-1,5120x1440@60,0x0,1
     monitor=HDMI-A-1,1920x1080@60,5120x0,1,transform,1
+
+    workspace=1,default:true,monitor:DP-1
+    workspace=2,default:true,monitor:HDMI-A-1
   '';
   input = ''
     input {
@@ -65,7 +68,7 @@ let
     $mod = SUPER
 
     bind = $mod, Q, killactive,
-    bind = $mod SHIFT, ESC, exit,
+    bind = SUPERALT, M, exit,
     bind = $mod, E, exec, dolphin
     bind = $mod, V, togglefloating
     bind = $mod, F, fullscreen
@@ -124,23 +127,26 @@ let
   term = ''
     exec-once = [workspace special:term;] alacritty --class "term"
     bind = $mod, X, togglespecialworkspace, term
-    bind = $mod SHIFT, X, movetoworkspace, term
     windowrule = float,class:^(term)#
   '';
 
   obsidian = ''
     exec-once = [workspace special:obsidian;] obsidian --class "obsidian"
     bind = $mod, N, togglespecialworkspace, obsidian
-    bind = $mod SHIFT, N, movetoworkspace, obsidian
     windowrule = float,class:^(obsidian)#
   '';
 
   spotify = ''
     exec-once = [workspace special:spotify;] spotify --class "spotify"
     bind = $mod, M, togglespecialworkspace, spotify
-    bind = $mod SHIFT, M, movetoworkspace, spotify
-    windowrule = float,class:^(spotify)#
+    windowrule = float,monitor HDMI-A-1, class:^(spotify)#
   '';
+
+  discord = ''
+    exec-once = discord
+    windowrulev2 = workspace 2,title:^(.*Discord.)$
+  '';
+
 
 in
 {
