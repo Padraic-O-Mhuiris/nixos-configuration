@@ -4,6 +4,7 @@
 
   programs.helix = {
     enable = true;
+    defaultEditor = true;
     languages.language = [{
       name = "nix";
       auto-format = true;
@@ -15,6 +16,7 @@
     }];
   };
   home.packages = with pkgs; [
+    lazygit
     # nix
     nil
     # rust

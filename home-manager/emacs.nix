@@ -7,7 +7,7 @@
     enable = true;
     package = pkgs.emacs-unstable-pgtk;
     client.enable = true;
-    defaultEditor = true;
+    defaultEditor = false;
     socketActivation.enable = true;
     extraOptions = [ ];
   };
