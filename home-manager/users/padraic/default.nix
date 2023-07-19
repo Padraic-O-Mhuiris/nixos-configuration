@@ -28,7 +28,6 @@
         signByDefault = true;
       };
     };
-    helix.enable = true;
     irssi.enable = true;
     jq.enable = true;
     man.enable = true;

@@ -146,8 +146,6 @@ let
     exec-once = discord
     windowrulev2 = workspace 2,title:^(.*Discord.)$
   '';
-
-
 in
 {
 
@@ -171,6 +169,7 @@ in
       ${term}
       ${obsidian}
       ${spotify}
+      ${discord}
     '';
   };
 

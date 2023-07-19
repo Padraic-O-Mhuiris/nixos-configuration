@@ -6,6 +6,7 @@
     ./users/padraic
     ./firefox
     ./hyprland
+    ./helix.nix
     ./dunst.nix
     ./rofi.nix
     ./emacs.nix

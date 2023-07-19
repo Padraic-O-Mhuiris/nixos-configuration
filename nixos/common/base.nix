@@ -8,8 +8,8 @@
     coreutils
     clang
     cmake
-    curl
     dmidecode
+    curl
     entr
     exa
     git
