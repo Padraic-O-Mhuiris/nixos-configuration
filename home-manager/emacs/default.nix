@@ -1,10 +1,6 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
-  imports = [
-    inputs.nix-doom-emacs.hmModule
-  ];
-
   services.emacs = {
     enable = true;
     package = inputs.doom-emacs.packages.${config.system}.doom-emacs.override {
