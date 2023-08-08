@@ -127,7 +127,8 @@ let
   term = ''
     exec-once = [workspace special:term;] alacritty --class "term"
     bind = $mod, X, togglespecialworkspace, term
-    windowrule = float,class:^(term)#
+    # windowrulev2 = float,class:^(term)#
+    windowrulev2 = size 90% 90%,class:^(term)#
   '';
 
   obsidian = ''
@@ -141,15 +142,13 @@ let
     bind = $mod, M, togglespecialworkspace, spotify
     windowrule = float,monitor HDMI-A-1, class:^(spotify)#
   '';
-
-  discord = ''
-    exec-once = discord
-    windowrulev2 = workspace 2,title:^(.*Discord.)$
-  '';
 in
 {
 
-  imports = [ ./waybar ];
+  imports = [
+    inputs.hyprland.homeManagerModules.default
+    ./waybar
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -169,7 +168,6 @@ in
       ${term}
       ${obsidian}
       ${spotify}
-      ${discord}
     '';
   };
 

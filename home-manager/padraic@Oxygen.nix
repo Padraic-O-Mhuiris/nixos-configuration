@@ -2,14 +2,13 @@
 
 {
   imports = [
-    inputs.hyprland.homeManagerModules.default
     ./users/padraic
     ./firefox
     ./hyprland
+    ./emacs
     ./helix.nix
     ./dunst.nix
     ./rofi.nix
-    ./emacs.nix
     ./cli.nix
   ];
 }

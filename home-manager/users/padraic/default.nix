@@ -100,7 +100,6 @@
       documents = "${config.home.homeDirectory}/documents";
       extraConfig = {
         XDG_CODE_DIR = "${config.home.homeDirectory}/code";
-        XDG_NOTE_DIR = "${config.home.homeDirectory}/documents/notes";
       };
       music = "${config.home.homeDirectory}/music";
       pictures = "${config.home.homeDirectory}/pictures";
@@ -112,7 +111,7 @@
 
   home = {
     enableNixpkgsReleaseCheck = true;
-    packages = with pkgs; [ fd ripgrep zoom-us pavucontrol spotify discord ];
+    packages = with pkgs; [ fd ripgrep zoom-us pavucontrol spotify discord matrixcli teams ];
   };
 
   # Nicely reload system units when changing configs
