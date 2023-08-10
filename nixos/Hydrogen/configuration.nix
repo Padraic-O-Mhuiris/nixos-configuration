@@ -46,7 +46,5 @@
     hostName = "Hydrogen";
     hostId = "3f90d23a";
   };
-  security.polkit.enable = true;
-
   system.stateVersion = "23.05";
 }

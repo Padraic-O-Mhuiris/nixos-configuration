@@ -1,21 +1,42 @@
-{ config, lib, pkgs, ... }:
+{ inputs, outputs, lib, defaultUser, config, pkgs, ... }:
 
 {
   wayland.windowManager.sway = {
     enable = true;
-    wrapperFeatures.gtk.enable = true;
-    systemd.enable = true;
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
+    extraOptions = [
+      "--verbose"
+      "--debug"
+      "--unsupported-gpu"
+    ];
     config = rec {
+      modifier = "Mod4";
       terminal = "alacritty";
-      gaps.inner = 10;
-      gaps.outer = 10;
+      input = {
+        "*" = {
+             xkb_layout= "gb";
+             xkb_options="ctrl:nocaps,ctrl:swapcaps";
+        };
+      };
     };
   };
 
+  # home.packages = with pkgs; [
+  #   alacritty
+  #   configure-gtk
+  #   xdg-utils
+  #   glib
+  #   swaylock
+  #   swayidle
+  #   grim
+  #   slurp
+  #   wl-clipboard
+  #   bemenu
+  #   mako
+  #   wdisplays
+  # ];
 
-  systemd.user.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
-  };
 }

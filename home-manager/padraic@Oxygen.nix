@@ -4,7 +4,8 @@
   imports = [
     ./users/padraic
     ./firefox
-    ./hyprland
+    # ./hyprland
+    ./sway
     ./emacs
     ./helix.nix
     ./dunst.nix
