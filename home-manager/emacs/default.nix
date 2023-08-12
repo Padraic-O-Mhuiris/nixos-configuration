@@ -12,13 +12,8 @@ in
   services.emacs = {
     enable = true;
     package = emacsPkg;
-    # inputs.doom-emacs.packages.${pkgs.system}.default.override {
-    #   doomPrivateDir = ./.;
-    #   # emacsPackage = pkgs.emacs29-pgtk;
-    #   emacsPackage = pkgs.emacsPgtkNativeComp;
-    # };
     client.enable = true;
-    defaultEditor = false;
+    defaultEditor = true;
     socketActivation.enable = true;
     extraOptions = [ ];
   };

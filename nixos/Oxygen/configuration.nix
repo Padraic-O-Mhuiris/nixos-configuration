@@ -58,13 +58,15 @@
 
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
-  };
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  #   extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+  # };
 
   security.polkit.enable = true;
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   system.stateVersion = "23.05";
 }

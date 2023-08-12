@@ -4,12 +4,14 @@
   imports = [
     ./users/padraic
     ./firefox
+
     # ./hyprland
-    ./sway
+    # ./sway
+    #./i3
+
     ./emacs
-    ./helix.nix
+    # ./helix.nix
     ./dunst.nix
-    ./rofi.nix
     ./cli.nix
   ];
 }

@@ -111,7 +111,7 @@
 
   home = {
     enableNixpkgsReleaseCheck = true;
-    packages = with pkgs; [ fd ripgrep zoom-us pavucontrol spotify matrixcli teams ];
+    packages = with pkgs; [ fd ripgrep zoom-us pavucontrol spotify matrixcli teams discord ];
   };
 
   # Nicely reload system units when changing configs
