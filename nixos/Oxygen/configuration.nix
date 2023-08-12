@@ -22,16 +22,18 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
 
-    ./hardware-configuration.nix
-    ./boot.nix
+    # Adds disko module
+    inputs.disko.nixosModules.disko
+
+    # ./hardware-configuration.nix
+    # ./boot.nix
     ../common
   ];
 
+  disko.devices = import ./disko.nix { inherit (pkgs) lib; };
+
   # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems
   services.dbus.packages = [ pkgs.gcr ];
-
-  # Required so zsh completion in home-manager works for systemd
-  environment.pathsToLink = [ "/share/zsh" ];
 
   time.timeZone = "Europe/Dublin";
   i18n.defaultLocale = "en_IE.UTF-8";

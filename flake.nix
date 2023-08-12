@@ -20,16 +20,16 @@
 
     nur.url = "github:nix-community/NUR";
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-      ];
-    in
-    {
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
+    in {
       packages = forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
         in (import ./pkgs { inherit pkgs; }));
@@ -40,7 +40,8 @@
 
       overlays = import ./overlays { inherit inputs; };
 
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+      formatter =
+        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
       nixosModules = import ./modules/nixos;
 
