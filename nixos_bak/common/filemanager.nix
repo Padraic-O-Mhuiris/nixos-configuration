@@ -5,5 +5,4 @@
     enable = true;
     mountOnMedia = true;
   };
-
 }

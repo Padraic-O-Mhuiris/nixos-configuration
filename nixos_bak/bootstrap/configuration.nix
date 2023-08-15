@@ -5,16 +5,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices = {
-    "crypted_home".device =
-      "/dev/disk/by-uuid/a2cdfaa5-2566-46c9-828e-0aedda7964a3";
-    "crypted_system".device =
-      "/dev/disk/by-uuid/328f08e9-20ab-4001-9f1a-4d6fb82fe4de";
-  };
+  imports = [ ../Oxygen/disko.nix ];
 
   networking.networkmanager.enable = true;
   services.xserver.enable = true;

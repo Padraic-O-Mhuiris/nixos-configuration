@@ -6,13 +6,4 @@
     settings = { General.Enable = "Source,Sink,Media,Socket"; };
   };
   services.blueman.enable = true;
-
-
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = "
-      load-module module-switch-on-connect
-    ";
-  };
 }

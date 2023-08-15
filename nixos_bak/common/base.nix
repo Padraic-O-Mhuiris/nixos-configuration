@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  # TODO Discern what should go here
   environment.systemPackages = with pkgs; [
     bc
     binutils

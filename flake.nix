@@ -14,7 +14,12 @@
 
     sops.url = "github:Mic92/sops-nix";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    flake-root.url = "github:srid/flake-root";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    mission-control.url = "github:Platonic-Systems/mission-control";
+    nixos-flake.url = "github:srid/nixos-flake";
+
+    # hyprland.url = "github:hyprwm/Hyprland";
 
     emacs.url = "github:nix-community/emacs-overlay";
 
@@ -23,42 +28,75 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    srvos.url = "github:numtide/srvos";
+
+    nix-ld.url = "github:Mic92/nix-ld";
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
-    in {
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in (import ./pkgs { inherit pkgs; }));
+  outputs = { self, nixpkgs, flake-parts, ... }@inputs: { };
+  # flake-parts.lib.mkFlake { inherit inputs; } {
+  #   debug = true;
+  #   systems = nixpkgs.lib.systems.flakeExposed;
+  #   # imports = [
+  #   #   inputs.flake-root.flakeModule
+  #   #   inputs.nixos-flake.flakeModule
+  #   #   inputs.mission-control.flakeModule
 
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./shell.nix { inherit pkgs; });
+  #   #   ./user.flake-module.nix
+  #   #   ./os.flake-module.nix
 
-      overlays = import ./overlays { inherit inputs; };
+  #   #   ./nixos
+  #   #   ./home
+  #   # ];
 
-      formatter =
-        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+  #   # flake.homeModules = { };
+  #   # flake = {
+  #   #   nixosConfigurations = {
+  #   #     Oxygen = self.nixos-flake.lib.mkLinuxSystem {
+  #   #       imports = [
+  #   #         self.nixosModules."user@padraic"
+  #   #         ./systems/Oxygen/configuration.nix
+  #   #       ];
+  #   #     };
+  #   #   };
+  #   # };
+  # };
 
-      nixosModules = import ./modules/nixos;
+  # let
+  #   inherit (self) outputs;
+  #   forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
+  # in {
+  #   packages = forAllSystems (system:
+  #     let pkgs = nixpkgs.legacyPackages.${system};
+  #     in (import ./pkgs { inherit pkgs; }));
 
-      homeManagerModules = import ./modules/home-manager;
+  #   devShells = forAllSystems (system:
+  #     let pkgs = nixpkgs.legacyPackages.${system};
+  #     in import ./shell.nix { inherit pkgs; });
 
-      nixosConfigurations = {
-        Hydrogen = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          modules = [ ./nixos/Hydrogen/configuration.nix ];
-        };
+  #   overlays = import ./overlays { inherit inputs; };
 
-        Oxygen = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
-          modules = [ ./nixos/Oxygen/configuration.nix ];
-        };
-      };
-    };
+  #   formatter =
+  #     forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+
+  #   nixosModules = import ./modules/nixos;
+
+  #   homeManagerModules = import ./modules/home-manager;
+
+  #   nixosConfigurations = {
+  #     Hydrogen = nixpkgs.lib.nixosSystem {
+  #       specialArgs = { inherit inputs outputs; };
+  #       system = "x86_64-linux";
+  #       modules = [ ./nixos/Hydrogen/configuration.nix ];
+  #     };
+
+  #     Oxygen = nixpkgs.lib.nixosSystem {
+  #       specialArgs = { inherit inputs outputs; };
+  #       system = "x86_64-linux";
+  #       modules = [ ./nixos/Oxygen/configuration.nix ];
+  #     };
+
+  #   };
+  # };
 }

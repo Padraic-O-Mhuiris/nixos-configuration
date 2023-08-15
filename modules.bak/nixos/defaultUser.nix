@@ -3,8 +3,7 @@
 let
   inherit (lib) mkOption types;
   cfg = config.defaultUser;
-in
-{
+in {
   options.defaultUser = {
     name = mkOption {
       type = types.str;

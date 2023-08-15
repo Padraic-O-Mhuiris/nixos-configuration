@@ -20,17 +20,11 @@
     inputs.hardware.nixosModules.common-pc
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    inputs.hardware.nixosModules.common-gpu-nvidia-prime
 
-    # Adds disko module
-    inputs.disko.nixosModules.disko
-
-    # ./hardware-configuration.nix
-    # ./boot.nix
+    ./disko.nix
     ../common
   ];
-
-  disko.devices = import ./disko.nix { inherit (pkgs) lib; };
 
   # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems
   services.dbus.packages = [ pkgs.gcr ];
@@ -50,25 +44,24 @@
     hostId = "3f90d23a";
   };
 
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
-    prime = {
-      nvidiaBusId = "PCI:9:0:0";
-      amdgpuBusId = "PCI:0:2:0";
+  hardware = {
+    nvidia = {
+      # needed for wayland
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      prime = {
+        nvidiaBusId = "PCI:9:0:0";
+        amdgpuBusId = "PCI:0:2:0";
+      };
     };
-
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
   };
 
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true;
-  #   extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
-  # };
-
   security.polkit.enable = true;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   system.stateVersion = "23.05";
 }

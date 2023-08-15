@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
+  imports =
+    [ inputs.srvos.common.well-known-hosts inputs.srvos.common.openssh ];
+
   programs.ssh.startAgent = true;
 
   services.openssh = {
@@ -8,7 +11,7 @@
     openFirewall = !config.services.tailscale.enable;
     settings = {
       PermitRootLogin = "prohibit-password";
-      UseDns = true;
+      UseDns = lib.mkForce true;
       PasswordAuthentication = false;
     };
     hostKeys = [{
@@ -18,5 +21,4 @@
       comment = "${config.networking.hostName}";
     }];
   };
-
 }

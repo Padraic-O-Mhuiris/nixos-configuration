@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
+  imports = [ inputs.srvos.common.networking ];
+
   networking = {
     firewall = {
       enable = true;
