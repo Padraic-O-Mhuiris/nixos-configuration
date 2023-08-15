@@ -55,8 +55,13 @@ in {
       config = {
         _nixosConfiguration."${name}" = mkLinuxSystem ({ ... }: {
 
-          imports = [ self.nixosModules."os@${name}" ] ++ (l.flatten
-            (l.map (user: [ self.nixosModules."user@${user}" ]) config.users));
+          imports =
+            [ self.nixosModules."os@${name}" inputs.sops.nixosModules.sops ]
+            ++ (l.flatten (l.map (user: [ self.nixosModules."user@${user}" ])
+              config.users));
+
+          sops.defaultSopsFile = ./os + "/${name}/secrets.yaml";
+          sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
           networking.hostName = name;
           nixpkgs.hostPlatform = config.system;

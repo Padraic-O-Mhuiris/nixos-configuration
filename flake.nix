@@ -34,34 +34,33 @@
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, flake-parts, ... }@inputs: { };
-  # flake-parts.lib.mkFlake { inherit inputs; } {
-  #   debug = true;
-  #   systems = nixpkgs.lib.systems.flakeExposed;
-  #   # imports = [
-  #   #   inputs.flake-root.flakeModule
-  #   #   inputs.nixos-flake.flakeModule
-  #   #   inputs.mission-control.flakeModule
+  outputs = { self, nixpkgs, flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
+      systems = nixpkgs.lib.systems.flakeExposed;
+      imports = [
+        inputs.flake-root.flakeModule
+        inputs.nixos-flake.flakeModule
+        inputs.mission-control.flakeModule
 
-  #   #   ./user.flake-module.nix
-  #   #   ./os.flake-module.nix
+        ./user.flake-module.nix
+        ./os.flake-module.nix
 
-  #   #   ./nixos
-  #   #   ./home
-  #   # ];
+        ./nixos
+        ./home
+      ];
 
-  #   # flake.homeModules = { };
-  #   # flake = {
-  #   #   nixosConfigurations = {
-  #   #     Oxygen = self.nixos-flake.lib.mkLinuxSystem {
-  #   #       imports = [
-  #   #         self.nixosModules."user@padraic"
-  #   #         ./systems/Oxygen/configuration.nix
-  #   #       ];
-  #   #     };
-  #   #   };
-  #   # };
-  # };
+      # flake = {
+      #   nixosConfigurations = {
+      #     Oxygen = self.nixos-flake.lib.mkLinuxSystem {
+      #       imports = [
+      #         self.nixosModules."user@padraic"
+      #         ./systems/Oxygen/configuration.nix
+      #       ];
+      #     };
+      #   };
+      # };
+    };
 
   # let
   #   inherit (self) outputs;

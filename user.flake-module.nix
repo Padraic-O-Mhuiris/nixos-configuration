@@ -11,6 +11,13 @@ in {
           default = name;
         };
 
+        modules = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          description =
+            "List of home-manager modules defined in /home/default.nix";
+          default = [ ];
+        };
+
         email = lib.mkOption {
           type = lib.types.nullOr lib.types.str;
           description = "Email of the user";
@@ -62,45 +69,40 @@ in {
         # };
       };
 
-      config = {
-        _nixosModule."${name}" = ({ ... }: {
+      config = let user = config;
+      in {
+        _nixosModule."${name}" = ({ config, ... }: {
           imports = [ self.nixosModules.home-manager ];
 
-          #'sops.secrets."user@${name}" = { neededForUsers = true; };
+          sops.secrets."user@${name}" = { neededForUsers = true; };
 
           users.users.${name} = {
             home = "/home/${name}";
             isNormalUser = true;
-            openssh.authorizedKeys.keys = [ config.ssh ];
+            openssh.authorizedKeys.keys = [ user.ssh ];
             passwordFile = config.sops.secrets."user@${name}".path;
             uid = 1000;
             extraGroups = [ "wheel" "audio" "video" ];
           };
 
-          home-manager.users.${name} = { pkgs, ... }: {
-            imports = [
-              self.homeModules."user@${name}"
-              # TODO self.homeModules.common
-            ];
-          };
-        });
-        _homeModule = {
-          ${name} = ({ ... }: {
+          home-manager.users.${name} = {
+
+            imports = builtins.map (x: self.homeModules.${x}) user.modules;
+
             programs = {
               git = {
-                userEmail = config.email;
-                userName = config.github;
-                signing.key = config.gpg.fingerprint;
+                userEmail = user.email;
+                userName = user.github;
+                signing.key = user.gpg.fingerprint;
               };
               gpg.publicKeys = [{
-                text = config.gpg.key;
+                text = user.gpg.key;
                 trust = 5;
               }];
-              password-store.settings.PASSWORD_STORE_KEY =
-                config.gpg.fingerprint;
+              password-store.settings.PASSWORD_STORE_KEY = user.gpg.fingerprint;
             };
-          });
-        };
+          };
+        });
       };
     }));
     default = { };
@@ -112,13 +114,11 @@ in {
       nixosModules = lib.mapAttrs'
         (name: user: lib.nameValuePair "user@${name}" user._nixosModule.${name})
         cfg;
-      homeModules = lib.mapAttrs'
-        (name: user: lib.nameValuePair "user@${name}" user._homeModule.${name})
-        cfg;
     };
 
     user = {
       padraic = {
+        modules = [ "common" ];
         email = "patrick.morris.310@gmail.com";
         github = "Padraic-O-Mhuiris";
         ssh =
