@@ -21,6 +21,19 @@
   time.timeZone = "Europe/Dublin";
   i18n.defaultLocale = "en_IE.UTF-8";
 
+  # os.user = [
+  #   (user: userConfig: {
+  #     users.users.${user} = {
+  #       home = "/home/${user}";
+  #       isNormalUser = true;
+  #       openssh.authorizedKeys.keys = [ userConfig.ssh ];
+  #       passwordFile = config.sops.secrets."user@${user}".path;
+  #       uid = 1000;
+  #       extraGroups = [ "wheel" "audio" "video" ];
+  #     };
+  #   })
+  # ];
+
   location = {
     latitude = 53.28;
     longitude = -9.03;

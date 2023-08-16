@@ -49,17 +49,17 @@ in {
           default = null;
         };
 
-        _nixosModule = lib.mkOption {
-          internal = true;
-          type = lib.types.unspecified;
-          default = null;
-        };
+        # _nixosModule = lib.mkOption {
+        #   internal = true;
+        #   type = lib.types.unspecified;
+        #   default = null;
+        # };
 
-        _homeModule = lib.mkOption {
-          internal = true;
-          type = lib.types.unspecified;
-          default = null;
-        };
+        # _homeModule = lib.mkOption {
+        #   internal = true;
+        #   type = lib.types.unspecified;
+        #   default = null;
+        # };
 
         # TODO Extend to a home configuration
         # _homeConfiguration = lib.mkOption {
