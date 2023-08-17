@@ -1,48 +1,52 @@
 { lib, flake-parts-lib, self, config, inputs, ... }:
 
 let
-  cfg = config.os;
+  cfg = config.flake.os;
   l = lib // builtins;
+
+  deepMergeAttrsList = attrsList:
+    lib.attrsets.foldAttrs (item: acc: lib.attrsets.recursiveUpdate acc item)
+    { } attrsList;
 
   inherit (self.nixos-flake.lib) mkLinuxSystem;
 
   # userSubmodule definition
-  userFlakeSubmodule = l.mkOption {
-    type = l.types.attrsOf (l.types.submodule ({ name, config, ... }: {
+  userFlakeSubmodule = lib.mkOption {
+    type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
       options = {
-        name = l.mkOption {
-          type = l.types.str;
+        name = lib.mkOption {
+          type = lib.types.str;
           description = "Name of the user";
           default = name;
         };
 
-        email = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        email = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "Email of the user";
           default = null;
         };
 
-        github = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        github = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "Github username of the user";
           default = null;
         };
 
-        ssh = l.mkOption {
-          type = l.types.nullOr l.types.strMatching
+        ssh = lib.mkOption {
+          type = lib.types.nullOr lib.types.strMatching
             "^(ssh-ed25519s+AAAAC3NzaC1lZDI1NTE5|sk-ssh-ed25519@openssh.coms+AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29t|ssh-rsas+AAAAB3NzaC1yc2)[0-9A-Za-z+/]+[=]{0,3}(s.*)?$";
           description = "List of user ssh keys, first is primary";
           default = null;
         };
 
-        gpg.fingerprint = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        gpg.fingerprint = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "User gpg fingerprint";
           default = null;
         };
 
-        gpg.key = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        gpg.key = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "User gpg key";
           default = null;
         };
@@ -55,98 +59,121 @@ let
 
 in {
 
-  options.os = l.mkOption {
-    type = l.types.attrsOf (l.types.submodule ({ name, config, ... }: {
+  options.flake.os = lib.mkOption {
+    type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
       options = {
-        name = l.mkOption {
-          type = l.types.str;
+        name = lib.mkOption {
+          type = lib.types.str;
           description = "Name of the host";
           default = name;
         };
 
-        # modules = l.mkOption {
-        #   type = l.types.listOf l.types.str;
+        # modules = lib.mkOption {
+        #   type = lib.types.listOf lib.types.str;
         #   description =
         #     "List of home-manager modules defined in /home/default.nix";
         #   default = [ ];
         # };
 
-        # homeModules = l.mkOption {
-        #   type = l.types.listOf l.types.str;
+        # homeModules = lib.mkOption {
+        #   type = lib.types.listOf lib.types.str;
         #   description =
         #     "List of home-manager modules defined in /home/default.nix";
         #   default = [ ];
         # };
 
         # TODO If darwin is to be used
-        # type = l.mkOption {
-        #   type = l.types.enum [ "linux" "darwin" ];
+        # type = lib.mkOption {
+        #   type = lib.types.enum [ "linux" "darwin" ];
         #   description = "Type of operating system";
         #   default = "linux";
         # };
 
         users = userFlakeSubmodule;
 
-        system = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        system = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "system";
           default = null;
         };
 
-        ip.local = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        ip.local = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "Local IP address of machine";
           default = null;
         };
 
-        ip.remote = l.mkOption {
-          type = l.types.nullOr l.types.str;
+        ip.remote = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
           description = "Local IP address of machine";
           default = null;
         };
 
-        _nixosConfiguration = l.mkOption {
+        _nixosUserModules = lib.mkOption {
           internal = true;
-          type = l.types.unspecified;
+          type = lib.types.unspecified;
+          default = null;
+        };
+
+        _nixosConfiguration = lib.mkOption {
+          internal = true;
+          type = lib.types.unspecified;
           default = null;
         };
       };
       config = let cfg = config;
+
       in {
-        _nixosConfiguration."${name}" = mkLinuxSystem ({ ... }: {
-          imports = [
-            self.nixosModules."os@${name}"
-            inputs.sops.nixosModules.sops
+        _nixosUserModules = (lib.mapAttrsToList (user: userConfig:
+          ((lib.attrsets.foldAttrs
+            (item: acc: lib.attrsets.recursiveUpdate acc item) { }
+            (map (fn: fn { inherit user userConfig; })
+              self.nixosConfigurations.${name}.config.__os__.user))))
+          cfg.users);
 
-            # ({ config, ... }: {
-            #   options.__os__.user = l.mkOption {
-            #     type = lib.listOf
-            #       (l.types.functionTo (lib.types.attrsOf l.types.anything));
-            #     description = "";
-            #     default = [ ];
-            #   };
-            #   config = l.attrsets.mergeAttrsList
-            #     (l.map (fn: l.mapAttrsToList (k: v: (fn k v)) cfg.user)
-            #       config.os.user.fn);
-            # })
+        _nixosConfiguration."${name}" = self.inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit (cfg) users; };
+          modules = [
+            # self.nixosModules."os@${name}"
+            # inputs.sops.nixosModules.sops
+            #self.nixosModules."padraic@Oxygen"
 
-            # ({ config, ... }: {
-            #   __os__.user = [
-            #     (user: userConfig: {
-            #       users.users.${user}.openssh.authorizedKeys.keys =
-            #         [ userConfig.ssh ];
-            #     })
-            #   ];
-            # })
+            ({ config, lib, ... }: {
+              options.__os__.user = lib.mkOption {
+                type = lib.types.listOf (lib.types.functionTo
+                  (lib.types.attrsOf lib.types.unspecified));
+                description = "";
+                default = [ ];
+              };
+            })
+
+            ({
+              __os__.user = [
+                ({ user, userConfig }: {
+                  users.users.${user}.openssh.authorizedKeys.keys =
+                    [ userConfig.ssh ];
+                })
+              ];
+            })
+
+            ({
+              __os__.user = [
+                ({ user, userConfig }: {
+                  users.users.${user}.home = "/home/${user}";
+                })
+              ];
+            })
+
+            {
+              # sops.defaultSopsFile = ./. + "/${name}/secrets.yaml";
+              # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+              networking.hostName = name;
+              nixpkgs.hostPlatform = config.system;
+              system.stateVersion = "23.05";
+            }
           ];
 
-          sops.defaultSopsFile = ./. + "/${name}/secrets.yaml";
-          sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
-          networking.hostName = name;
-          nixpkgs.hostPlatform = config.system;
-          system.stateVersion = "23.05";
-        });
+        };
       };
     }));
     default = { };
@@ -154,15 +181,45 @@ in {
   };
 
   config = {
+
     flake = {
-      nixosConfigurations = l.mapAttrs' (name: os: {
+      inherit lib;
+
+      # users = config.flake.os.Oxygen.users;
+      # userClosures = config.flake.nixosConfigurations.Oxygen.config.__os__.user;
+
+      # userAttrs = lib.flatten (lib.mapAttrsToList (user: userConfig:
+      #   map (fn: fn { inherit user userConfig; }) userClosures) users);
+
+      # mergedUserAttrs = lib.attrsets.foldAttrs
+      #   (item: acc: lib.attrsets.recursiveUpdate acc item) { } userAttrs;
+
+      #   applyUserFunctions = (fn:
+      #     lib.mapAttrsToList (k: v:
+      #       (fn ({
+      #         user = k;
+      #         userConfig = v;
+      #       }))) self.os.Oxygen.users);
+
+      #   deepMergeAttrsList = attrsList:
+      #     lib.attrsets.foldAttrs
+      #     (item: acc: lib.attrsets.recursiveUpdate acc item) { } attrsList;
+      # };
+
+      nixosConfigurations = lib.mapAttrs' (name: os: {
         inherit name;
         value = os._nixosConfiguration."${name}";
       }) cfg;
 
-      nixosModules = l.mapAttrs'
-        (name: os: l.nameValuePair "os@${name}" (import (./. + "/${name}")))
-        cfg;
+      # nixosConfigurations = lib.mapAttrs' (name: os: {
+      #   inherit name;
+      #   value = os._nixosConfiguration."${name}";
+      # }) cfg;
+
+      nixosModules = (lib.mapAttrs'
+        (name: os: lib.nameValuePair "os@${name}" (import (./. + "/${name}")))
+        cfg) // deepMergeAttrsList
+        ((lib.mapAttrsToList (_: os: os._nixosUserModules)) cfg);
     };
   };
 }

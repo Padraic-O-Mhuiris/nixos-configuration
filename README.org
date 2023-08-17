@@ -1,0 +1,19 @@
+#+title: NixOS Configuration
+
+* Installation
+
+Typically with Linux installations of any flavour there can be a lot of work, typically around formatting and partitioning disks. Thankfully with Nix there are declarative ways to automate installations to a point the whole phase becomes a single command line installation.
+
+1. Download the minimal iso image from the [[https://nixos.org/download][NixOS website]] and create a bootable usb stick.
+2. Boot into the minimal nix image on your usb and setup an internet connection.
+
+    #+begin_src bash
+    sudo passwd root
+    #+end_src
+
+3. On an external machine connected to the same local network ensure you have an ssh connection to the machine Nix is to be installed on
+4. Using ~nixos-anywhere~ and ~disko~, the installation becomes seamless but there is some integration to ensure keys work. The below example shows what is needed to install Oxygen
+
+    #+begin_src bash
+    nix run github:numtide/nixos-anywhere -- --disk-encryption-keys /tmp/secret.key <(echo -n $(pass show machines/Oxygen/disk)) --flake .#Oxygen root@192.168.0.214
+    #+end_src

@@ -21,7 +21,7 @@
       devShells.default = pkgs.mkShell {
         NIX_CONFIG = "experimental-features = nix-command flakes";
         inputsFrom = [ config.mission-control.devShell ];
-        nativeBuildInputs = with pkgs; [ nix home-manager git nixpkgs-fmt ];
+        nativeBuildInputs = with pkgs; [ home-manager git nixpkgs-fmt ];
       };
     };
 }
