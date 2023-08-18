@@ -17,7 +17,6 @@
     flake-root.url = "github:srid/flake-root";
     flake-parts.url = "github:hercules-ci/flake-parts";
     mission-control.url = "github:Platonic-Systems/mission-control";
-    nixos-flake.url = "github:srid/nixos-flake";
 
     # hyprland.url = "github:hyprwm/Hyprland";
 
@@ -40,12 +39,10 @@
       systems = nixpkgs.lib.systems.flakeExposed;
       imports = [
         inputs.flake-root.flakeModule
-        inputs.nixos-flake.flakeModule
         inputs.mission-control.flakeModule
 
-        ./os
-        ./admin/flake-module.nix
-
+        ./os.flake-module.nix
+        #./admin/flake-module.nix
         # ./nixos
         # ./home
       ];

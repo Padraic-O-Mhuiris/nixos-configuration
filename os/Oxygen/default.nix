@@ -1,4 +1,4 @@
-{ flake, lib, config, pkgs, ... }:
+{ os, lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -12,7 +12,9 @@
     # flake.nixosModules.bluetooth
     # flake.nixosModules.ssh
 
-    ./disko.nix
+    #./disko.nix
+
+    os.nixosModules.ssh
   ];
 
   # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems
