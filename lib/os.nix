@@ -6,9 +6,8 @@ let
   inherit (lib.attrsets) mapAttrsToList;
 
   inherit (osCfg) users;
-in {
-  applyUsers = fn:
-    deepMergeAttrsList
-    (mapAttrsToList (user: userConfig: fn { inherit user userConfig; })
-      osCfg.users);
+in rec {
+  applyUsers = fn: deepMergeAttrsList (mapUsers fn);
+
+  mapUsers = fn: (mapAttrsToList (_: userConfig: fn userConfig) osCfg.users);
 }

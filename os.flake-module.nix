@@ -58,18 +58,24 @@ let
         default = name;
       };
 
-      useHomeManager = lib.mkOption {
-        type = lib.types.bool;
-        description = "";
-        default = true;
-      };
-
       users = userFlakeSubmodule;
+
+      cpu = lib.mkOption {
+        type = lib.types.enum [ "amd" "intel" ];
+        description = "cpu";
+        default = "intel";
+      };
 
       system = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         description = "system";
         default = null;
+      };
+
+      disks = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "Disks of machine listed under /dev/disk/by-id/";
+        default = [ ];
       };
 
       ip.local = lib.mkOption {
@@ -119,7 +125,7 @@ let
           nixpkgs.hostPlatform = config.system;
           system = { inherit stateVersion; };
         }
-      ];
+      ] ++ homeManagerModules;
     in {
       _nixosConfiguration."${name}" =
         lib.nixosSystem { inherit specialArgs modules; };

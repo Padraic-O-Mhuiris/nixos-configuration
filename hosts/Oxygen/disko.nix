@@ -1,14 +1,12 @@
-{ flake, lib, config, pkgs, modulesPath, ... }:
+{ lib, config, pkgs, modulesPath, os, inputs, ... }:
 
+# TODO Can this zfs disks approach be automatic for multiple devices
 let
-  devices = [
-    "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NF0NC04658B"
-    "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M"
-  ];
+  disksByPath = disk: "/dev/disk/by-id/${disk}";
 
   nvme = {
     type = "disk";
-    device = builtins.elemAt devices 0;
+    device = disksByPath (builtins.elemAt os.disks 0);
     content = {
       type = "table";
       format = "gpt";
@@ -56,7 +54,7 @@ let
 
   sda = {
     type = "disk";
-    device = builtins.elemAt devices 1;
+    device = disksByPath (builtins.elemAt os.disks 1);
     content = {
       type = "table";
       format = "gpt";
@@ -150,26 +148,15 @@ let
 in {
 
   imports = [
-    flake.inputs.disko.nixosModules.disko
+    inputs.disko.nixosModules.disko
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   disko.devices = { inherit disk zpool; };
 
   boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      systemd-boot.enable = true;
-    };
-
-    kernelModules = [ "kvm-amd" ];
-
-    extraModulePackages = [ ];
-
     initrd = {
+      # TODO Debug modules per system
       availableKernelModules = [
         "xhci_pci"
         "ahci"
@@ -179,16 +166,12 @@ in {
         "sd_mod"
         "rtsx_pci_sdmmc"
       ];
-      kernelModules = [ ];
-
       postDeviceCommands =
         #wipe / and /var on boot
         lib.mkAfter ''
           zfs rollback -r rpool/root@empty
         '';
     };
-
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     kernelParams = [ "nohibernate" "zfs.zfs_arc_max=17179869184" ];
     supportedFilesystems = [ "vfat" "zfs" ];
     zfs = {
@@ -208,8 +191,5 @@ in {
     trim.enable = true;
   };
 
-  # Don't let zfs mount the the datasets, because of legacy mounting
   systemd.services.zfs-mount.enable = false;
-
-  networking.hostId = "83b0a257";
 }
