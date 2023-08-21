@@ -2,8 +2,6 @@
 
 let emacsPkg = pkgs.emacs-unstable;
 in (lib.os.applyHmUsers (user: {
-  nixpkgs.overlays = [ inputs.emacs.overlays.default ];
-
   programs.emacs = {
     enable = true;
     package = emacsPkg;
@@ -17,4 +15,6 @@ in (lib.os.applyHmUsers (user: {
     socketActivation.enable = true;
     extraOptions = [ ];
   };
-}))
+})) // {
+  nixpkgs.overlays = [ inputs.emacs.overlays.default ];
+}
