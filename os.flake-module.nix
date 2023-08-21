@@ -148,7 +148,7 @@ in {
     os = (lib.mkOption {
       type = osSubmodule;
       default = { };
-      apply = (x: x // { nixosModules = lib.utils.moduleAttrsByPath ./nixos; });
+      apply = (x: x // { modules = lib.utils.moduleAttrsByPath ./modules; });
       description = "Attrset of os definitions";
     });
   };

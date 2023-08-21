@@ -9,31 +9,31 @@
 
     ./disko.nix
 
-    os.nixosModules.audio
-    os.nixosModules.bluetooth
-    os.nixosModules.boot.systemd
-    os.nixosModules.common
-    os.nixosModules.display.dm.lightdm
-    os.nixosModules.display.monitors
-    os.nixosModules.display.theme
-    os.nixosModules.display.wm.i3
-    os.nixosModules.documentation
-    os.nixosModules.filesystem
-    os.nixosModules.git
-    os.nixosModules.gpu.nvidia
-    # os.nixosModules.gnupg
-    os.nixosModules.kernel
-    os.nixosModules.keyboard
-    os.nixosModules.location
-    os.nixosModules.nix
-    os.nixosModules.sops
-    os.nixosModules.ssh
-    os.nixosModules.sudo
-    os.nixosModules.terminal
-    os.nixosModules.user
-    os.nixosModules.virtualisation.docker
-    os.nixosModules.virtualisation.qemu
-    os.nixosModules.yubikey
+    os.modules.audio
+    os.modules.bluetooth
+    os.modules.boot.systemd
+    os.modules.common
+    os.modules.display.dm.lightdm
+    os.modules.display.monitors
+    os.modules.display.theme
+    os.modules.display.wm.i3
+    os.modules.documentation
+    os.modules.filesystem
+    os.modules.git
+    os.modules.gpu.nvidia
+    os.modules.gnupg
+    os.modules.kernel
+    os.modules.keyboard
+    os.modules.location
+    os.modules.nix
+    os.modules.sops
+    os.modules.ssh
+    os.modules.sudo
+    os.modules.terminal
+    os.modules.user
+    os.modules.virtualisation.docker
+    os.modules.virtualisation.qemu
+    os.modules.yubikey
 
   ];
   # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems

@@ -11,7 +11,7 @@ in rec {
     (deepMergeAttrsList
       (mapAttrsToList (_: userConfig: fn userConfig) osCfg.users));
 
-  applyHmUser = fn:
+  applyHmUsers = fn:
     applyUsers (user: { home-manager.users.${user.name} = (fn user); });
 
   mapUsers = fn: (mapAttrsToList (_: userConfig: fn userConfig) osCfg.users);
