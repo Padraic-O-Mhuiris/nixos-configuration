@@ -12,6 +12,7 @@
     os.modules.audio
     os.modules.bluetooth
     os.modules.boot.systemd
+    os.modules.browsers.firefox
     os.modules.common
     os.modules.display.dm.lightdm
     os.modules.display.monitors
