@@ -51,6 +51,7 @@
 
         os.Oxygen = {
           system = "x86_64-linux";
+          cpu = "amd";
           ip = {
             local = "192.168.0.214";
             # remote = "192.168.0.214";

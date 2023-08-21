@@ -4,12 +4,12 @@ let
   inherit (lib) pathIsDirectory pathExists;
 
   inherit (lib.attrsets)
-    filterAttrs mapAttrsToList mapAttrs foldAttrs recursiveUpdate hasAttr
-    mapAttrs' nameValuePair;
+    filterAttrs mapAttrsToList mapAttrs recursiveUpdate hasAttr mapAttrs'
+    nameValuePair;
 
   inherit (lib.strings) hasSuffix removeSuffix;
 
-  inherit (lib.lists) flatten elemAt any;
+  inherit (lib.lists) flatten elemAt any fold;
 
   inherit (builtins) readDir map;
 
@@ -24,7 +24,7 @@ in rec {
   deepMergeAttrsList =
     # A list of attrsets.
     attrsList:
-    foldAttrs (item: acc: recursiveUpdate acc item) { } attrsList;
+    (fold (item: acc: recursiveUpdate acc item) { } attrsList);
 
   moduleAttrsByPath = path:
     if (pathExists path) && (pathIsDirectory path) then

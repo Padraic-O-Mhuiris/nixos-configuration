@@ -8,4 +8,6 @@
     latitude = 53.28;
     longitude = -9.03;
   };
+
+  services.ntp.enable = true;
 }

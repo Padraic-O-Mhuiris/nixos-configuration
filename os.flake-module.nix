@@ -109,23 +109,33 @@ let
       };
 
       stateVersion = "23.05";
-      homeManagerModules = [
-        inputs.home-manager.nixosModules.home-manager
-        ({
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialArgs;
-        })
-      ];
 
       modules = [
-        (./os + "/${name}")
+        (./hosts + "/${name}")
         {
           networking.hostName = name;
           nixpkgs.hostPlatform = config.system;
           system = { inherit stateVersion; };
         }
-      ] ++ homeManagerModules;
+        inputs.home-manager.nixosModules.home-manager
+        ({ lib, ... }:
+          lib.mkMerge [
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs // {
+                lib = lib // inputs.home-manager.lib;
+              };
+            }
+            (lib.os.applyHmUser (user: {
+              home = {
+                inherit stateVersion;
+                enableNixpkgsReleaseCheck = true;
+                homeDirectory = "/home/${user.name}";
+              };
+            }))
+          ])
+      ];
     in {
       _nixosConfiguration."${name}" =
         lib.nixosSystem { inherit specialArgs modules; };
@@ -138,18 +148,16 @@ in {
     os = (lib.mkOption {
       type = osSubmodule;
       default = { };
-      apply = (x:
-        x // {
-          nixosModules = lib.utils.moduleAttrsByPath ./nixos;
-          homeModules = lib.utils.moduleAttrsByPath ./home;
-        });
+      apply = (x: x // { nixosModules = lib.utils.moduleAttrsByPath ./nixos; });
       description = "Attrset of os definitions";
     });
   };
 
   config.flake = let
+
     nixosConfigurations =
       lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
       (lib.filterAttrs (k: v: k != "nixosModules" && k != "homeModules") cfg);
+
   in { inherit lib nixosConfigurations; };
 }

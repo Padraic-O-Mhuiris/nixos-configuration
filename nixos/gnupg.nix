@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
-{
+lib.os.applyHmUser (user: {
   programs.gpg = {
     enable = true;
     mutableKeys = false;
     publicKeys = [{
-      source = ../users/padraic/public.asc;
+      text = user.gpg.key;
       trust = 5;
     }];
     homedir = "${config.xdg.dataHome}/gnupg";
@@ -15,7 +15,6 @@
     enable = true;
     enableExtraSocket = true;
     enableScDaemon = true;
-    enableZshIntegration = true;
     grabKeyboardAndMouse = true;
     defaultCacheTtl = 3600;
     pinentryFlavor = "gnome3";
@@ -27,7 +26,12 @@
   };
 
   systemd.user.sessionVariables.GNUPGHOME = "${config.xdg.dataHome}/gnupg";
-  # programs.zsh.sessionVariables.GNUPGHOME = "${config.xdg.dataHome}/gnupg";
-  # programs.bash.sessionVariables.GNUPGHOME = "${config.xdg.dataHome}/gnupg";
 
-}
+  programs.password-store = {
+    enable = true;
+    settings = {
+      PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+      PASSWORD_STORE_KEY = user.gpg.fingerprint;
+    };
+  };
+})

@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
-(if config.services.xserver.enable then {
-  services.xserver = {
-    xkbOptions = "ctrl:swapcaps";
-    layout = "gb";
-  };
-} else
-  { }) // {
-    console.useXkbConfig = true;
-  }
+lib.mkMerge [
+  (lib.mkIf config.services.xserver.enable {
+    services.xserver = {
+      xkbOptions = "ctrl:swapcaps";
+      layout = "gb";
+    };
+  })
+  { console.useXkbConfig = true; }
+]

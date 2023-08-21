@@ -1,53 +1,58 @@
 { config, lib, pkgs, ... }:
 
-(lib.os.applyUsers
-  ({ name, ... }: { users.users.${name}.extraGroups = [ "networkManager" ]; }))
-// {
-  networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 80 443 ];
-      allowedUDPPorts = [ ];
-      checkReversePath = "loose";
+lib.mkMerge [
+  (lib.os.applyUsers ({ name, ... }: {
+    users.users.${name}.extraGroups = [ "networkManager" ];
+  }))
+  (lib.os.applyHmUser
+    ({ name, ... }: { services.network-manager-applet.enable = true; }))
+  {
+    networking = {
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [ 80 443 ];
+        allowedUDPPorts = [ ];
+        checkReversePath = "loose";
+      };
+      networkmanager.enable = true;
+      nameservers = [ "1.1.1.1" "9.9.9.9" ];
+      hosts = { "127.0.0.1" = [ config.networking.hostName ]; };
     };
-    networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "9.9.9.9" ];
-    hosts = { "127.0.0.1" = [ config.networking.hostName ]; };
-  };
 
-  programs.nm-applet.enable = true;
-  # Fixes missing nm-applet icon
-  environment.systemPackages = with pkgs; [ gnome-icon-theme ];
+    programs.nm-applet.enable = true;
+    # Fixes missing nm-applet icon
+    environment.systemPackages = with pkgs; [ gnome-icon-theme ];
 
-  networking.stevenblack.enable = true;
+    networking.stevenblack.enable = true;
 
-  services.fail2ban.enable = true;
+    services.fail2ban.enable = true;
+  }
 
-} //
-# https://github.com/numtide/srvos/blob/main/nixos/common/networking.nix
-{
-  # Allow PMTU / DHCP
-  networking.firewall.allowPing = true;
+  # https://github.com/numtide/srvos/blob/main/nixos/common/networking.nix
+  {
+    # Allow PMTU / DHCP
+    networking.firewall.allowPing = true;
 
-  # Keep dmesg/journalctl -k output readable by NOT logging
-  # each refused connection on the open internet.
-  networking.firewall.logRefusedConnections = lib.mkDefault false;
+    # Keep dmesg/journalctl -k output readable by NOT logging
+    # each refused connection on the open internet.
+    networking.firewall.logRefusedConnections = lib.mkDefault false;
 
-  # Use networkd instead of the pile of shell scripts
-  networking.useNetworkd = lib.mkDefault true;
-  networking.useDHCP = lib.mkDefault false;
+    # Use networkd instead of the pile of shell scripts
+    networking.useNetworkd = lib.mkDefault true;
+    networking.useDHCP = lib.mkDefault false;
 
-  # The notion of "online" is a broken concept
-  # https://github.com/systemd/systemd/blob/e1b45a756f71deac8c1aa9a008bd0dab47f64777/NEWS#L13
-  systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.network.wait-online.enable = false;
+    # The notion of "online" is a broken concept
+    # https://github.com/systemd/systemd/blob/e1b45a756f71deac8c1aa9a008bd0dab47f64777/NEWS#L13
+    systemd.services.NetworkManager-wait-online.enable = false;
+    systemd.network.wait-online.enable = false;
 
-  # FIXME: Maybe upstream?
-  # Do not take down the network for too long when upgrading,
-  # This also prevents failures of services that are restarted instead of stopped.
-  # It will use `systemctl restart` rather than stopping it with `systemctl stop`
-  # followed by a delayed `systemctl start`.
-  systemd.services.systemd-networkd.stopIfChanged = false;
-  # Services that are only restarted might be not able to resolve when resolved is stopped before
-  systemd.services.systemd-resolved.stopIfChanged = false;
-}
+    # FIXME: Maybe upstream?
+    # Do not take down the network for too long when upgrading,
+    # This also prevents failures of services that are restarted instead of stopped.
+    # It will use `systemctl restart` rather than stopping it with `systemctl stop`
+    # followed by a delayed `systemctl start`.
+    systemd.services.systemd-networkd.stopIfChanged = false;
+    # Services that are only restarted might be not able to resolve when resolved is stopped before
+    systemd.services.systemd-resolved.stopIfChanged = false;
+  }
+]

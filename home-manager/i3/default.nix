@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
   xsession = {
     enable = true;
     windowManager.i3.config = {
@@ -13,18 +12,12 @@
         smartBorders = "on";
         smartGaps = true;
       };
-
       window = {
         titlebar = false;
         border = 3;
       };
-
-
     };
   };
 
-  home.packages = with pkgs; [
-    rofi
-    i3status
-  ];
+  home.packages = with pkgs; [ rofi i3status ];
 }
