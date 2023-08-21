@@ -3,7 +3,7 @@
 {
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-} // (lib.os.applyHmUser (_:
+} // (lib.os.applyHmUsers (_:
   ({ config, ... }: {
 
     programs = {

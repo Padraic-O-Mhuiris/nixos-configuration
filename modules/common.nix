@@ -31,7 +31,7 @@
     xclip
     zlib
   ];
-} // (lib.os.applyHmUser (user: {
+} // (lib.os.applyHmUsers (user: {
   programs = {
     bat.enable = true;
     btop.enable = true;

@@ -4,7 +4,7 @@ lib.mkMerge [
   (lib.os.applyUsers ({ name, ... }: {
     users.users.${name}.extraGroups = [ "networkManager" ];
   }))
-  (lib.os.applyHmUser
+  (lib.os.applyHmUsers
     ({ name, ... }: { services.network-manager-applet.enable = true; }))
   {
     networking = {

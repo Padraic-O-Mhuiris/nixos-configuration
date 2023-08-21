@@ -105,7 +105,7 @@ let
 
       specialArgs = {
         inherit lib inputs;
-        os = config // { inherit (cfg) nixosModules homeModules; };
+        os = config // { inherit (cfg) modules; };
       };
 
       stateVersion = "23.05";
@@ -127,7 +127,7 @@ let
                 lib = lib // inputs.home-manager.lib;
               };
             }
-            (lib.os.applyHmUser (user: {
+            (lib.os.applyHmUsers (user: {
               home = {
                 inherit stateVersion;
                 enableNixpkgsReleaseCheck = true;

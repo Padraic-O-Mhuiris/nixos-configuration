@@ -1,6 +1,6 @@
 { lib, ... }:
 
-lib.os.applyHmUser (user:
+lib.os.applyHmUsers (user:
   ({ config, ... }: {
     xdg = {
       enable = true;
