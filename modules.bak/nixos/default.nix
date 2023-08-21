@@ -1,1 +1,0 @@
-{ ... }: { defaultUser = import ./defaultUser.nix; }

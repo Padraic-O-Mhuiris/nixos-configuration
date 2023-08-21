@@ -19,6 +19,7 @@
     os.modules.display.theme
     os.modules.display.wm.i3
     os.modules.documentation
+    os.modules.editors.emacs
     os.modules.filesystem
     os.modules.git
     os.modules.gpu.nvidia
@@ -35,17 +36,12 @@
     os.modules.virtualisation.docker
     os.modules.virtualisation.qemu
     os.modules.yubikey
-
   ];
-  # So that gnome3 pinentry in home-manager gpg-agent works for non-gnome based systems
-  services.dbus.packages = [ pkgs.gcr ];
-
-  networking.hostId = "83b0a257";
 
   hardware.nvidia.prime = {
     nvidiaBusId = "PCI:9:0:0";
     amdgpuBusId = "PCI:0:2:0";
   };
 
-  security.polkit.enable = true;
+  networking.hostId = "83b0a257";
 }
