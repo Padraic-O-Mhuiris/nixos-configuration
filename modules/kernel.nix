@@ -3,7 +3,8 @@
 let
   zfsUsed = lib.lists.elem "zfs" (config.boot.supportedFilesystems
     ++ config.boot.initrd.supportedFilesystems);
-in {
+in
+{
   boot = {
     kernelPackages = lib.mkDefault (if zfsUsed then
       pkgs.zfs.latestCompatibleLinuxPackages

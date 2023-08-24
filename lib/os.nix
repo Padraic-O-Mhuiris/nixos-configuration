@@ -7,6 +7,7 @@ let
 
   inherit (osCfg) users;
 in rec {
+
   applyUsers = fn:
     (deepMergeAttrsList
       (mapAttrsToList (_: userConfig: fn userConfig) osCfg.users));
@@ -15,4 +16,5 @@ in rec {
     applyUsers (user: { home-manager.users.${user.name} = (fn user); });
 
   mapUsers = fn: (mapAttrsToList (_: userConfig: fn userConfig) osCfg.users);
+
 }

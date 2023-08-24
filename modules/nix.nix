@@ -1,7 +1,13 @@
 { config, lib, pkgs, inputs, ... }:
 
 lib.os.applyHmUsers (user: { programs.nix-index.enable = true; }) // {
-  imports = [ inputs.srvos.nixosModules.mixins-trusted-nix-caches ];
+
+  imports = [
+    inputs.srvos.nixosModules.mixins-trusted-nix-caches
+    inputs.nix-ld.nixosModules.nix-ld
+  ];
+
+  programs.nix-ld.dev.enable = true;
 
   nixpkgs = {
     config = {

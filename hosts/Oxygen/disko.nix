@@ -145,7 +145,8 @@ let
     };
   };
 
-in {
+in
+{
 
   imports = [
     inputs.disko.nixosModules.disko

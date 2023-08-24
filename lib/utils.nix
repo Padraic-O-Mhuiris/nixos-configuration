@@ -13,7 +13,8 @@ let
 
   inherit (builtins) readDir map;
 
-in rec {
+in
+rec {
   /* Takes a list of attrsets and deeply merges into one large attrset
 
      Type: deepMergeAttrsList :: [Attrsets] -> Attrset
@@ -28,25 +29,30 @@ in rec {
 
   moduleAttrsByPath = path:
     if (pathExists path) && (pathIsDirectory path) then
-      (let
-        filesInPath = readDir path;
+      (
+        let
+          filesInPath = readDir path;
 
-        regularFilesInPath = mapAttrs' (name: _:
-          nameValuePair (removeSuffix ".nix" name) (import (path + "/${name}")))
-          (filterAttrs (k: v: v == "regular" && (hasSuffix ".nix" k))
-            filesInPath);
+          regularFilesInPath = mapAttrs'
+            (name: _:
+              nameValuePair (removeSuffix ".nix" name) (import (path + "/${name}")))
+            (filterAttrs (k: v: v == "regular" && (hasSuffix ".nix" k))
+              filesInPath);
 
-        hasDefaultDotNix = lib.hasAttr "default.nix" filesInPath;
+          hasDefaultDotNix = lib.hasAttr "default.nix" filesInPath;
 
-        files = if hasDefaultDotNix then (import path) else regularFilesInPath;
+          files = if hasDefaultDotNix then (import path) else regularFilesInPath;
 
-        dirs = mapAttrs' (name: _:
-          nameValuePair name (if hasDefaultDotNix then
-            { }
-          else
-            (moduleAttrsByPath (path + "/${name}"))))
-          (filterAttrs (k: v: v == "directory") filesInPath);
-      in if hasDefaultDotNix then files else (files // dirs))
+          dirs = mapAttrs'
+            (name: _:
+              nameValuePair name (if hasDefaultDotNix then
+                { }
+              else
+                (moduleAttrsByPath (path + "/${name}"))))
+            (filterAttrs (k: v: v == "directory") filesInPath);
+        in
+        if hasDefaultDotNix then files else (files // dirs)
+      )
     else
       { };
 

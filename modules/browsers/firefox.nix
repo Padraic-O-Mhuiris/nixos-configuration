@@ -17,12 +17,14 @@ let
     "https://www.daft.ie/property-for-sale/galway-city"
     "https://www.coingecko.com/en"
 
-  ] (url: {
-    inherit url;
-    name = "";
-  });
+  ]
+    (url: {
+      inherit url;
+      name = "";
+    });
 
-in (lib.os.applyHmUsers (user:
+in
+(lib.os.applyHmUsers (user:
   ({ config, ... }: {
     programs.firefox = {
       enable = true;
@@ -172,5 +174,5 @@ in (lib.os.applyHmUsers (user:
       };
     };
   }))) // {
-    nixpkgs.overlays = [ inputs.nur.overlay ];
-  }
+  nixpkgs.overlays = [ inputs.nur.overlay ];
+}

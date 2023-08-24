@@ -13,38 +13,34 @@ let
           description = "Name of the user";
           default = name;
         };
-
         email = lib.mkOption {
           type = lib.types.nullOr lib.types.str;
           description = "Email of the user";
           default = null;
         };
-
         github = lib.mkOption {
           type = lib.types.nullOr lib.types.str;
           description = "Github username of the user";
           default = null;
         };
-
         ssh = lib.mkOption {
           type = lib.types.str;
           description = "List of user ssh keys, first is primary";
           default = "";
         };
-
-        gpg.fingerprint = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
-          description = "User gpg fingerprint";
-          default = null;
-        };
-
-        gpg.key = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
-          description = "User gpg key";
-          default = null;
+        gpg = {
+          fingerprint = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            description = "User gpg fingerprint";
+            default = null;
+          };
+          key = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            description = "User gpg key";
+            default = null;
+          };
         };
       };
-
     }));
     default = { };
     description = "Attrs of user definitions";
@@ -57,37 +53,33 @@ let
         description = "Name of the host";
         default = name;
       };
-
       users = userFlakeSubmodule;
-
       cpu = lib.mkOption {
         type = lib.types.enum [ "amd" "intel" ];
         description = "cpu";
         default = "intel";
       };
-
       system = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         description = "system";
         default = null;
       };
-
       disks = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         description = "Disks of machine listed under /dev/disk/by-id/";
         default = [ ];
       };
-
-      ip.local = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        description = "Local IP address of machine";
-        default = null;
-      };
-
-      ip.remote = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        description = "Local IP address of machine";
-        default = null;
+      ip = {
+        local = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          description = "Local IP address of machine";
+          default = null;
+        };
+        remote = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          description = "Local IP address of machine";
+          default = null;
+        };
       };
 
       _nixosConfiguration = lib.mkOption {
@@ -143,6 +135,7 @@ let
   }));
 
   lib = libFactory.mkLibForFlake cfg;
+
 in {
   options.flake = {
     os = (lib.mkOption {
@@ -153,11 +146,20 @@ in {
     });
   };
 
-  config.flake = let
+  config = {
+    flake = let
 
-    nixosConfigurations =
-      lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
-      (lib.filterAttrs (k: v: k != "nixosModules" && k != "homeModules") cfg);
+      nixosConfigurations =
+        (lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
+          (lib.attrsets.filterAttrs (k: _: k != "modules") cfg));
 
-  in { inherit lib nixosConfigurations; };
+    in { inherit lib nixosConfigurations; };
+
+    perSystem = { pkgs, lib, config, inputs', ... }: {
+      devShells.default = pkgs.mkShell {
+        NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
+        nativeBuildInputs = with pkgs; [ nix git ];
+      };
+    };
+  };
 }

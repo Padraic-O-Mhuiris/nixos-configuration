@@ -120,20 +120,31 @@ let
       -----END PGP PUBLIC KEY BLOCK-----
     '';
   };
-in {
-  flake = {
-    os.Oxygen = {
-      system = "x86_64-linux";
-      cpu = "amd";
-      ip = {
-        local = "192.168.0.214";
-        # remote = "192.168.0.214";
-      };
-      disks = [
-        "nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NF0NC04658B"
-        "ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M"
-      ];
-      users = { inherit padraic; };
+
+  Oxygen = {
+    system = "x86_64-linux";
+    cpu = "amd";
+    ip = {
+      local = "192.168.0.214";
+      # remote = "192.168.0.214";
     };
+    disks = [
+      "nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NF0NC04658B"
+      "ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M"
+    ];
+    users = { inherit padraic; };
   };
-}
+  Hydrogen = {
+    system = "x86_64-linux";
+    cpu = "amd";
+    ip = {
+      local = "192.168.0.214";
+      # remote = "192.168.0.214";
+    };
+    disks = [
+      "nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NF0NC04658B"
+      "ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M"
+    ];
+    users = { inherit padraic; };
+  };
+in { flake.os = { inherit Oxygen Hydrogen; }; }
