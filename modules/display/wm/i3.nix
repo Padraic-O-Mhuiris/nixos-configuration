@@ -1,11 +1,12 @@
 { config, lib, pkgs, ... }:
 
-lib.os.applyHmUsers
-  (user: {
-    xsession = {
+lib.os.applyHmUsers (user: {
+  xsession = {
+    enable = true;
+    scriptPath = ".hm-xsession";
+    windowManager.i3 = {
       enable = true;
-      scriptPath = ".hm-xsession";
-      windowManager.i3.config = {
+      config = {
         terminal = "alacritty";
         menu = "rofi -combi-modi window,drun,ssh -show combi";
         gaps = {
@@ -20,9 +21,9 @@ lib.os.applyHmUsers
         };
       };
     };
-
-    home.packages = with pkgs; [ rofi i3status ];
-  }) // {
+  };
+  home.packages = with pkgs; [ rofi i3status ];
+}) // {
   services.xserver = {
     enable = true;
     # windowManager.i3 = {

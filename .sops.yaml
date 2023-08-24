@@ -1,6 +1,6 @@
 keys:
   - &padraic age1sartew6ntahhyg06p72rpy77xuyw0gh28zp76ynl3na3v73l7ufqjm5sd5
-  - &Oxygen age1zdm6crlssaszekavmz877v6jek2kw87z9hhsvx4dgcqjg00qx3zsxuavtc
+  - &Oxygen age1wfmx6ftz0g8dv59ywg8qd73vedtq5trl800wnkefqm9tx0a2ypzshx9dfs
 creation_rules:
   - path_regex: hosts/Oxygen/secrets.yaml$
     key_groups:
