@@ -12,7 +12,7 @@
 
     emacs.url = "github:nix-community/emacs-overlay";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-anywhere.url = "github:numtide/nixos-anywhere";

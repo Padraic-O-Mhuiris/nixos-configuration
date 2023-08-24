@@ -51,7 +51,9 @@ in {
           --disk-encryption-keys /tmp/secret.key <(echo -n $(${
             lib.getExe pkgs.pass
           } show os/hosts/Oxygen/disk)) \
-          --extra-files "$temp"
+          --extra-files "$temp" \
+          --build-on-remote \
+          --no-reboot \
           --flake $HOME/code/nix/nixos-configuration#Oxygen root@${os.Oxygen.ip.local}
         '';
 
