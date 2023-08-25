@@ -54,13 +54,21 @@ in {
           --extra-files "$temp" \
           --build-on-remote \
           --no-reboot \
+          --print-build-logs \
+          --debug \
           --flake $HOME/code/nix/nixos-configuration#Oxygen root@${os.Oxygen.ip.local}
+        '';
+
+        editOxygenSecrets = pkgs.writeShellScriptBin "editOxygenSecrets" ''
+          EDITOR=${pkgs.vim}/bin/vim \
+          SOPS_AGE_KEY=$(${pkgs.ssh-to-age}/bin/ssh-to-age -private-key <<< $(${pkgs.pass}/bin/pass show os/users/padraic/id_ed25519)) \
+          ${pkgs.sops}/bin/sops $HOME/code/nix/nixos-configuration/hosts/Oxygen/secrets.yaml
         '';
 
         rekeyOxygenSecrets = pkgs.writeShellScriptBin "rekeyOxygenSecrets" ''
           EDITOR=${pkgs.vim}/bin/vim \
           SOPS_AGE_KEY=$(${pkgs.ssh-to-age}/bin/ssh-to-age -private-key <<< $(${pkgs.pass}/bin/pass show os/users/padraic/id_ed25519)) \
-          ${pkgs.sops}/bin/sops updatekeys $1
+          ${pkgs.sops}/bin/sops updatekeys $HOME/code/nix/nixos-configuration/hosts/Oxygen/secrets.yaml
         '';
       };
     };

@@ -28,6 +28,7 @@
     os.modules.keyboard
     os.modules.location
     os.modules.nix
+    os.modules.networking
     os.modules.sops
     os.modules.ssh
     os.modules.sudo

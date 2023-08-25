@@ -83,7 +83,8 @@ let
         dnodesize = "auto";
         encryption = "aes-256-gcm";
         keyformat = "passphrase";
-        keylocation = "file:///tmp/secret.key";
+        keylocation =
+          "file:///tmp/secret.key"; # must be set during initial installation step
         mountpoint = "none";
         normalization = "formD";
         relatime = "on";
@@ -107,13 +108,13 @@ let
           };
           type = "zfs_fs";
         };
-        home = {
-          type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/home";
-          options."com.sun:auto-snapshot" = "true";
-          postCreateHook = "zfs snapshot rpool/home@empty";
-        };
+        # home = {
+        #   type = "zfs_fs";
+        #   options.mountpoint = "legacy";
+        #   mountpoint = "/home";
+        #   options."com.sun:auto-snapshot" = "true";
+        #   postCreateHook = "zfs snapshot rpool/home@empty";
+        # };
         persist = {
           type = "zfs_fs";
           options.mountpoint = "legacy";
@@ -145,8 +146,7 @@ let
     };
   };
 
-in
-{
+in {
 
   imports = [
     inputs.disko.nixosModules.disko
