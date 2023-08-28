@@ -3,6 +3,7 @@
 {
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
 } // (lib.os.applyHmUsers (_:
   ({ config, ... }: {
 
@@ -54,7 +55,7 @@
         enable = true;
         enableAutosuggestions = true;
         enableCompletion = true;
-        enableSyntaxHighlighting = true;
+        syntaxHighlighting.enable = true;
         enableVteIntegration = true;
         autocd = true;
         dotDir = "${config.xdg.configHome}/zsh";
