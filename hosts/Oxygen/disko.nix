@@ -108,13 +108,13 @@ let
           };
           type = "zfs_fs";
         };
-        # home = {
-        #   type = "zfs_fs";
-        #   options.mountpoint = "legacy";
-        #   mountpoint = "/home";
-        #   options."com.sun:auto-snapshot" = "true";
-        #   postCreateHook = "zfs snapshot rpool/home@empty";
-        # };
+        home = {
+          type = "zfs_fs";
+          options.mountpoint = "legacy";
+          mountpoint = "/home";
+          options."com.sun:auto-snapshot" = "true";
+          postCreateHook = "zfs snapshot rpool/home@empty";
+        };
         persist = {
           type = "zfs_fs";
           options.mountpoint = "legacy";

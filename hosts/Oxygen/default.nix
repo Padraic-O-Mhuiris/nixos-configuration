@@ -29,6 +29,7 @@
     os.modules.location
     os.modules.nix
     os.modules.networking
+    os.modules.shell.zsh
     os.modules.sops
     os.modules.ssh
     os.modules.sudo
