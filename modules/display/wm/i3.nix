@@ -14,7 +14,7 @@ lib.os.applyHmUsers (user:
           keybindings = let
             modifier = config.xsession.windowManager.i3.config.modifier;
             terminal = config.xsession.windowManager.i3.config.terminal;
-          in {
+          in lib.mkOptionDefault {
             "${modifier}+Shift+q" = null;
             "${modifier}+q" = "kill";
           };
