@@ -58,8 +58,7 @@
         syntaxHighlighting.enable = true;
         enableVteIntegration = true;
         autocd = true;
-        dotDir = "${config.xdg.configHome}/zsh";
-        envExtra = "";
+        # dotDir = "${config.xdg.configHome}/zsh";
         history = {
           expireDuplicatesFirst = true;
           extended = true;
@@ -87,11 +86,6 @@
         #     tmux switch-client -t "$session_name"
         #   fi
         # '';
-        initExtraBeforeCompInit = "";
-        initExtraFirst = "";
-        localVariables = { };
-        loginExtra = "";
-        logoutExtra = "";
         # profileExtra = ''
         #   tmux new-session -A -s main
         # '';

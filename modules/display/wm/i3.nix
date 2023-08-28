@@ -17,6 +17,7 @@ lib.os.applyHmUsers (user:
               "${modifier}+Shift+q" = null;
               "${modifier}+q" = "kill";
             };
+          defaultWorkspace = "workspace number 1";
           gaps = {
             inner = 5;
             outer = 5;
