@@ -39,10 +39,17 @@
     os.modules.yubikey
   ];
 
-  hardware.nvidia.prime = {
-    nvidiaBusId = "PCI:9:0:0";
-    amdgpuBusId = "PCI:0:2:0";
+  hardware.nvidia = {
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:9:0:0";
+      amdgpuBusId = "PCI:0:2:0";
+    };
+    forceFullCompositionPipeline = true;
   };
+
+  # TODO Maybe lift this to os config??
+  services.xserver.displayManager.autoLogin.user = "padraic";
 
   networking.hostId = "83b0a257";
 }
