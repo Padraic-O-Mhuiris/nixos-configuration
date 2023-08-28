@@ -10,14 +10,13 @@ lib.os.applyHmUsers (user:
         config = {
           modifier = "Mod4";
           terminal = config.home.sessionVariables.TERMINAL;
-          menu = "rofi -modi drun,run -show drun";
-          keybindings = let
-            modifier = config.xsession.windowManager.i3.config.modifier;
-            terminal = config.xsession.windowManager.i3.config.terminal;
-          in lib.mkOptionDefault {
-            "${modifier}+Shift+q" = null;
-            "${modifier}+q" = "kill";
-          };
+          menu = "rofi -show drun";
+          keybindings =
+            let modifier = config.xsession.windowManager.i3.config.modifier;
+            in lib.mkOptionDefault {
+              "${modifier}+Shift+q" = null;
+              "${modifier}+q" = "kill";
+            };
           gaps = {
             inner = 5;
             outer = 5;
@@ -31,7 +30,7 @@ lib.os.applyHmUsers (user:
         };
       };
     };
-    home.packages = with pkgs; [ rofi i3status ];
+    home.packages = with pkgs; [ rofi i3status dmenu ];
   }) // {
     services.xserver = {
       enable = true;

@@ -13,5 +13,6 @@ lib.os.applyHmUsers (_:
       };
     };
 
-    home.sessionVariables.TERMINAL = "${config.programs.alacritty.package}";
+    home.sessionVariables.TERMINAL =
+      "${lib.getExe' config.programs.alacritty.package "alacritty"}";
   })
