@@ -43,6 +43,4 @@ lib.os.applyHmUsers (_: {
       };
     };
   };
-
-  console.font = "Terminus-32";
 }
