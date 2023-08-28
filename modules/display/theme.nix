@@ -20,7 +20,7 @@ lib.os.applyHmUsers (_: {
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       corefonts
       # iosevka
       ubuntu_font_family
@@ -44,5 +44,5 @@ lib.os.applyHmUsers (_: {
     };
   };
 
-  console.font = "Terminus 32";
+  console.font = "Terminus-32";
 }
