@@ -1,10 +1,12 @@
 { lib, pkgs, ... }:
 
-lib.os.applyHmUsers (user:
+{
+  imports = [ ./_x.nix ];
+}
+  //
+(lib.os.applyHmUsers (user:
   { config, ... }: {
     xsession = {
-      enable = true;
-      scriptPath = ".hm-xsession";
       windowManager.i3 = {
         enable = true;
         config = {
@@ -32,18 +34,5 @@ lib.os.applyHmUsers (user:
       };
     };
     home.packages = with pkgs; [ rofi i3status dmenu ];
-  }) // {
-    services.xserver = {
-      enable = true;
-      desktopManager.session = [{
-        name = "home-manager";
-        start = ''
-          ${pkgs.runtimeShell} $HOME/.hm-xsession &
-          waitPID=$!
-        '';
-      }];
-      displayManager.defaultSession = "home-manager";
-    };
-
-    environment.systemPackages = with pkgs; [ xorg.xdpyinfo ];
-  }
+  })
+)

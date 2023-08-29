@@ -22,14 +22,16 @@ let
     (mapAttrs (k: v: lib.filterAttrs (k: _: k != "_nixosConfiguration") v)
       hosts);
 
-in {
+in
+{
   perSystem = { pkgs, inputs', ... }:
     let
       hostJsonFile = pkgs.writeTextFile {
         name = "os.json";
         text = "${toJSON hostAttrs}";
       };
-    in {
+    in
+    {
       packages = {
         deployOxygen = pkgs.writeShellScriptBin "deployOxygen" ''
           temp=$(mktemp -d)

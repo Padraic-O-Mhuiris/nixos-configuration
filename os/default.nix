@@ -147,4 +147,5 @@ let
     ];
     users = { inherit padraic; };
   };
-in { flake.os = { inherit Oxygen Hydrogen; }; }
+in
+{ flake.os = { inherit Oxygen Hydrogen; }; }

@@ -26,14 +26,41 @@
 
     sops.url = "github:Mic92/sops-nix";
 
+
     srvos.url = "github:numtide/srvos";
+
+    systems.url = "github:nix-systems/default";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
-  outputs = { self, nixpkgs, flake-parts, ... }@inputs:
+  outputs = { self, nixpkgs, systems, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
-      systems = nixpkgs.lib.systems.flakeExposed;
-      imports = [ ./os.flake-module.nix ./os ./packages ];
-      flake = { inherit inputs; };
+      systems = import systems;
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        ./os.flake-module.nix
+        ./os
+        ./packages
+      ];
+      flake = {
+        inherit inputs;
+      };
+
+      perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
+
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+          programs.nixpkgs-fmt.enable = true;
+        };
+
+        devShells.default = pkgs.mkShell {
+          inputsFrom = [
+            config.treefmt.build.devShell
+          ];
+        };
+
+      };
     };
 }

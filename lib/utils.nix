@@ -7,7 +7,7 @@ let
     filterAttrs mapAttrsToList mapAttrs recursiveUpdate hasAttr mapAttrs'
     nameValuePair;
 
-  inherit (lib.strings) hasSuffix removeSuffix;
+  inherit (lib.strings) hasSuffix hasPrefix removeSuffix;
 
   inherit (lib.lists) flatten elemAt any fold;
 
@@ -36,7 +36,7 @@ rec {
           regularFilesInPath = mapAttrs'
             (name: _:
               nameValuePair (removeSuffix ".nix" name) (import (path + "/${name}")))
-            (filterAttrs (k: v: v == "regular" && (hasSuffix ".nix" k))
+            (filterAttrs (k: v: v == "regular" && (hasSuffix ".nix" k) && !(hasPrefix "_" k))
               filesInPath);
 
           hasDefaultDotNix = lib.hasAttr "default.nix" filesInPath;

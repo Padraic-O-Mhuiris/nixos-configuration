@@ -89,54 +89,57 @@ let
       };
     };
 
-    config = let
-      lib = libFactory.mkLibForNixosConfiguration {
-        os = name;
-        osCfg = config;
+    config =
+      let
+        lib = libFactory.mkLibForNixosConfiguration {
+          os = name;
+          osCfg = config;
+        };
+
+        specialArgs = {
+          inherit lib inputs;
+          os = config // { inherit (cfg) modules; };
+        };
+
+        stateVersion = "23.05";
+
+        modules = [
+          (./hosts + "/${name}")
+          {
+            networking.hostName = name;
+            nixpkgs.hostPlatform = config.system;
+            system = { inherit stateVersion; };
+          }
+          inputs.home-manager.nixosModules.home-manager
+          ({ lib, ... }:
+            lib.mkMerge [
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = specialArgs // {
+                  lib = lib // inputs.home-manager.lib;
+                };
+              }
+              (lib.os.applyHmUsers (user: {
+                home = {
+                  inherit stateVersion;
+                  enableNixpkgsReleaseCheck = true;
+                  homeDirectory = "/home/${user.name}";
+                };
+              }))
+            ])
+        ];
+      in
+      {
+        _nixosConfiguration."${name}" =
+          lib.nixosSystem { inherit specialArgs modules; };
       };
-
-      specialArgs = {
-        inherit lib inputs;
-        os = config // { inherit (cfg) modules; };
-      };
-
-      stateVersion = "23.05";
-
-      modules = [
-        (./hosts + "/${name}")
-        {
-          networking.hostName = name;
-          nixpkgs.hostPlatform = config.system;
-          system = { inherit stateVersion; };
-        }
-        inputs.home-manager.nixosModules.home-manager
-        ({ lib, ... }:
-          lib.mkMerge [
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialArgs // {
-                lib = lib // inputs.home-manager.lib;
-              };
-            }
-            (lib.os.applyHmUsers (user: {
-              home = {
-                inherit stateVersion;
-                enableNixpkgsReleaseCheck = true;
-                homeDirectory = "/home/${user.name}";
-              };
-            }))
-          ])
-      ];
-    in {
-      _nixosConfiguration."${name}" =
-        lib.nixosSystem { inherit specialArgs modules; };
-    };
   }));
 
   lib = libFactory.mkLibForFlake cfg;
 
-in {
+in
+{
   options.flake = {
     os = (lib.mkOption {
       type = osSubmodule;
@@ -147,19 +150,21 @@ in {
   };
 
   config = {
-    flake = let
+    flake =
+      let
 
-      nixosConfigurations =
-        (lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
-          (lib.attrsets.filterAttrs (k: _: k != "modules") cfg));
+        nixosConfigurations =
+          (lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
+            (lib.attrsets.filterAttrs (k: _: k != "modules") cfg));
 
-    in { inherit lib nixosConfigurations; };
+      in
+      { inherit lib nixosConfigurations; };
 
-    perSystem = { pkgs, lib, config, inputs', ... }: {
-      devShells.default = pkgs.mkShell {
-        NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
-        nativeBuildInputs = with pkgs; [ nix git ];
-      };
-    };
+    # perSystem = { pkgs, lib, config, inputs', ... }: {
+    #   devShells.default = pkgs.mkShell {
+    #     NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
+    #     nativeBuildInputs = with pkgs; [ nix git ];
+    #   };
+    # };
   };
 }
