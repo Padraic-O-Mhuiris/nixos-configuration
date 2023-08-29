@@ -149,22 +149,11 @@ in
     });
   };
 
-  config = {
-    flake =
-      let
-
-        nixosConfigurations =
-          (lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
-            (lib.attrsets.filterAttrs (k: _: k != "modules") cfg));
-
-      in
-      { inherit lib nixosConfigurations; };
-
-    # perSystem = { pkgs, lib, config, inputs', ... }: {
-    #   devShells.default = pkgs.mkShell {
-    #     NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
-    #     nativeBuildInputs = with pkgs; [ nix git ];
-    #   };
-    # };
-  };
+  config.flake =
+    {
+      inherit lib;
+      nixosConfigurations =
+        (lib.attrsets.mapAttrs (name: os: os._nixosConfiguration."${name}")
+          (lib.attrsets.filterAttrs (k: _: k != "modules") cfg));
+    };
 }

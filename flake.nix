@@ -26,7 +26,6 @@
 
     sops.url = "github:Mic92/sops-nix";
 
-
     srvos.url = "github:numtide/srvos";
 
     systems.url = "github:nix-systems/default";
@@ -37,13 +36,16 @@
   outputs = { self, nixpkgs, systems, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
+
       systems = import systems;
+
       imports = [
         inputs.treefmt-nix.flakeModule
         ./os.flake-module.nix
         ./os
         ./packages
       ];
+
       flake = {
         inherit inputs;
       };
