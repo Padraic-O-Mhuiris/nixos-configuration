@@ -1,9 +1,8 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ ./_x.nix ];
-}
-  //
+  imports = [ ../_x.nix ];
+} //
 (lib.os.applyHmUsers (user:
   { config, ... }: {
     xsession = {

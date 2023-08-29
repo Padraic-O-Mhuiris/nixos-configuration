@@ -15,9 +15,8 @@
     os.modules.browsers.firefox
     os.modules.common
     os.modules.display.dm.lightdm
-    os.modules.display.monitors
-    os.modules.display.theme
     os.modules.display.wm.i3
+    os.modules.display.theme
     os.modules.documentation
     os.modules.editors.emacs
     os.modules.filesystem
