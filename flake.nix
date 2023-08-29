@@ -56,11 +56,12 @@
         };
 
         devShells.default = pkgs.mkShell {
+          NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
           inputsFrom = [
             config.treefmt.build.devShell
           ];
+          nativeBuildInputs = with pkgs; [ nix git ];
         };
-
       };
     };
 }
