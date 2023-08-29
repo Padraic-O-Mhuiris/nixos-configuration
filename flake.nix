@@ -27,7 +27,6 @@
     sops.url = "github:Mic92/sops-nix";
 
     srvos.url = "github:numtide/srvos";
-
   };
 
   outputs = { self, nixpkgs, flake-parts, ... }@inputs:
