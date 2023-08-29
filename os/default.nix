@@ -136,16 +136,12 @@ let
   };
   Hydrogen = {
     system = "x86_64-linux";
-    cpu = "amd";
+    cpu = "intel";
     ip = {
-      local = "192.168.0.214";
+      local = "192.168.0.184";
       # remote = "192.168.0.214";
     };
-    disks = [
-      "nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NF0NC04658B"
-      "ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M"
-    ];
+    disks = [ "nvme-PC_SN810_NVMe_WDC_1024GB_222320805140" ];
     users = { inherit padraic; };
   };
-in
-{ flake.os = { inherit Oxygen Hydrogen; }; }
+in { flake.os = { inherit Oxygen Hydrogen; }; }

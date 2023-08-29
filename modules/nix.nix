@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ flake, config, lib, pkgs, inputs, ... }:
 
 lib.os.applyHmUsers (user: { programs.nix-index.enable = true; }) // {
 
@@ -19,6 +19,7 @@ lib.os.applyHmUsers (user: { programs.nix-index.enable = true; }) // {
 
   nix = {
     settings = {
+      max-jobs = "auto";
       connect-timeout = 5;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       log-lines = lib.mkDefault 25;

@@ -1,9 +1,15 @@
 keys:
   - &padraic age1sartew6ntahhyg06p72rpy77xuyw0gh28zp76ynl3na3v73l7ufqjm5sd5
   - &Oxygen age1wfmx6ftz0g8dv59ywg8qd73vedtq5trl800wnkefqm9tx0a2ypzshx9dfs
+  - &Hydrogen age1xkzmq8snye0gsq35dsruwczf8fh6thhzx9d29ls9x97ggc577c4scvds5r
 creation_rules:
   - path_regex: hosts/Oxygen/secrets.yaml$
     key_groups:
       - age:
           - *padraic
           - *Oxygen
+  - path_regex: hosts/Hydrogen/secrets.yaml$
+    key_groups:
+      - age:
+          - *padraic
+          - *Hydrogen
