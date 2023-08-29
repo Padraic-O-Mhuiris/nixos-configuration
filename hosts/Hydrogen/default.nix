@@ -53,7 +53,7 @@
     config = {
       "eDP-1" = {
         enable = true;
-        dpi = null;
+        dpi = 283;
         primary = true;
         position = "0x0";
         mode = "3840x2400";

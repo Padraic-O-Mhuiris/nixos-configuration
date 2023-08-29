@@ -59,6 +59,7 @@
       "HDMI-0" = {
         enable = true;
         primary = false;
+        # dpi = 81;
         position = "5120x0";
         mode = "1920x1080";
         rate = "60.00";
@@ -66,7 +67,7 @@
       };
       "DP-0" = {
         enable = true;
-        dpi = null;
+        dpi = 108;
         primary = true;
         position = "0x240";
         mode = "5120x1440";
