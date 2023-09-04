@@ -19,9 +19,19 @@ in (lib.os.applyHmUsers (user: {
   home.packages = with pkgs; [
     (ripgrep.override { withPCRE2 = true; })
     shellcheck
-    nixfmt
+    shfmt
     pandoc
     fd
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    emacsPackages.editorconfig
+    terraform
+    graphviz
+    maim
+    solc
+    html-tidy
+    nodePackages_latest.stylelint
+    nodePackages_latest.js-beautify
+    nixfmt
   ];
 })) // {
   nixpkgs.overlays = [ inputs.emacs.overlays.default ];

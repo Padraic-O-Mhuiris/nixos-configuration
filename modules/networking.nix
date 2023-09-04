@@ -26,6 +26,10 @@ lib.mkMerge [
     networking.stevenblack.enable = true;
 
     services.fail2ban.enable = true;
+
+    environment.persistence."/persist".directories =
+      [ "/etc/NetworkManager/system-connections" ];
+
   }
 
   # https://github.com/numtide/srvos/blob/main/nixos/common/networking.nix

@@ -2,12 +2,17 @@
 
 {
   imports = [
+    # inputs.hardware.nixosModules.common-hidpi
+    # inputs.hardware.nixosModules.dell-xps-15-9520
     inputs.hardware.nixosModules.dell-xps-15-9520-nvidia
 
     ./disko.nix
 
+    os.modules.apps.spotify
+    os.modules.apps.libreoffice
     os.modules.audio
     os.modules.bluetooth
+    os.modules.backlight
     os.modules.boot.systemd
     os.modules.browsers.firefox
     os.modules.common
@@ -39,12 +44,15 @@
   # hardware.nvidia = {
   #   prime = {
   #     sync.enable = true;
-  #     nvidiaBusId = "PCI:9:0:0";
-  #     amdgpuBusId = "PCI:0:2:0";
+  #     nvidiaBusId = "PCI:1:0:0";
+  #     intelBusId = "PCI:0:2:0";
   #   };
   #   forceFullCompositionPipeline = true;
   # };
 
+  environment.persistence."/persist".files = [ "/etc/machine-id" ];
+
+  # NOTE Screen name ID changes between using nvidia prime or offload
   services.autorandr.profiles.main = {
     fingerprint = {
       "eDP-1" =
@@ -53,7 +61,7 @@
     config = {
       "eDP-1" = {
         enable = true;
-        dpi = 283;
+        dpi = 160;
         primary = true;
         position = "0x0";
         mode = "3840x2400";
@@ -66,4 +74,9 @@
   services.xserver.displayManager.autoLogin.user = "padraic";
 
   networking.hostId = "3f90d23a";
-}
+} // lib.os.applyHmUsers (_: {
+  home.sessionVariables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+  };
+})

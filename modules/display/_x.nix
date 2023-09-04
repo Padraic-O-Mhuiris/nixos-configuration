@@ -13,12 +13,12 @@
     displayManager.defaultSession = "home-manager";
   };
 
-  environment.systemPackages = with pkgs; [ xorg.xdpyinfo ];
+  environment.systemPackages = with pkgs; [ xorg.xdpyinfo xorg.xbacklight ];
 
   services.autorandr.enable = true;
   services.autorandr.defaultTarget = "main";
-} //
-(lib.os.applyHmUsers (_: {
+
+} // (lib.os.applyHmUsers (_: {
   xsession = {
     enable = true;
     scriptPath = ".hm-xsession";

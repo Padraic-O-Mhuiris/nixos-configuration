@@ -14,4 +14,7 @@
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  # TODO Takes a long time to build?
+  # environment.systemPackages = with pkgs; [ nvtop ];
 }

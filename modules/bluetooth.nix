@@ -6,4 +6,6 @@ lib.os.applyHmUsers (user: { services.blueman-applet.enable = true; }) // {
     settings = { General.Enable = "Source,Sink,Media,Socket"; };
   };
   services.blueman.enable = true;
+
+  environment.persistence."/persist".directories = [ "/var/lib/bluetooth" ];
 }

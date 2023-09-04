@@ -3,7 +3,7 @@
 let
   cfg = config.flake.os;
 
-  libFactory = (import ./lib { inherit (inputs.nixpkgs) lib; });
+  libFactory = (import ./lib { inherit inputs; });
 
   userFlakeSubmodule = lib.mkOption {
     type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
@@ -59,11 +59,16 @@ let
         description = "cpu";
         default = "intel";
       };
-      system = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        description = "system";
-        default = null;
+
+      theme = lib.mkOption {
+        type = lib.types.enum
+          (lib.mapAttrsToList (k: v: lib.strings.removeSuffix ".yaml" k)
+            (builtins.readDir
+              "${inputs.nixpkgs.legacyPackages.x86_64-linux.base16-schemes.outPath}/share/themes"));
+        description = "Enum of applicable base16 themes";
+        default = "zenburn";
       };
+
       disks = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         description = "Disks of machine listed under /dev/disk/by-id/";

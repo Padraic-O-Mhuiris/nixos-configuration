@@ -39,13 +39,13 @@ in {
           }
           trap cleanup EXIT
 
-          install -d -m755 "$temp/etc/ssh"
+          install -d -m755 "$temp/persist/etc/ssh"
 
-          pass os/hosts/Oxygen/ssh_host_ed25519_key > "$temp/etc/ssh/ssh_host_ed25519_key"
-          pass os/hosts/Oxygen/ssh_host_ed25519_key.pub > "$temp/etc/ssh/ssh_host_ed25519_key.pub"
+          pass os/hosts/Oxygen/ssh_host_ed25519_key > "$temp/persist/etc/ssh/ssh_host_ed25519_key"
+          pass os/hosts/Oxygen/ssh_host_ed25519_key.pub > "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
-          chmod 600 "$temp/etc/ssh/ssh_host_ed25519_key"
-          chmod 644 "$temp/etc/ssh/ssh_host_ed25519_key.pub"
+          chmod 600 "$temp/persist/etc/ssh/ssh_host_ed25519_key"
+          chmod 644 "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
           ${getExe inputs'.nixos-anywhere.packages.default} \
           --disk-encryption-keys /tmp/secret.key <(echo -n $(${
@@ -67,13 +67,13 @@ in {
           }
           trap cleanup EXIT
 
-          install -d -m755 "$temp/etc/ssh"
+          install -d -m755 "$temp/persist/etc/ssh"
 
-          pass os/hosts/Hydrogen/ssh_host_ed25519_key > "$temp/etc/ssh/ssh_host_ed25519_key"
-          pass os/hosts/Hydrogen/ssh_host_ed25519_key.pub > "$temp/etc/ssh/ssh_host_ed25519_key.pub"
+          pass os/hosts/Hydrogen/ssh_host_ed25519_key > "$temp/persist/etc/ssh/ssh_host_ed25519_key"
+          pass os/hosts/Hydrogen/ssh_host_ed25519_key.pub > "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
-          chmod 600 "$temp/etc/ssh/ssh_host_ed25519_key"
-          chmod 644 "$temp/etc/ssh/ssh_host_ed25519_key.pub"
+          chmod 600 "$temp/persist/etc/ssh/ssh_host_ed25519_key"
+          chmod 644 "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
           ${getExe inputs'.nixos-anywhere.packages.default} \
           --disk-encryption-keys /tmp/secret.key <(echo -n $(${

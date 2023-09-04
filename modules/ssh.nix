@@ -14,12 +14,16 @@ lib.mkMerge [
         # TODO Figure out how to reproducibly automate ssh key generation from sops/initial deployment
         hostKeys = [{
           type = "ed25519";
-          path = "/etc/ssh/ssh_host_ed25519_key";
+          path = "/persist/etc/ssh/ssh_host_ed25519_key";
           rounds = 100;
           comment = "${config.networking.hostName}";
         }];
       };
     };
+
+    # impermanence
+    environment.persistence."/persist".files =
+      [ "/etc/ssh/ssh_host_ed25519_key" "/etc/ssh/ssh_host_ed25519_key.pub" ];
   }
 
   # https://github.com/numtide/srvos/blob/main/nixos/common/well-known-hosts.nix

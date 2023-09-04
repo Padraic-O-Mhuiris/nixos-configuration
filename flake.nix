@@ -2,6 +2,7 @@
   description = "NixOS Configuration";
 
   inputs = {
+    base16.url = "github:SenchoPens/base16.nix";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +15,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    impermanence.url = "github:nix-community/impermanence";
 
     nixos-anywhere.url = "github:numtide/nixos-anywhere";
 
@@ -46,9 +49,7 @@
         ./packages
       ];
 
-      flake = {
-        inherit inputs;
-      };
+      flake = { inherit inputs; };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
 
@@ -59,9 +60,7 @@
 
         devShells.default = pkgs.mkShell {
           NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
-          inputsFrom = [
-            config.treefmt.build.devShell
-          ];
+          inputsFrom = [ config.treefmt.build.devShell ];
           nativeBuildInputs = with pkgs; [ nix git ];
         };
       };

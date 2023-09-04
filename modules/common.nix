@@ -8,6 +8,7 @@
     clang
     cmake
     curl
+    du-dust
     entr
     git
     file

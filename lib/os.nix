@@ -6,8 +6,7 @@ let
   inherit (lib.attrsets) mapAttrsToList;
 
   inherit (osCfg) users;
-in
-rec {
+in rec {
 
   applyUsers = fn:
     (deepMergeAttrsList

@@ -122,7 +122,6 @@ let
   };
 
   Oxygen = {
-    system = "x86_64-linux";
     cpu = "amd";
     ip = {
       local = "192.168.0.214";
@@ -135,8 +134,8 @@ let
     users = { inherit padraic; };
   };
   Hydrogen = {
-    system = "x86_64-linux";
     cpu = "intel";
+    theme = "nord";
     ip = {
       local = "192.168.0.184";
       # remote = "192.168.0.214";
