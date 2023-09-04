@@ -5,7 +5,7 @@ lib.os.applyHmUsers (_:
     programs.alacritty = {
       enable = true;
       settings = {
-        # font.size = 6;
+        font.size = 6; # TODO globalise
         window.padding = {
           x = 10;
           y = 10;

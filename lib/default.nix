@@ -2,10 +2,12 @@
 
 let
   inherit (inputs.nixpkgs) lib;
-  inherit (inputs.nixpkgs) lib;
+
   inherit (lib.attrsets) mapAttrs;
 
+  # TODO Is there a better way of implementing this?
   pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+
 in rec {
   utils = import ./utils.nix { inherit lib; };
 

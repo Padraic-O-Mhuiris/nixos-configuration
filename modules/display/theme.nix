@@ -9,18 +9,10 @@ lib.os.applyHmUsers ({ name, ... }:
     };
 
   in {
-    # stylix.targets.rofi.enable = true;
-    # stylix.targets.i3.enable = true;
-    # stylix.targets.bat.enable = true;
-    # stylix.targets.feh.enable = true;
-    # stylix.targets.gtk.enable = true;
-    # stylix.targets.tmux.enable = true;
-
     home = {
       packages = with pkgs; [ dconf ];
       pointerCursor = cursorSettings;
     };
-
   }) // (let
 
     color1 = "grayscale-light";
@@ -31,42 +23,6 @@ lib.os.applyHmUsers ({ name, ... }:
       COLOR="#"$COLOR
       ${pkgs.imagemagick}/bin/magick convert -size 1920x1080 xc:$COLOR $out'';
   in {
-
-    # imports = [ inputs.stylix.nixosModules.stylix ];
-
-    # stylix = {
-    #   # autoEnable = true;
-    #   homeManagerIntegration = {
-    #     autoImport = true;
-    #     followSystem = true;
-    #   };
-
-    #   base16Scheme = theme;
-    #   image = wallpaper;
-    #   fonts = {
-    #     serif = config.stylix.fonts.sansSerif;
-    #     sansSerif = {
-    #       package = pkgs.roboto;
-    #       name = "Roboto";
-    #     };
-
-    #     monospace = {
-    #       package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
-    #       name = "Iosevka NFP SemiBold";
-    #     };
-
-    #     emoji = {
-    #       package = pkgs.noto-fonts-emoji;
-    #       name = "Noto Color Emoji";
-    #     };
-
-    #     sizes = {
-    #       terminal = 6;
-    #       popups = 16;
-    #       desktop = 10;
-    #     };
-    #   };
-    # };
 
     fonts = {
       fontDir.enable = true;

@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     bc
     binutils
-    coreutils
+    coreutils-full
     clang
     cmake
     curl

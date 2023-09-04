@@ -54,6 +54,7 @@
       #radius = 15;
 
       fixed-center = true;
+
       override-redirect = true;
 
       # border-left-size = border-size;
@@ -230,6 +231,18 @@
       label-mounted = "%{T2}%{T-} %mountpoint% %used%";
     };
   in {
+    xsession.windowManager.i3.config.gaps = {
+      top = if config.services.polybar.settings."bar/top".override-redirect then
+        40
+      else
+        null;
+      bottom =
+        if config.services.polybar.settings."bar/bottom".override-redirect then
+          40
+        else
+          null;
+    };
+
     services.polybar = {
       enable = true;
       script = ''

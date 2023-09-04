@@ -5,8 +5,8 @@
     ../../_x.nix
     ../../_redshift.nix
     ./i3toggle.nix
-    #./i3status.nix
-    ./polybar.nix
+    ./i3status.nix
+    #./polybar.nix
   ];
 } // (lib.os.applyHmUsers (user:
   { config, ... }: {
@@ -27,7 +27,6 @@
           gaps = {
             inner = 10;
             outer = 5;
-            bottom = 40;
             # smartBorders = "on";
             # smartGaps = true;
           };

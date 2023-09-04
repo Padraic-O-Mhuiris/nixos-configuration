@@ -1,8 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, ... }@nixosModuleArgs:
 
 (lib.os.applyHmUsers (user:
   { config, ... }:
-
   let
     inherit (config.xsession.windowManager.i3.config) modifier;
 
@@ -68,7 +67,7 @@
         block = "battery";
         format = " $icon $time $percentage ";
         charging_format = " $icon $time $percentage ";
-        full_format = " $icon $time ";
+        full_format = " $icon 100% ";
         interval = 1;
         not_charging_format = " $icon $time ";
         empty_format = " $icon $time ";
@@ -78,85 +77,82 @@
         missing_format = "";
       };
     };
-
   in {
-    xsession.windowManager.i3.config.bars =
-      let colors = config.lib.stylix.colors.withHashtag;
-      in [
-        {
-          colors = (config.lib.stylix.i3.bar.colors // {
-            background = colors.base00;
-          });
-          fonts = {
-            names = [ config.stylix.fonts.monospace.name ];
-            size = config.lib.stylix.i3.bar.fonts.size;
-          };
-          mode = "dock";
-          hiddenState = "hide";
-          position = "top";
-          workspaceButtons = false;
-          workspaceNumbers = false;
-          statusCommand = "${
-              lib.getExe config.programs.i3status-rust.package
-            } ${config.xdg.configHome}/i3status-rust/config-top.toml";
-        }
-        {
-          colors = (config.lib.stylix.i3.bar.colors // {
-            background = colors.base01;
-          });
-          fonts = {
-            names = [ config.stylix.fonts.monospace.name ];
-            size = config.lib.stylix.i3.bar.fonts.size;
-          };
-          mode = "dock";
-          hiddenState = "hide";
-          position = "bottom";
-          workspaceButtons = true;
-          workspaceNumbers = true;
-          trayOutput = "primary";
-          statusCommand = "${
-              lib.getExe config.programs.i3status-rust.package
-            } ${config.xdg.configHome}/i3status-rust/config-bottom.toml";
-        }
-      ];
+    xsession.windowManager.i3.config.bars = [
+      {
+        # colors = (config.lib.stylix.i3.bar.colors // {
+        #   background = colors.base00;
+        # });
+        fonts = {
+          names =
+            nixosModuleArgs.config.fonts.fontconfig.defaultFonts.monospace;
+          size = 10.0; # TODO globalise
+        };
+        mode = "dock";
+        hiddenState = "hide";
+        position = "top";
+        workspaceButtons = false;
+        workspaceNumbers = false;
+        statusCommand = "${
+            lib.getExe config.programs.i3status-rust.package
+          } ${config.xdg.configHome}/i3status-rust/config-top.toml";
+      }
+      {
+        # colors =
+        #   (config.lib.stylix.i3.bar.colors // { background = colors.base01; });
+        fonts = {
+          names =
+            nixosModuleArgs.config.fonts.fontconfig.defaultFonts.monospace;
+          size = 10.0; # TODO globalise
+        };
+        mode = "dock";
+        hiddenState = "hide";
+        position = "bottom";
+        workspaceButtons = true;
+        workspaceNumbers = true;
+        trayOutput = "primary";
+        statusCommand = "${
+            lib.getExe config.programs.i3status-rust.package
+          } ${config.xdg.configHome}/i3status-rust/config-bottom.toml";
+      }
+    ];
 
     xsession.windowManager.i3.extraConfig = ''
       bindsym ${modifier}+b bar mode toggle
     '';
 
     programs.i3status-rust = let
-
       inherit (blocks) sound backlight time disks battery cpu music location;
 
-      colors = config.lib.stylix.colors.withHashtag;
+      # colors = config.lib.stylix.colors.withHashtag;
 
-      i3status-rust-theme-overrides = {
-        idle_bg = colors.base00;
-        idle_fg = colors.base06;
-        info_bg = colors.base00;
-        info_fg = colors.base06;
-        good_bg = colors.base00;
-        good_fg = colors.base0B;
-        warning_bg = colors.base0A;
-        warning_fg = colors.base00;
-        critical_bg = colors.base08;
-        critical_fg = colors.base00;
-        separator = "|";
-        separator_bg = colors.base00;
-        separator_fg = colors.base06;
-      };
+      # i3status-rust-theme-overrides = {
+      #   idle_bg = colors.base00;
+      #   idle_fg = colors.base06;
+      #   info_bg = colors.base00;
+      #   info_fg = colors.base06;
+      #   good_bg = colors.base00;
+      #   good_fg = colors.base0B;
+      #   warning_bg = colors.base0A;
+      #   warning_fg = colors.base00;
+      #   critical_bg = colors.base08;
+      #   critical_fg = colors.base00;
+      #   separator = "|";
+      #   separator_bg = colors.base00;
+      #   separator_fg = colors.base06;
+      # };
 
     in {
       enable = true;
       bars.top = {
         icons = "awesome6";
-        settings.theme.overrides = i3status-rust-theme-overrides;
+        # settings.theme.overrides = i3status-rust-theme-overrides;
         blocks = [ location disks.root disks.nix disks.home battery cpu ];
       };
 
       bars.bottom = {
         icons = "awesome6";
-        settings.theme.overrides = i3status-rust-theme-overrides;
+        # settings.theme.overrides = i3status-rust-theme-overrides;
         blocks = [ music backlight sound time ];
       };
     };

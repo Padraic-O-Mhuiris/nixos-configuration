@@ -115,7 +115,6 @@ let
         (./hosts + "/${name}")
         {
           networking.hostName = name;
-          nixpkgs.hostPlatform = config.system;
           system = { inherit stateVersion; };
         }
         inputs.home-manager.nixosModules.home-manager

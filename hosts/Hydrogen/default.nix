@@ -74,6 +74,8 @@
   services.xserver.displayManager.autoLogin.user = "padraic";
 
   networking.hostId = "3f90d23a";
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 } // lib.os.applyHmUsers (_: {
   home.sessionVariables = {
     GDK_SCALE = "2";
