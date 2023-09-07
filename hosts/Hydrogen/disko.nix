@@ -128,11 +128,11 @@ let
     };
   };
 
-in {
+in
+{
 
   imports = [
     inputs.disko.nixosModules.disko
-    inputs.impermanence.nixosModules.impermanence
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

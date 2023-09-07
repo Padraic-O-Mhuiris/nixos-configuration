@@ -32,37 +32,13 @@
     srvos.url = "github:numtide/srvos";
 
     systems.url = "github:nix-systems/default";
-
-    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs = { self, nixpkgs, systems, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
-
       systems = import systems;
-
-      imports = [
-        inputs.treefmt-nix.flakeModule
-        ./os.flake-module.nix
-        ./os
-        ./packages
-      ];
-
-      flake = { inherit inputs; };
-
-      perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
-
-        treefmt.config = {
-          projectRootFile = "flake.nix";
-          programs.nixpkgs-fmt.enable = true;
-        };
-
-        devShells.default = pkgs.mkShell {
-          NIX_CONFIG = "experimental-features = nix-command flakes repl-flake";
-          inputsFrom = [ config.treefmt.build.devShell ];
-          nativeBuildInputs = with pkgs; [ nix git ];
-        };
-      };
+      imports = [ ./os ];
+      flake.os = import ./os.nix;
     };
 }

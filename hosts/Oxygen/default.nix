@@ -7,6 +7,8 @@
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.hardware.nixosModules.common-cpu-amd
 
+    inputs.impermanence.nixosModules.impermanence
+
     ./disko.nix
 
     os.modules.audio
@@ -82,4 +84,6 @@
   networking.hostId = "83b0a257";
 
   nixpkgs.hostPlatform = "x86_64-linux";
+  system.stateVersion = "23.05";
+
 }

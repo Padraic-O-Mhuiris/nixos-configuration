@@ -5,10 +5,12 @@
     # inputs.hardware.nixosModules.common-hidpi
     # inputs.hardware.nixosModules.dell-xps-15-9520
     inputs.hardware.nixosModules.dell-xps-15-9520-nvidia
+    inputs.impermanence.nixosModules.impermanence
 
     ./disko.nix
 
     os.modules.apps.spotify
+    os.modules.apps.discord
     os.modules.apps.libreoffice
     os.modules.audio
     os.modules.bluetooth
@@ -76,6 +78,8 @@
   networking.hostId = "3f90d23a";
 
   nixpkgs.hostPlatform = "x86_64-linux";
+  system.stateVersion = "23.05";
+
 } // lib.os.applyHmUsers (_: {
   home.sessionVariables = {
     GDK_SCALE = "2";

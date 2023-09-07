@@ -45,6 +45,8 @@
     jq.enable = true;
   };
 
+  home.packages = with pkgs; [ qbittorrent vlc ];
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
