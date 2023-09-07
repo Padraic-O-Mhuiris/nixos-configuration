@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-(lib.os.applyHmUsers (_: {
+(lib.os.hm (_: {
   services.redshift = {
     inherit (config.location) latitude longitude;
     enable = true;

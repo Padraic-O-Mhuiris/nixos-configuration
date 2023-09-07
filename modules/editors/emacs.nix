@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 
 let emacsPkg = pkgs.emacs-unstable;
-in (lib.os.applyHmUsers (user: {
+in (lib.os.hm (user: {
   programs.emacs = {
     enable = true;
     package = emacsPkg;

@@ -18,7 +18,7 @@
   services.autorandr.enable = true;
   services.autorandr.defaultTarget = "main";
 
-} // (lib.os.applyHmUsers (_: {
+} // (lib.os.hm (_: {
   xsession = {
     enable = true;
     scriptPath = ".hm-xsession";

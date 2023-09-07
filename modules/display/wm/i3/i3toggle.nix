@@ -310,24 +310,23 @@ let
     main "$@"
   '';
 
-in
-(lib.os.applyHmUsers (_:
-({ config, ... }:
-let modifier = config.xsession.windowManager.i3.config.modifier;
-in {
-  xsession.windowManager.i3.extraConfig = ''
-    bindsym ${modifier}+x exec --no-startup-id "${
-      lib.getExe i3toggle
-    } -t -mt -acc -d 80%x80% -- ${config.home.sessionVariables.TERMINAL} -e ${
-      lib.getExe pkgs.tmux
-    }
-    bindsym ${modifier}+m exec --no-startup-id "${
-      lib.getExe i3toggle
-    } -t -mt -acc -d 80%x80% ${lib.getExe pkgs.spotify}
-    bindsym ${modifier}+z exec --no-startup-id "${
-      lib.getExe i3toggle
-    } -t -mt -atc -d 100%x100% $EDITOR
-  '';
+in (lib.os.hm (_:
+  ({ config, ... }:
+    let modifier = config.xsession.windowManager.i3.config.modifier;
+    in {
+      xsession.windowManager.i3.extraConfig = ''
+        bindsym ${modifier}+x exec --no-startup-id "${
+          lib.getExe i3toggle
+        } -t -mt -acc -d 80%x80% -- ${config.home.sessionVariables.TERMINAL} -e ${
+          lib.getExe pkgs.tmux
+        }
+        bindsym ${modifier}+m exec --no-startup-id "${
+          lib.getExe i3toggle
+        } -t -mt -acc -d 80%x80% ${lib.getExe pkgs.spotify}
+        bindsym ${modifier}+z exec --no-startup-id "${
+          lib.getExe i3toggle
+        } -t -mt -atc -d 100%x100% $EDITOR
+      '';
 
-  home.packages = with pkgs; [ xdotool wmctrl i3toggle ];
-})))
+      home.packages = with pkgs; [ xdotool wmctrl i3toggle ];
+    })))

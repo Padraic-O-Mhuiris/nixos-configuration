@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 
 lib.mkMerge [
-  (lib.os.applyUsers ({ name, ... }: {
+  (lib.os.user ({ name, ... }: {
     users.users.${name}.extraGroups = [ "networkmanager" ];
   }))
-  (lib.os.applyHmUsers
+  (lib.os.hm
     ({ name, ... }: { services.network-manager-applet.enable = true; }))
   {
     networking = {

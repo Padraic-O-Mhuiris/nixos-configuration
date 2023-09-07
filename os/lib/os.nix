@@ -6,15 +6,15 @@ let
   inherit (lib.attrsets) mapAttrsToList;
 
   inherit (os) users;
-in
-rec {
-
-  applyUsers = fn:
+in rec {
+  user = fn:
     (deepMergeAttrsList
       (mapAttrsToList (_: userConfig: fn userConfig) os.users));
 
-  applyHmUsers = fn:
-    applyUsers (user: { home-manager.users.${user.name} = (fn user); });
+  hm = fn:
+    (user (userConfig: {
+      home-manager.users.${userConfig.name} = (fn userConfig);
+    }));
 
   mapUsers = fn: (mapAttrsToList (_: userConfig: fn userConfig) os.users);
 

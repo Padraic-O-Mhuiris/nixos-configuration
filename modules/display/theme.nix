@@ -1,22 +1,19 @@
 { inputs, config, lib, pkgs, ... }:
 
-lib.os.applyHmUsers
-  ({ name, ... }:
-    let
-      cursorSettings = {
-        package = pkgs.vanilla-dmz;
-        name = "Vanilla-DMZ";
-        size = 32;
-      };
-
-    in
-    {
-      home = {
-        packages = with pkgs; [ dconf ];
-        pointerCursor = cursorSettings;
-      };
-    }) // (
+lib.os.hm ({ name, ... }:
   let
+    cursorSettings = {
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+      size = 32;
+    };
+
+  in {
+    home = {
+      packages = with pkgs; [ dconf ];
+      pointerCursor = cursorSettings;
+    };
+  }) // (let
 
     color1 = "grayscale-light";
     color2 = "nord";
@@ -25,8 +22,7 @@ lib.os.applyHmUsers
       COLOR=$(${pkgs.yq}/bin/yq -r .base00 ${theme})
       COLOR="#"$COLOR
       ${pkgs.imagemagick}/bin/magick convert -size 1920x1080 xc:$COLOR $out'';
-  in
-  {
+  in {
 
     fonts = {
       fontDir.enable = true;
@@ -56,5 +52,4 @@ lib.os.applyHmUsers
     };
 
     # console.font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
-  }
-)
+  })

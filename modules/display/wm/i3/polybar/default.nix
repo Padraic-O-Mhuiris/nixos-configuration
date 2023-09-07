@@ -2,7 +2,7 @@
 
 {
   imports = [ ./modules/i3.nix ];
-} // (lib.os.applyHmUsers (user:
+} // (lib.os.hm (user:
   { config, ... }: {
 
     services.polybar = {

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 lib.mkMerge [
-  (lib.os.applyUsers ({ name, ... }: {
+  (lib.os.user ({ name, ... }: {
     users.users.${name}.extraGroups = [ "audio" "pipewire" ];
   }))
   {

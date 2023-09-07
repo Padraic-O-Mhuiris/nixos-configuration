@@ -80,7 +80,7 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "23.05";
 
-} // lib.os.applyHmUsers (_: {
+} // lib.os.hm (_: {
   home.sessionVariables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";

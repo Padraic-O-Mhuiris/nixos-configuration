@@ -1,6 +1,6 @@
 { flake, config, lib, pkgs, inputs, ... }:
 
-lib.os.applyHmUsers (user: { programs.nix-index.enable = true; }) // {
+lib.os.hm (user: { programs.nix-index.enable = true; }) // {
 
   imports = [
     inputs.srvos.nixosModules.mixins-trusted-nix-caches

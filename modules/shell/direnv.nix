@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-lib.os.applyHmUsers (_: {
+lib.os.hm (_: {
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;

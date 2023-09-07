@@ -1,7 +1,7 @@
 { config, lib, pkgs, os, ... }:
 
 (lib.mkMerge [
-  (lib.os.applyUsers ({ name, ... }: {
+  (lib.os.user ({ name, ... }: {
     # sops.secrets."user@${name}" = { neededForUsers = true; };
     users.users.${name} = {
       isNormalUser = true;

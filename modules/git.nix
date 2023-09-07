@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-lib.os.applyHmUsers (user: {
+lib.os.hm (user: {
   programs.git = {
     enable = true;
     userEmail = user.email;

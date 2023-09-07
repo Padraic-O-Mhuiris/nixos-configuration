@@ -10,7 +10,7 @@
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs =
     lib.extend (_: prev: prev // inputs.home-manager.lib);
-} // (lib.os.applyHmUsers (user: {
+} // (lib.os.hm (user: {
   home = {
     inherit (config.system) stateVersion;
     enableNixpkgsReleaseCheck = true;

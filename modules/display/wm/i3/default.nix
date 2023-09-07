@@ -8,7 +8,7 @@
     ./i3status.nix
     #./polybar.nix
   ];
-} // (lib.os.applyHmUsers (user:
+} // (lib.os.hm (user:
   { config, ... }: {
     xsession.windowManager.i3 =
       let modifier = config.xsession.windowManager.i3.config.modifier;

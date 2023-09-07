@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 
 lib.mkMerge [
-  (lib.os.applyUsers ({ name, ssh, ... }: {
+  (lib.os.user ({ name, ssh, ... }: {
     users.users.${name}.openssh.authorizedKeys.keys = [ ssh ];
   }))
 
