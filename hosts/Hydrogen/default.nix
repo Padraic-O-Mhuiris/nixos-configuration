@@ -17,11 +17,11 @@
     os.modules.browsers.firefox
     os.modules.common
     os.modules.display.cursor
-    os.modules.display.dm.lightdm
+    os.modules.display.displayManagers.lightdm
     os.modules.display.fonts
-    os.modules.display.notifications
+    os.modules.display.notifications.dunst
     os.modules.display.theme
-    os.modules.display.wm.i3
+    os.modules.display.windowManagers.i3
     os.modules.documentation
     os.modules.editors.emacs
     os.modules.filesystem
