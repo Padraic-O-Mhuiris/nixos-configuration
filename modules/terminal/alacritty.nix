@@ -10,7 +10,7 @@
           x = 10;
           y = 10;
         };
-        scale_with_dpi = true;
+        scale_with_dpi = false;
       };
     };
 

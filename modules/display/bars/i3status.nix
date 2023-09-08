@@ -4,6 +4,7 @@
   { config, ... }:
   let
     inherit (config.xsession.windowManager.i3.config) modifier;
+
     blocks = {
       sound = { block = "sound"; };
       backlight = {

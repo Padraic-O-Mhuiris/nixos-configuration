@@ -11,8 +11,7 @@ in {
 
   stylix = {
     inherit base16Scheme image;
-    # autoEnable = true;
-    polarity = "dark";
+    autoEnable = false;
     homeManagerIntegration = {
       autoImport = true;
       followSystem = true;

@@ -8,5 +8,9 @@ lib.os.hm (_: {
     #   }";
   };
 
+  # TODO Better config, also think about integrations like bookmarks
   stylix.targets.rofi.enable = true;
+
+  home.sessionVariables."APPS_LAUNCHER" =
+    "${lib.getExe config.programs.rofi.package} -show drun";
 })

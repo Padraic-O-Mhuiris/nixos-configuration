@@ -16,10 +16,14 @@
     os.modules.boot.systemd
     os.modules.browsers.firefox
     os.modules.common
+    os.modules.display.bars.polybar
+    # os.modules.display.bars.i3status
     os.modules.display.cursor
-    os.modules.display.displayManagers.lightdm
     os.modules.display.fonts
+    os.modules.display.displayManagers.lightdm
+    os.modules.display.launchers.rofi
     os.modules.display.notifications.dunst
+    os.modules.display.redshift
     os.modules.display.theme
     os.modules.display.windowManagers.i3
     os.modules.documentation
@@ -33,6 +37,11 @@
     os.modules.nix
     os.modules.networking
     os.modules.shell.zsh
+    os.modules.shell.direnv
+    os.modules.shell.oh-my-posh
+    os.modules.shell.starship
+    os.modules.shell.tmux
+    os.modules.shell.zoxide
     os.modules.sops
     os.modules.ssh
     os.modules.sudo
@@ -42,15 +51,6 @@
     os.modules.virtualisation.qemu
     os.modules.yubikey
   ];
-
-  # hardware.nvidia = {
-  #   prime = {
-  #     sync.enable = true;
-  #     nvidiaBusId = "PCI:1:0:0";
-  #     intelBusId = "PCI:0:2:0";
-  #   };
-  #   forceFullCompositionPipeline = true;
-  # };
 
   environment.persistence."/persist".files = [ "/etc/machine-id" ];
 
@@ -78,9 +78,9 @@
   networking.hostId = "3f90d23a";
 
   stylix.fonts.sizes = {
-    applications = 10;
+    applications = 14;
     desktop = 10;
-    popups = 20;
+    popups = 24;
     terminal = 18;
   };
 
@@ -96,8 +96,5 @@
     pointerCursor.size = 36;
   };
 
-  stylix.targets = {
-    vim.enable = true;
-    tmux.enable = true;
-  };
+  stylix.targets = { vim.enable = true; };
 })

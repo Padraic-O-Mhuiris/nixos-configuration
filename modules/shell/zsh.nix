@@ -3,53 +3,13 @@
 {
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-
 } // (lib.os.hm (_:
   ({ config, ... }: {
-
     programs = {
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-        enableZshIntegration = true;
-      };
-
-      tmux = {
-        enable = true;
-        baseIndex = 1;
-        clock24 = true;
-        shortcut = "a";
-        disableConfirmationPrompt = true;
-        escapeTime = 0;
-        secureSocket = false; # persists user logout
-        keyMode = "vi";
-        plugins = with pkgs; [ tmuxPlugins.better-mouse-mode ];
-        shell = "${pkgs.zsh}/bin/zsh";
-        extraConfig = ''
-          set -g default-terminal "tmux-256color"
-          set -ga terminal-overrides ",*256col*:Tc"
-          set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
-          set-environment -g COLORTERM "truecolor"
-
-          set-option -g mouse on
-        '';
-      };
-
-      starship = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
-      zoxide = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
-      oh-my-posh = {
-        enable = true;
-        enableZshIntegration = true;
-        useTheme = "agnoster";
-      };
+      direnv.enableZshIntegration = true;
+      starship.enableZshIntegration = true;
+      zoxide.enableZshIntegration = true;
+      oh-my-posh.enableZshIntegration = true;
 
       zsh = {
         enable = true;
@@ -58,7 +18,7 @@
         syntaxHighlighting.enable = true;
         enableVteIntegration = true;
         autocd = true;
-        # dotDir = "${config.xdg.configHome}/zsh";
+        # dotDir = "${config.xdg.configHome}/zsh"; # TODO Figure out why this is not working
         history = {
           expireDuplicatesFirst = true;
           extended = true;
