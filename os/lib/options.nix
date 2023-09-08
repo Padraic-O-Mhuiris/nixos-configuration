@@ -17,8 +17,7 @@ let
   inherit (validations) mkHostsPathOptionApply mkModulesPathOptionApply;
 
   base16ThemesDir = "${pkgs.base16-schemes.outPath}/share/themes";
-in
-{
+in {
   themeOption = mkOption {
     type = enum (mapAttrsToList (k: _v: removeSuffix ".yaml" k)
       (readDir base16ThemesDir));
@@ -30,7 +29,7 @@ in
     type = attrsOf (submodule ({ name, ... }: {
       options = {
         name = mkOption {
-          type = unspecified;
+          type = str;
           description =
             "Name of the user, read-only, matches the key of the attrset";
           default = name;

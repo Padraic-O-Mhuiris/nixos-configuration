@@ -1,55 +1,27 @@
-{ inputs, config, lib, pkgs, ... }:
+{ os, inputs, config, lib, pkgs, ... }:
 
-lib.os.hm ({ name, ... }:
-  let
-    cursorSettings = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-      size = 32;
+let
+  base16Scheme = "${pkgs.base16-schemes}/share/themes/${os.theme}.yaml";
+  image = pkgs.runCommand "image.png" { } ''
+    COLOR=$(${pkgs.yq}/bin/yq -r .base00 ${base16Scheme})
+    COLOR="#"$COLOR
+    ${pkgs.imagemagick}/bin/magick convert -size 1920x1080 xc:$COLOR $out'';
+in {
+  imports = [ inputs.stylix.nixosModules.stylix ];
+
+  stylix = {
+    inherit base16Scheme image;
+    # autoEnable = true;
+    polarity = "dark";
+    homeManagerIntegration = {
+      autoImport = true;
+      followSystem = true;
     };
+  };
 
-  in {
-    home = {
-      packages = with pkgs; [ dconf ];
-      pointerCursor = cursorSettings;
-    };
-  }) // (let
-
-    color1 = "grayscale-light";
-    color2 = "nord";
-    theme = "${pkgs.base16-schemes}/share/themes/${color2}.yaml";
-    wallpaper = pkgs.runCommand "image.png" { } ''
-      COLOR=$(${pkgs.yq}/bin/yq -r .base00 ${theme})
-      COLOR="#"$COLOR
-      ${pkgs.imagemagick}/bin/magick convert -size 1920x1080 xc:$COLOR $out'';
-  in {
-
-    fonts = {
-      fontDir.enable = true;
-      enableGhostscriptFonts = true;
-      packages = with pkgs; [
-        corefonts
-        # iosevka
-        ubuntu_font_family
-        dejavu_fonts
-        liberation_ttf
-        roboto
-        fira-code
-        jetbrains-mono
-        siji
-        font-awesome
-        cascadia-code
-        (nerdfonts.override { fonts = [ "Iosevka" ]; })
-      ];
-      fontconfig = {
-        enable = true;
-        defaultFonts = {
-          monospace = [ "Iosevka NFP SemiBold" ];
-          sansSerif = [ "Roboto" ];
-          serif = [ "Roboto" ];
-        };
-      };
-    };
-
-    # console.font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
-  })
+  stylix.targets.gtk.enable = true;
+  stylix.targets.gnome.enable = true;
+} // (lib.os.hm (_: {
+  stylix.targets.gtk.enable = true;
+  stylix.targets.gnome.enable = true;
+}))

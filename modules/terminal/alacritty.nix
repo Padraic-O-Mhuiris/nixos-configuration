@@ -1,11 +1,11 @@
 { lib, pkgs, ... }:
 
-lib.os.hm (_:
+(lib.os.hm (_:
   { config, ... }: {
+
     programs.alacritty = {
       enable = true;
       settings = {
-        font.size = 6; # TODO globalise
         window.padding = {
           x = 10;
           y = 10;
@@ -14,6 +14,10 @@ lib.os.hm (_:
       };
     };
 
-    home.sessionVariables.TERMINAL =
-      "${lib.getExe' config.programs.alacritty.package "alacritty"}";
-  })
+    stylix.targets.alacritty.enable = true;
+
+    home.sessionVariables = {
+      TERMINAL = "${lib.getExe' config.programs.alacritty.package "alacritty"}";
+      WINIT_X11_SCALE_FACTOR = 1;
+    };
+  }))

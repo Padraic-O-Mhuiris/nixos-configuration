@@ -4,7 +4,6 @@
   imports = [ ./modules/i3.nix ];
 } // (lib.os.hm (user:
   { config, ... }: {
-
     services.polybar = {
       enable = true;
       script = ''
@@ -28,11 +27,11 @@
           "modules-right" = "backlight wifi battery date";
         };
         "module/home" = module.home;
-        "module/date" = module.date;
-        "module/backlight" = module.backlight;
-        "module/battery" = module.battery;
-        "module/wifi" = module.wifi;
-        "module/filesystem" = module.filesystem;
+        # "module/date" = module.date;
+        # "module/backlight" = module.backlight;
+        # "module/battery" = module.battery;
+        # "module/wifi" = module.wifi;
+        # "module/filesystem" = module.filesystem;
         # "module/volume" = {
         #   type = "internal/pulseaudio";
         #   format.volume = "<ramp-volume> <label-volume>";

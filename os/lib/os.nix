@@ -17,5 +17,4 @@ in rec {
     }));
 
   mapUsers = fn: (mapAttrsToList (_: userConfig: fn userConfig) os.users);
-
 }

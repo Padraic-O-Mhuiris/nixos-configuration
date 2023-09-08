@@ -3,11 +3,11 @@
 let
   inherit (import ./lib { inherit inputs; })
     mkNixosConfigurations mkLibForFlake mkOsOption;
-in
-{
+in {
   options.flake.os = mkOsOption config.flake;
 
   config = {
+
     flake = {
       lib = mkLibForFlake config.flake;
       nixosConfigurations = mkNixosConfigurations config.flake.os;

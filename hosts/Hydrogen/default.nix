@@ -2,8 +2,6 @@
 
 {
   imports = [
-    # inputs.hardware.nixosModules.common-hidpi
-    # inputs.hardware.nixosModules.dell-xps-15-9520
     inputs.hardware.nixosModules.dell-xps-15-9520-nvidia
     inputs.impermanence.nixosModules.impermanence
 
@@ -18,14 +16,16 @@
     os.modules.boot.systemd
     os.modules.browsers.firefox
     os.modules.common
+    os.modules.display.cursor
     os.modules.display.dm.lightdm
-    os.modules.display.wm.i3
+    os.modules.display.fonts
+    os.modules.display.notifications
     os.modules.display.theme
+    os.modules.display.wm.i3
     os.modules.documentation
     os.modules.editors.emacs
     os.modules.filesystem
     os.modules.git
-    # os.modules.gpu.nvidia
     os.modules.gnupg
     os.modules.kernel
     os.modules.keyboard
@@ -36,7 +36,7 @@
     os.modules.sops
     os.modules.ssh
     os.modules.sudo
-    os.modules.terminal
+    os.modules.terminal.alacritty
     os.modules.user
     os.modules.virtualisation.docker
     os.modules.virtualisation.qemu
@@ -77,12 +77,27 @@
 
   networking.hostId = "3f90d23a";
 
+  stylix.fonts.sizes = {
+    applications = 10;
+    desktop = 10;
+    popups = 20;
+    terminal = 18;
+  };
+
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "23.05";
 
 } // lib.os.hm (_: {
-  home.sessionVariables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
+  home = {
+    sessionVariables = {
+      GDK_SCALE = "2";
+      GDK_DPI_SCALE = "0.5";
+    };
+    pointerCursor.size = 36;
+  };
+
+  stylix.targets = {
+    vim.enable = true;
+    tmux.enable = true;
   };
 })

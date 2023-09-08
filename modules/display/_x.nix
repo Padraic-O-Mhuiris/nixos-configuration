@@ -24,4 +24,6 @@
     scriptPath = ".hm-xsession";
     profileExtra = "${lib.getExe' pkgs.autorandr "autorandr"} -l main";
   };
+
+  stylix.targets.xresources.enable = true;
 }))

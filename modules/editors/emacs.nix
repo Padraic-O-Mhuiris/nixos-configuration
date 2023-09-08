@@ -33,6 +33,8 @@ in (lib.os.hm (user: {
     nodePackages_latest.js-beautify
     nixfmt
   ];
+
+  stylix.targets.emacs.enable = true; # TODO Figure out how to import!
 })) // {
   nixpkgs.overlays = [ inputs.emacs.overlays.default ];
 }

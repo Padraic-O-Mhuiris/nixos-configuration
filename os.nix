@@ -131,9 +131,10 @@ let
     ];
     users = { inherit padraic; };
   };
+
   Hydrogen = {
     cpu = "intel";
-    theme = "nord";
+    theme = "catppuccin-frappe";
     ip = {
       local = "192.168.0.184";
       # remote = "192.168.0.214";

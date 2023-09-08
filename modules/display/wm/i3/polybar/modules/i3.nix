@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 (lib.os.hm (user:
-  { config, ... }: {
+  { config, ... }:
+  let colors = config.lib.stylix.colors.withHashtag;
+  in {
     services.polybar.settings."module/i3" = {
       module.i3 = {
         type = "internal/i3";
@@ -11,7 +13,7 @@
 
         label-mode = "%mode%";
         label-mode-padding = 2;
-        label-mode-background = colors.background;
+        label-mode-background = colors.base00;
 
         label-focused = "%index%";
         label-focused-foreground = colors.yellow;

@@ -47,9 +47,9 @@ in (lib.os.hm (user:
           DisableSetDesktopBackground = true;
           DisablePocket = true;
           DisableTelemetry = true;
-          DisplayBookmarksToolbar = "always";
+          DisplayBookmarksToolbar = "never";
           DontCheckDefaultBrowser = true;
-          NoDefaultBookmarks = false;
+          NoDefaultBookmarks = true;
           OfferToSaveLogins = false;
           OfferToSaveLoginsDefault = false;
           PasswordManagerEnabled = false;
@@ -151,11 +151,11 @@ in (lib.os.hm (user:
             };
           };
         };
-        bookmarks = [{
-          name = "Toolbar Bookmarks";
-          toolbar = true;
-          bookmarks = bookmarkUrls;
-        }];
+        # bookmarks = [{
+        #   name = "Toolbar Bookmarks";
+        #   toolbar = true;
+        #   bookmarks = bookmarkUrls;
+        # }];
         # userChrome = builtins.readFile ./userChrome.css;
         # userContent = builtins.readFile ./userContent.css;
         settings = {

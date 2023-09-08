@@ -6,7 +6,8 @@
     ../../_redshift.nix
     ./i3toggle.nix
     ./i3status.nix
-    #./polybar.nix
+    ./rofi.nix
+    #./polybar
   ];
 } // (lib.os.hm (user:
   { config, ... }: {
@@ -32,17 +33,17 @@
           };
           floating = {
             titlebar = false;
-            border = 0;
+            border = 1;
           };
           window = {
             titlebar = false;
-            border = 0;
+            border = 1;
           };
           bars = [ ];
         };
       };
 
-    programs.rofi = { enable = true; };
+    stylix.targets.i3.enable = true;
 
     home.packages = with pkgs; [ dmenu xdotool ];
   }))

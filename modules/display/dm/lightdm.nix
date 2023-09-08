@@ -2,4 +2,6 @@
 
 {
   services.xserver.displayManager.lightdm.enable = true;
+
+  stylix.targets.lightdm.enable = true;
 }

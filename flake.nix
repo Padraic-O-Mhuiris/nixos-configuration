@@ -7,6 +7,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    devshell.url = "github:numtide/devshell";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     hardware.url = "github:NixOS/nixos-hardware";
@@ -31,6 +33,8 @@
 
     srvos.url = "github:numtide/srvos";
 
+    stylix.url = "github:danth/stylix";
+
     systems.url = "github:nix-systems/default";
   };
 
@@ -38,7 +42,12 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = import systems;
-      imports = [ ./os ];
-      flake.os = import ./os.nix;
+      imports = [ inputs.devshell.flakeModule ./os ];
+      flake = {
+        inherit inputs;
+        os = import ./os.nix;
+      };
+
+      perSystem = { config, pkgs, ... }: { devshells.default = { }; };
     };
 }
