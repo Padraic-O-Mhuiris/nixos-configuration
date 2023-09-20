@@ -69,6 +69,13 @@
     forceFullCompositionPipeline = true;
   };
 
+  stylix.fonts.sizes = {
+    applications = 11;
+    desktop = 10;
+    popups = 22;
+    terminal = 18;
+  };
+
   # TODO Maybe lift this to os config??
   services.xserver.displayManager.autoLogin.user = "padraic";
 
