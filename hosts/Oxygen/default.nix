@@ -40,6 +40,7 @@
     os.modules.keyboard
     os.modules.location
     os.modules.nix
+    os.modules.gpu.nvidia
     os.modules.networking
     os.modules.shell.zsh
     os.modules.shell.direnv
