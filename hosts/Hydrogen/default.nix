@@ -11,6 +11,7 @@
     os.modules.apps.spotify
     os.modules.apps.discord
     os.modules.apps.libreoffice
+    os.modules.apps.matrix
     os.modules.audio
     os.modules.bluetooth
     os.modules.backlight

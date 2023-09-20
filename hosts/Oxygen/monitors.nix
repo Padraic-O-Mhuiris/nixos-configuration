@@ -20,7 +20,7 @@
       };
       "DP-0" = {
         enable = true;
-        dpi = 80;
+        dpi = 110;
         primary = true;
         position = "0x240";
         mode = "5120x1440";

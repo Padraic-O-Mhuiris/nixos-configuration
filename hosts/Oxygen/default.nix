@@ -15,6 +15,7 @@
     os.modules.apps.spotify
     os.modules.apps.discord
     os.modules.apps.libreoffice
+    os.modules.apps.matrix
     os.modules.audio
     os.modules.bluetooth
     os.modules.backlight
@@ -71,10 +72,10 @@
   };
 
   stylix.fonts.sizes = {
-    applications = 11;
+    applications = 10;
     desktop = 10;
-    popups = 22;
-    terminal = 18;
+    popups = 18;
+    terminal = 13;
   };
 
   # TODO Maybe lift this to os config??
