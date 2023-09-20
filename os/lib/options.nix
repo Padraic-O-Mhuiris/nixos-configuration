@@ -1,4 +1,4 @@
-{ lib, pkgs, validations }:
+{ lib, utils, validations }:
 
 let
 
@@ -16,11 +16,9 @@ let
 
   inherit (validations) mkHostsPathOptionApply mkModulesPathOptionApply;
 
-  base16ThemesDir = "${pkgs.base16-schemes.outPath}/share/themes";
 in {
   themeOption = mkOption {
-    type = enum (mapAttrsToList (k: _v: removeSuffix ".yaml" k)
-      (readDir base16ThemesDir));
+    type = enum utils.base16ThemeNames;
     description = "Enumerated selection of base16 themes";
     default = "nord";
   };

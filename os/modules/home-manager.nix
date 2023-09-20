@@ -3,9 +3,6 @@
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs =

@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 
 lib.os.hm (_: {
-  tmux = {
+  programs.tmux = {
     enable = true;
     baseIndex = 1;
     clock24 = true;

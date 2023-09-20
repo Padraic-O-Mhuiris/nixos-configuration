@@ -6,6 +6,7 @@
     inputs.impermanence.nixosModules.impermanence
 
     ./disko.nix
+    ./monitors.nix
 
     os.modules.apps.spotify
     os.modules.apps.discord
@@ -16,8 +17,8 @@
     os.modules.boot.systemd
     os.modules.browsers.firefox
     os.modules.common
-    os.modules.display.bars.polybar
-    # os.modules.display.bars.i3status
+    # os.modules.display.bars.polybar
+    os.modules.display.bars.i3status
     os.modules.display.cursor
     os.modules.display.fonts
     os.modules.display.displayManagers.lightdm
@@ -53,34 +54,15 @@
   ];
 
   environment.persistence."/persist".files = [ "/etc/machine-id" ];
-
-  # NOTE Screen name ID changes between using nvidia prime or offload
-  services.autorandr.profiles.main = {
-    fingerprint = {
-      "eDP-1" =
-        "00ffffffffffff004d101615000000000a1f0104b52215780ac420af5031bd240b50540000000101010101010101010101010101010172e700a0f06045903020360050d21000001828b900a0f06045903020360050d210000018000000fe004a4e4a5939804c513135365231000000000002410332011200000b010a2020013a02030f00e3058000e606050160602800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000aa";
-    };
-    config = {
-      "eDP-1" = {
-        enable = true;
-        dpi = 160;
-        primary = true;
-        position = "0x0";
-        mode = "3840x2400";
-        rate = "59.99";
-      };
-    };
-  };
-
   # TODO Maybe lift this to os config??
   services.xserver.displayManager.autoLogin.user = "padraic";
 
   networking.hostId = "3f90d23a";
 
   stylix.fonts.sizes = {
-    applications = 14;
+    applications = 11;
     desktop = 10;
-    popups = 24;
+    popups = 22;
     terminal = 18;
   };
 

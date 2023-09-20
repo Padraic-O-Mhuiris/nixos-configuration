@@ -1,9 +1,7 @@
 { lib, ... }:
 
 (lib.os.hm (user:
-  { config, ... }:
-  let colors = config.lib.stylix.colors.withHashtag;
-  in {
+  { config, ... }: {
     services.polybar.settings."module/battery" = {
       type = "internal/battery";
       full-at = 99;
@@ -14,19 +12,19 @@
       time-format = "%H:%M";
 
       format-charging =
-        "%{F${colors.yellow}}%{T2}<animation-charging>%{T-} ◦ <label-charging>%{F-}";
+        "%{F${lib.os.colors.yellow}}%{T2}<animation-charging>%{T-} ◦ <label-charging>%{F-}";
       label-charging = "%time% ◦ %percentage_raw%% ";
 
       format-discharging =
-        "%{F${colors.yellow}}%{T2}<ramp-capacity>%{T-} ◦ <label-discharging>%{F-}";
+        "%{F${lib.os.colors.yellow}}%{T2}<ramp-capacity>%{T-} ◦ <label-discharging>%{F-}";
       label-discharging = "%time% ◦ %percentage_raw%%";
 
       format-full =
-        "%{F${colors.green}}%{T2}<ramp-capacity>%{T-} ◦ <label-full>%{F-}";
+        "%{F${lib.os.colors.green}}%{T2}<ramp-capacity>%{T-} ◦ <label-full>%{F-}";
       label-full = "%percentage_raw%%";
 
       format-low =
-        "%{F${colors.red}}%{T2}<animation-low>%{T-} ◦ <label-low>%{F-}";
+        "%{F${lib.os.colors.red}}%{T2}<animation-low>%{T-} ◦ <label-low>%{F-}";
       label-low = "%time% ◦ %percentage_raw%%";
 
       ramp-capacity-0 = "";

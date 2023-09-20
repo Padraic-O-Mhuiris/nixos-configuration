@@ -19,7 +19,7 @@
         defaultWorkspace = "workspace number 1";
         gaps = {
           inner = 10;
-          gaps.outer = 5;
+          outer = 5;
         };
         floating = {
           titlebar = false;

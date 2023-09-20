@@ -1,14 +1,11 @@
 { lib, ... }:
 
-(lib.os.hm (user:
-  { config, ... }:
-  let colors = config.lib.stylix.colors.withHashtag;
-  in {
-    services.polybar.settings."module/home" = {
-      type = "custom/text";
-      content = "%{T2}%{T-}";
-      content-background = colors.white;
-      content-foreground = colors.black;
-      content-padding = 2;
-    };
-  }))
+(lib.os.hm (user: {
+  services.polybar.settings."module/home" = {
+    type = "custom/text";
+    content = "%{T2}%{T-}";
+    content-background = lib.os.colors.silver;
+    content-foreground = lib.os.colors.black;
+    content-padding = 2;
+  };
+}))

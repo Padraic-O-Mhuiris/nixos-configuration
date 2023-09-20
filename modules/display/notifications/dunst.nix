@@ -2,9 +2,7 @@
 
 lib.os.hm (_:
   ({ config, ... }:
-    let
-      colors = config.lib.stylix.colors.withHashtag;
-      inherit (config.stylix.fonts) sansSerif sizes;
+    let inherit (config.stylix.fonts) sansSerif sizes;
     in {
       services.dunst = {
         enable = true;
@@ -15,7 +13,6 @@ lib.os.hm (_:
         settings = {
           global = {
             monitor = 0;
-            # geometry = "800x50-50+65";
             width = 400;
             height = 300;
             offset = "10x10";
@@ -26,7 +23,7 @@ lib.os.hm (_:
             padding = 16;
             horizontal_padding = 16;
             font = "${sansSerif.name} ${toString sizes.applications}";
-            separator_color = colors.base02;
+            separator_color = lib.os.colors.silver;
             line_height = 4;
             format = "<b>%s</b>\\n%b";
             corner_radius = 5;
@@ -36,21 +33,21 @@ lib.os.hm (_:
           };
 
           urgency_low = {
-            background = colors.base01;
-            foreground = colors.base05;
-            frame_color = colors.base0B;
+            background = lib.os.colors.black;
+            foreground = lib.os.colors.pearl;
+            frame_color = lib.os.colors.green;
           };
 
           urgency_normal = {
-            background = colors.base01;
-            foreground = colors.base05;
-            frame_color = colors.base0E;
+            background = lib.os.colors.black;
+            foreground = lib.os.colors.pearl;
+            frame_color = lib.os.colors.yellow;
           };
 
           urgency_critical = {
-            background = colors.base01;
-            foreground = colors.base05;
-            frame_color = colors.base08;
+            background = lib.os.colors.black;
+            foreground = lib.os.colors.white;
+            frame_color = lib.os.colors.red;
           };
         };
       };

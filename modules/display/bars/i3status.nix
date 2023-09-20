@@ -80,7 +80,7 @@
   in {
     xsession.windowManager.i3.config.bars = let
       colors = (config.lib.stylix.i3.bar.colors // {
-        background = config.lib.stylix.colors.withHashtag.base00;
+        background = lib.os.colors.black;
       });
       fonts = {
         names = [ config.stylix.fonts.monospace.name ];
@@ -119,22 +119,20 @@
     programs.i3status-rust = let
       inherit (blocks) sound backlight time disks battery cpu music location;
 
-      colors = config.lib.stylix.colors.withHashtag;
-
       i3status-rust-theme-overrides = {
-        idle_bg = colors.base00;
-        idle_fg = colors.base06;
-        info_bg = colors.base00;
-        info_fg = colors.base06;
-        good_bg = colors.base00;
-        good_fg = colors.base0B;
-        warning_bg = colors.base0A;
-        warning_fg = colors.base00;
-        critical_bg = colors.base08;
-        critical_fg = colors.base00;
+        idle_bg = lib.os.colors.charcoal;
+        idle_fg = lib.os.colors.silver;
+        info_bg = lib.os.colors.charcoal;
+        info_fg = lib.os.colors.pearl;
+        good_bg = lib.os.colors.charcoal;
+        good_fg = lib.os.colors.green;
+        warning_bg = lib.os.colors.yellow;
+        warning_fg = lib.os.colors.slate;
+        critical_bg = lib.os.colors.red;
+        critical_fg = lib.os.colors.black;
         separator = "|";
-        separator_bg = colors.base00;
-        separator_fg = colors.base06;
+        separator_bg = lib.os.colors.black;
+        separator_fg = lib.os.colors.pearl;
       };
 
     in {

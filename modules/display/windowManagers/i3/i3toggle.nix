@@ -323,6 +323,7 @@ in (lib.os.hm (_:
         bindsym ${modifier}+m exec --no-startup-id "${
           lib.getExe i3toggle
         } -t -mt -acc -d 80%x80% ${lib.getExe pkgs.spotify}
+
         bindsym ${modifier}+z exec --no-startup-id "${
           lib.getExe i3toggle
         } -t -mt -atc -d 100%x100% $EDITOR

@@ -4,7 +4,7 @@
   imports = [
     ./i3.nix
     ./filesystem.nix
-    ./wifi.nix
+    ./networking.nix
     ./battery.nix
     ./date.nix
     ./home.nix
@@ -13,7 +13,7 @@
 } // (lib.os.hm (user:
   { config, ... }:
   let
-    colors = config.lib.stylix.colors.withHashtag;
+    fontVerticalOffset = 3;
 
     font-0 = "${config.stylix.fonts.monospace.name}:size=${
         toString config.lib.stylix.i3.bar.fonts.size
@@ -25,25 +25,25 @@
 
     bar.bottom = {
       inherit font-0 font-1;
-      height = config.lib.stylix.i3.bar.fonts.size;
+      height = config.lib.stylix.i3.bar.fonts.size * 3;
       width = "100%";
       bottom = true;
       enable-ipc = true;
       padding = 0;
-      background = colors.base01;
-      foreground = colors.base06;
+      background = lib.os.colors.black;
+      foreground = lib.os.colors.pearl;
       module-margin = 1;
       #radius = 15;
       fixed-center = true;
       override-redirect = true;
       underline-size = 4;
-      underline-color = colors.base0A;
+      underline-color = lib.os.colors.yellow;
       # dpi-x = 160; # TODO DPI
       # dpi-y = 160; # TODO DPI
       tray-position = "right";
       tray-scale = 1;
       tray-padding = 5;
-      tray-background = colors.background;
+      tray-background = lib.os.colors.black;
       tray-maxsize = config.lib.stylix.i3.bar.fonts.size * 4;
       tray-offset-x = 0;
       separator = "|";
@@ -68,7 +68,7 @@
     settings = {
       "bar/bottom" = bar.bottom // {
         "modules-left" = "home i3 filesystem";
-        "modules-right" = "backlight wifi battery date";
+        "modules-right" = "backlight ethernet wifi battery date";
       };
     };
   in {
@@ -79,15 +79,15 @@
     };
 
     # Need to offset window gaps if polybar does not want to interact with
-    xsession.windowManager.i3.config.gaps = {
-      top = if config.services.polybar.settings."bar/top".override-redirect then
-        40
-      else
-        null;
-      bottom =
-        if config.services.polybar.settings."bar/bottom".override-redirect then
-          40
-        else
-          null;
+    xsession.windowManager.i3.config.gaps = let
+      inherit (config.services.polybar) settings;
+      hasTopBar = (lib.hasAttrByPath [ "bar/top" "override-redirect" ] settings)
+        && settings."bar/top".override-redirect;
+      hasBottomBar =
+        (lib.hasAttrByPath [ "bar/bottom" "override-redirect" ] settings)
+        && settings."bar/bottom".override-redirect;
+    in {
+      top = if hasTopBar then 40 else null;
+      bottom = if hasBottomBar then 40 else null;
     };
   }))

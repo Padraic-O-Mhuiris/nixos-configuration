@@ -13,13 +13,10 @@ let
 
   inherit (lib.types) attrsOf submodule submoduleWith unspecified;
 
-  # TODO Is there a better way of implementing this?
-  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-
 in rec {
-  utils = import ./utils.nix { inherit lib; };
+  utils = import ./utils.nix { inherit inputs lib; };
 
-  options = import ./options.nix { inherit lib pkgs validations; };
+  options = import ./options.nix { inherit lib utils validations; };
 
   validations = import ./validations.nix { inherit lib utils; };
 
@@ -30,7 +27,7 @@ in rec {
       prev // {
         os = (mapAttrs (_: os: mkOsLib { inherit os; })
           flakeConfig.os.configuration) // {
-            inherit options utils validations;
+            inherit options validations;
           };
       });
 
@@ -60,7 +57,12 @@ in rec {
             lib = extend (_: prev: prev // { os = mkOsLib { os = config; }; });
             os = config // { inherit modules; };
           };
-          modules = [ (settings.hostsPath + "/${name}") ../modules ];
+          modules = [
+            (settings.hostsPath + "/${name}")
+            ../modules/home-manager.nix
+            ../modules/nix.nix
+            ../modules/colors.nix
+          ];
         };
       })));
       default = { };

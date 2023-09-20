@@ -17,3 +17,37 @@ Typically with Linux installations of any flavour there can be a lot of work, ty
     #+begin_src bash
     nix run github:numtide/nixos-anywhere -- --disk-encryption-keys /tmp/secret.key <(echo -n $(pass show machines/Oxygen/disk)) --flake .#Oxygen root@192.168.0.214
     #+end_src
+
+* Tasks
+** TODO sops-pass-nix integration
+Should it be possible to use a pass
+** TODO os.nix - cli tool for all different actions
+Do it in Rust!
+** IDEA Cross-system nixos modules
+
+It might be necessary to hardcode access to certain modules or parts of modules. I might describe a module but describe a role where it is used in context of a master or slave. It be necessary for collective nixosConfigurations to be aware of each other on the configuration level. So, such a module might need to be described where it throws if it's described elsewhere or under some other parameters. An idea for something
+
+** Org mode system control
+
+Couples with a lot of system components
+
+I want to have a system that utilises my org-mode notes as a central repository for items I use. i3/rofi/emacs/terminal all are integral components to what I envision. The intention is that ease of use of my org notes system be easily and readily accessible.
+
+One component is to have a rich links management system where every significant piece of web content is recorded as a note. Through use of tagging across all of my notes, a ~:bookmark:~ tag can be used by a query to generate a bookmark launcher for rofi or dmenu.
+
+What would really aid velocity is a quick access to parts of my notes - a single window dedicated to a persistent daily file would make logging more ergonomic. i3toggle could be much improved. Also in the same category is some agenda file like chores or maybe just the inbox.
+Storing links can be done through bookmarks in a queue to be organized later. Maybe this is part of my inbox.
+
+Syncthing should be used for file synchronisation between systems - maybe rsync if performance is more important. Probably should include a more permanent backup system like borg or just use git.
+
+Probably need to think about how to do "projects"
+
+Also a portion will be for a blog
+
+What would also be very cool is that for a lot of these notes if there was an automated git commit tool which used chatgpt to summarise the changes. Could be a nice rust project
+
+** IDEA Archiving notes to the day it was completed in daily!
+
+Instead of having an archive file, the archive system could use the daily file to store completed tasks for that day. The task could also backlink from the original file it was archived from. It would archive the TODO on the day it was put in a "Done" state which should be indicated. Maybe this should be only possible for fully complete trees so where there are arbitrarily nested todos, only then can the tree be moved to the daily. What this lacks is recoverability but could be achieved with the git - chatgpt integration, even without the gpt integration a simple commit message does not need deep detail for a personal file. Ultimately a git cronjob could be run daily which makes 2 commits, one commits all current changes and the second refiles all completed TODO trees into the daily. Could also be one commit per refile
+
+** TODO Rofi has a search system for various link
