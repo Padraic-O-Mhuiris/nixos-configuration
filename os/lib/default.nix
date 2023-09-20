@@ -58,6 +58,7 @@ in rec {
             os = config // { inherit modules; };
           };
           modules = [
+            { networking.hostName = name; }
             (settings.hostsPath + "/${name}")
             ../modules/home-manager.nix
             ../modules/nix.nix
