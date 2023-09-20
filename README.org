@@ -27,6 +27,8 @@ Do it in Rust!
 
 It might be necessary to hardcode access to certain modules or parts of modules. I might describe a module but describe a role where it is used in context of a master or slave. It be necessary for collective nixosConfigurations to be aware of each other on the configuration level. So, such a module might need to be described where it throws if it's described elsewhere or under some other parameters. An idea for something
 
+** IDEA A nixos module which does system health reporting
+
 ** Org mode system control
 
 Couples with a lot of system components

@@ -29,6 +29,7 @@
       siji
       font-awesome
       cascadia-code
+      nerdfonts
       #(nerdfonts.override { fonts = [ "Iosevka" ]; })
     ];
   };
