@@ -3,7 +3,7 @@
 let
   package = pkgs.emacsWithPackagesFromUsePackage {
     config = ""; # We don't want to create a default.el file
-    defaultInitFile = false;
+    defaultInitFile = pkgs.writeText "default.el" (builtins.readFile ./init.el);
     package = pkgs.emacs-unstable.override { withGTK3 = true; };
     extraEmacsPackages = epkgs:
       with epkgs; [
@@ -44,8 +44,7 @@ in (lib.os.hm (user: {
     client.enable = true;
     defaultEditor = true;
     socketActivation.enable = true;
-    # extraOptions = [ ];
-    extraOptions = [ "-q -l ${./init.el}" ];
+    extraOptions = [ ];
   };
 
   home.packages = with pkgs;

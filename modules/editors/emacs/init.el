@@ -1,3 +1,6 @@
+;; start in server mode
+(server-start)
+
 ;; Remove uneeded UI elements
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)
@@ -21,7 +24,7 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
-(dolist (mode '(org-mode-hook
+(dolist (mode '(org-mode-hook 
                 term-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -59,7 +62,7 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-
+  
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
@@ -120,12 +123,12 @@
 ;; counsel
 ;; #############################################################################
 (use-package counsel
-  :bind (("M-x" . counsel-M-x))
-  ("C-x b" . counsel-ibuffer)
-  :map minibuffer-local-map
-  ("C-r" . 'counsel-minibuffer-history
-   :config
-   (setq ivy-initial-inputs-alist nil)))
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 :map minibuffer-local-map
+	 ("C-r" . 'counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) 
 
 
 ;; #############################################################################
