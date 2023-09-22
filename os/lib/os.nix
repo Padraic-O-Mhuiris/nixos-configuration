@@ -22,4 +22,8 @@ in rec {
 
   # TODO Remove for nixosModule
   colors = utils.generateBase16Mnemonic { inherit (os) theme; };
+
+  primaryMonitor = (autorandrCfg:
+    let primaryMonitors = lib.filterAttrs (k: v: v.primary) autorandrCfg;
+    in lib.elemAt (lib.attrNames primaryMonitors) 0);
 }

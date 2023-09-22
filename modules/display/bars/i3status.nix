@@ -1,7 +1,7 @@
 { lib, pkgs, ... }@nixosModuleArgs:
 
 (lib.os.hm (user:
-  { config, ... }:
+  { config, nixosConfig, ... }:
   let
     inherit (config.xsession.windowManager.i3.config) modifier;
 
@@ -97,6 +97,12 @@
         statusCommand = "${
             lib.getExe config.programs.i3status-rust.package
           } ${config.xdg.configHome}/i3status-rust/config-top.toml";
+        extraConfig = ''
+          output ${
+            (lib.os.primaryMonitor
+              nixosConfig.services.autorandr.profiles.main.config)
+          }
+        '';
       }
       {
         inherit fonts colors;
@@ -109,6 +115,12 @@
         statusCommand = "${
             lib.getExe config.programs.i3status-rust.package
           } ${config.xdg.configHome}/i3status-rust/config-bottom.toml";
+        extraConfig = ''
+          output ${
+            (lib.os.primaryMonitor
+              nixosConfig.services.autorandr.profiles.main.config)
+          }
+        '';
       }
     ];
 

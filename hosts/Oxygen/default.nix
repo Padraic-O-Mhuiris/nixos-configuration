@@ -74,8 +74,8 @@
   stylix.fonts.sizes = {
     applications = 10;
     desktop = 10;
-    popups = 18;
-    terminal = 13;
+    popups = 16;
+    terminal = 11;
   };
 
   # TODO Maybe lift this to os config??
@@ -85,4 +85,8 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "23.05";
-}
+} // lib.os.hm (_: {
+  home.pointerCursor.size = 24;
+
+  stylix.targets = { vim.enable = true; };
+})
