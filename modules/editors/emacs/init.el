@@ -1,5 +1,14 @@
+;; https://github.com/minad/vertico
+;; https://github.com/minad/marginalia
+;; https://github.com/oantolin/orderless
+;; https://github.com/oantolin/embark
+;; https://github.com/minad/consult
+
 ;; start in server mode
 (server-start)
+
+;; TODO y-or-n-p
+(setq use-short-answers t)
 
 ;; Remove uneeded UI elements
 (setq inhibit-startup-message t)
@@ -33,21 +42,21 @@
 ;; #############################################################################
 (use-package general
   :config
-  (general-evil-setup t)
+  (general-evil-setup t))
 
-  (general-define-key
-   "<escape>" 'keyboard-escape-quit
-   "C-c t" 'clm/toggle-command-log-buffer
-   "C-M-j" 'counsel-switch-buffer)
+(general-define-key
+ "<escape>" 'keyboard-escape-quit
+ "C-c t" 'clm/toggle-command-log-buffer
+"C-M-j" 'counsel-switch-buffer)
 
-  (general-create-definer pm/leader-key-def
-    :keymaps '(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
+;;  (general-create-definer pm/leader-key-def
+;;    :keymaps '(normal insert visual emacs)
+;;    :prefix "SPC"
+;;    :global-prefix "C-SPC")
 
-  (pm/leader-key-def
-   "t" '(:ignore t :which-key "toggles")
-   "tt" '(counsel-load-theme :which-key "choose theme")))
+;;  (pm/leader-key-def
+;;   "t" '(:ignore t :which-key "toggles")
+;;   "tt" '(counsel-load-theme :which-key "choose theme"))
 
 ;; #############################################################################
 ;; evil
@@ -77,16 +86,16 @@
 ;; #############################################################################
 ;; hydra
 ;; #############################################################################
-(use-package hydra)
+;; (use-package hydra)
 
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("+" text-scale-increase "+")
-  ("-" text-scale-decrease "-")
-  ("f" nil "finished" :exit t))
+;;(defhydra hydra-text-scale (:timeout 4)
+;;  "scale text"
+;;  ("+" text-scale-increase "+")
+;;  ("-" text-scale-decrease "-")
+;;  ("f" nil "finished" :exit t))
 
-(pm/leader-key-def
- "ts" '(hydra-text-scale/body :which-key "scale text"))
+;; (pm/leader-key-def
+;; "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 ;; #############################################################################
 ;; doom-modeline
@@ -104,9 +113,10 @@
   :config
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-moonlight t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
+
+(load-theme 'doom-nord-light t)
 
 ;; #############################################################################
 ;; ivy
@@ -198,3 +208,9 @@
 ;; org
 ;; #############################################################################
 (use-package org)
+
+;; #############################################################################
+;; nix-mode
+;; #############################################################################
+(use-package nix-mode
+  :mode "\\.nix\\'")

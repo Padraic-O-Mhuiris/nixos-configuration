@@ -3,7 +3,7 @@
 let
   package = pkgs.emacsWithPackagesFromUsePackage {
     config = ""; # We don't want to create a default.el file
-    defaultInitFile = pkgs.writeText "default.el" (builtins.readFile ./init.el);
+    defaultInitFile = false; # pkgs.writeText "default.el" (builtins.readFile ./init.el);
     package = pkgs.emacs-unstable.override { withGTK3 = true; };
     extraEmacsPackages = epkgs:
       with epkgs; [
@@ -27,12 +27,14 @@ let
         counsel-projectile
         magit
         org
+	nix-mode
         # forge # - is this used?
         # (treesit-grammars.with-grammars
         #   (g: with g; [ tree-sitter-rust tree-sitter-python ]))
       ];
   };
 in (lib.os.hm (user: {
+  home.file.".emacs.d/init.el".source = ./init.el;
   programs.emacs = {
     inherit package;
     enable = true;
@@ -40,7 +42,7 @@ in (lib.os.hm (user: {
 
   services.emacs = {
     inherit package;
-    enable = true;
+    enable = false;
     client.enable = true;
     defaultEditor = true;
     socketActivation.enable = true;
@@ -66,7 +68,7 @@ in (lib.os.hm (user: {
       # nixfmt
     ];
 
-  stylix.targets.emacs.enable = true; # TODO Figure out how to import!
+  # stylix.targets.emacs.enable = true; # TODO Figure out how to import!
 })) // {
   nixpkgs.overlays = [ inputs.emacs.overlays.default ];
 }
