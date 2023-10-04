@@ -1,9 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ ../../_x.nix
-  	  # ./i3toggle.nix
-  ];
+  imports = [ ../../_x.nix ./i3toggle.nix ];
 } // (lib.os.hm (user:
   { config, ... }: {
     xsession.windowManager.i3 = let modifier = "Mod4";
@@ -15,7 +13,8 @@
         menu = config.home.sessionVariables.APPS_LAUNCHER;
         keybindings = lib.mkOptionDefault {
           "${modifier}+Shift+q" = null;
-          "${modifier}+Return" = "exec ${config.xsession.windowManager.i3.config.terminal}";
+          "${modifier}+Return" =
+            "exec ${config.xsession.windowManager.i3.config.terminal}";
           "${modifier}+q" = "kill";
         };
         defaultWorkspace = "workspace number 1";
