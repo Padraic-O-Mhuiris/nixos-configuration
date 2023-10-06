@@ -6,12 +6,14 @@
     owner = config.services.syncthing.user;
     group = config.services.syncthing.group;
     path = "${config.services.syncthing.configDir}/cert.pem";
+    mode = "0644";
   };
   sops.secrets.syncthing_key = {
     restartUnits = [ "syncthing.service" ];
     owner = config.services.syncthing.user;
     group = config.services.syncthing.group;
     path = "${config.services.syncthing.configDir}/key.pem";
+    mode = "0600";
   };
 
   environment.systemPackages = with pkgs; [ syncthing ];
