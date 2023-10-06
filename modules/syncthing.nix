@@ -16,25 +16,31 @@
   services.syncthing = {
     enable = true;
     user = "padraic";
-    dataDir = "/home/padraic/notes";
-    configDir = "/home/padraic/.config/syncthing";
+    dataDir = "/home/padraic/";
+    configDir = "/home/padraic/.config/syncthing/config";
     overrideDevices = true;
     overrideFolders = true;
     cert = config.sops.secrets.syncthing_cert.path;
     key = config.sops.secrets.syncthing_key.path;
     extraFlags = [ "--no-default-folder" ];
-    settings.devices = {
-      Hydrogen = {
-        id = "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
-        addresses = [ "tcp://192.168.0.184" ];
-        autoAcceptFolders = true;
-      };
-      Oxygen = {
-        id = "HWIPWZN-WPAM3PC-CGI6HMR-DNR3AVX-QX5GTHO-QS6TFGW-QPD22WN-6QR5TQC";
-        addresses = [ "tcp://192.168.0.214" ];
-        autoAcceptFolders = true;
+    settings = {
+      folders = { "notes" = { id = "notes"; label = "Notes"; path = "~/notes" }; };
+      devices = {
+        Hydrogen = {
+          id =
+            "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
+          addresses = [ "tcp://192.168.0.184" ];
+          autoAcceptFolders = true;
+        };
+        Oxygen = {
+          id =
+            "HWIPWZN-WPAM3PC-CGI6HMR-DNR3AVX-QX5GTHO-QS6TFGW-QPD22WN-6QR5TQC";
+          addresses = [ "tcp://192.168.0.214" ];
+          autoAcceptFolders = true;
+        };
       };
     };
+
   };
 
 }
