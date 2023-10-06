@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, os, ... }:
 
 {
   sops.secrets.syncthing_cert = {
@@ -26,6 +26,11 @@
     devices = {
       Hydrogen = {
         id = "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
+        addresses = [ os.configuration.Hydrogen.ip.local ];
+      };
+      Oxygen = {
+        id = "HWIPWZN-WPAM3PC-CGI6HMR-DNR3AVX-QX5GTHO-QS6TFGW-QPD22WN-6QR5TQC";
+        addresses = [ os.configuration.Oxygen.ip.local ];
       };
     };
   };
