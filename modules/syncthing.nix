@@ -21,7 +21,7 @@
     enable = true;
     user = "padraic";
     dataDir = "/home/padraic/";
-    configDir = "/home/padraic/.config/syncthing/config";
+    configDir = "/home/padraic/.config/syncthing";
     overrideDevices = true;
     overrideFolders = true;
     cert = null; # config.sops.secrets.syncthing_cert.path;
