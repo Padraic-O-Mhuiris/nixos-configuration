@@ -29,6 +29,7 @@
           id = "notes";
           label = "Notes";
           path = "~/notes";
+          devices = [ "Oxygen" "Hydrogen" ];
         };
       };
       devices = {
