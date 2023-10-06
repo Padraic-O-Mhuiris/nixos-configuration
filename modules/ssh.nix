@@ -6,18 +6,14 @@ lib.mkMerge [
   }))
 
   {
+
     services = {
       openssh = {
         enable = true;
         settings.PermitRootLogin = "no";
         allowSFTP = false;
         # TODO Figure out how to reproducibly automate ssh key generation from sops/initial deployment
-        hostKeys = [{
-          type = "ed25519";
-          path = "/persist/etc/ssh/ssh_host_ed25519_key";
-          rounds = 100;
-          comment = "${config.networking.hostName}";
-        }];
+        hostKeys = [ ];
       };
     };
 

@@ -50,9 +50,9 @@
     os.modules.shell.tmux
     os.modules.shell.zoxide
     os.modules.sops
-    os.modules.syncthing
     os.modules.ssh
     os.modules.sudo
+    os.modules.syncthing
     os.modules.terminal.alacritty
     os.modules.user
     os.modules.virtualisation.docker
