@@ -24,7 +24,13 @@
     key = config.sops.secrets.syncthing_key.path;
     extraFlags = [ "--no-default-folder" ];
     settings = {
-      folders = { "notes" = { id = "notes"; label = "Notes"; path = "~/notes" }; };
+      folders = {
+        "notes" = {
+          id = "notes";
+          label = "Notes";
+          path = "~/notes";
+        };
+      };
       devices = {
         Hydrogen = {
           id =
