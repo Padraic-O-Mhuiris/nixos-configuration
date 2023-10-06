@@ -44,13 +44,13 @@
       devices = {
         Hydrogen = {
           id =
-            "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
+            "3FQY6G3-V7ECTA2-SK2CZVT-YNTOB3V-PSXVELS-CU52PLI-HLLODIG-FZCXHQH";
           addresses = [ "http://192.168.0.184" ];
           autoAcceptFolders = true;
         };
         Oxygen = {
           id =
-            "HWIPWZN-WPAM3PC-CGI6HMR-DNR3AVX-QX5GTHO-QS6TFGW-QPD22WN-6QR5TQC";
+            "DJUIYGN-RDDETOR-BHEGLE3-CPXVPB5-ICKTER2-G5ZN7BZ-MPS4RL2-JC7T5AJ";
           addresses = [ "http://192.168.0.214" ];
           autoAcceptFolders = true;
         };
