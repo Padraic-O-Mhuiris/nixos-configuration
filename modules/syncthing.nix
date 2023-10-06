@@ -23,14 +23,14 @@
     cert = config.sops.secrets.syncthing_cert.path;
     key = config.sops.secrets.syncthing_key.path;
     extraFlags = [ "--no-default-folder" ];
-    devices = {
+    settings.devices = {
       Hydrogen = {
         id = "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
-        addresses = [ "192.168.0.184" ];
+        addresses = [ "tcp://192.168.0.184" ];
       };
       Oxygen = {
         id = "HWIPWZN-WPAM3PC-CGI6HMR-DNR3AVX-QX5GTHO-QS6TFGW-QPD22WN-6QR5TQC";
-        addresses = [ "192.168.0.214" ];
+        addresses = [ "tcp://192.168.0.214" ];
       };
     };
   };
