@@ -5,11 +5,13 @@
     restartUnits = [ "syncthing.service" ];
     owner = config.services.syncthing.user;
     group = config.services.syncthing.group;
+    path = "${config.services.syncthing.configDir}/cert.pem";
   };
   sops.secrets.syncthing_key = {
     restartUnits = [ "syncthing.service" ];
     owner = config.services.syncthing.user;
     group = config.services.syncthing.group;
+    path = "${config.services.syncthing.configDir}/key.pem";
   };
 
   environment.systemPackages = with pkgs; [ syncthing ];
@@ -22,8 +24,8 @@
     configDir = "/home/padraic/.config/syncthing/config";
     overrideDevices = true;
     overrideFolders = true;
-    cert = config.sops.secrets.syncthing_cert.path;
-    key = config.sops.secrets.syncthing_key.path;
+    cert = null; # config.sops.secrets.syncthing_cert.path;
+    key = null; # config.sops.secrets.syncthing_key.path;
     extraFlags = [ "--no-default-folder" ];
     settings = {
       folders = {
