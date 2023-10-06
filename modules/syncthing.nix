@@ -12,6 +12,8 @@
     group = config.services.syncthing.group;
   };
 
+  environment.systemPackages = with pkgs; [ syncthing ];
+
   # TODO Better abstract this
   services.syncthing = {
     enable = true;
