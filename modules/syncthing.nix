@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
   sops.secrets.syncthing_cert = {
     restartUnits = [ "syncthing.service" ];
     owner = config.services.syncthing.user;
@@ -24,6 +23,11 @@
     cert = config.sops.secrets.syncthing_cert.path;
     key = config.sops.secrets.syncthing_key.path;
     extraFlags = [ "--no-default-folder" ];
+    devices = {
+      Hydrogen = {
+        id = "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
+      };
+    };
   };
 
 }
