@@ -43,13 +43,13 @@
         Hydrogen = {
           id =
             "IH3TXQ3-NWZQ5OZ-XOXAKOR-KGIXOI2-3QFIIO2-N2VB4SG-B3RNTMD-ZTEHIQ2";
-          addresses = [ "tcp://192.168.0.184" ];
+          addresses = [ "http://192.168.0.184" ];
           autoAcceptFolders = true;
         };
         Oxygen = {
           id =
             "HWIPWZN-WPAM3PC-CGI6HMR-DNR3AVX-QX5GTHO-QS6TFGW-QPD22WN-6QR5TQC";
-          addresses = [ "tcp://192.168.0.214" ];
+          addresses = [ "http://192.168.0.214" ];
           autoAcceptFolders = true;
         };
       };
