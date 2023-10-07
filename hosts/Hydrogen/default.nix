@@ -48,6 +48,7 @@
     os.modules.ssh
     os.modules.sudo
     os.modules.syncthing
+    os.modules.tailscale
     os.modules.terminal.alacritty
     os.modules.user
     os.modules.virtualisation.docker

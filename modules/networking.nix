@@ -15,7 +15,7 @@ lib.mkMerge [
         checkReversePath = "loose";
       };
       networkmanager.enable = true;
-      nameservers = [ "1.1.1.1" "9.9.9.9" ];
+      nameservers = [ "1.1.1.1" "8.8.8.8" "9.9.9.9" "100.100.100.100" ];
       hosts = { "127.0.0.1" = [ config.networking.hostName ]; };
     };
 
