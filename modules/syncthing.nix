@@ -13,6 +13,7 @@
   # TODO Better abstract this
   services.syncthing = {
     enable = true;
+    group = "users";
     overrideDevices = true;
     overrideFolders = true;
     cert = config.sops.secrets.syncthing_cert.path;
