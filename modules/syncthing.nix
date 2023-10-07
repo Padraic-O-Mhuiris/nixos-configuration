@@ -13,7 +13,10 @@
   # TODO Better abstract this
   services.syncthing = {
     enable = true;
+    user = "padraic";
     group = "users";
+    dataDir = "/home/padraic/";
+    configDir = "/home/padraic/.config/syncthing";
     overrideDevices = true;
     overrideFolders = true;
     cert = config.sops.secrets.syncthing_cert.path;
@@ -24,7 +27,7 @@
         "notes" = {
           id = "notes";
           label = "Notes";
-          path = "/home/padraic/notes";
+          path = "~/notes";
           devices = [ "Oxygen" "Hydrogen" ];
           versioning = {
             type = "staggered";
