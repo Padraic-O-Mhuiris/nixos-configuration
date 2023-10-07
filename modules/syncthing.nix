@@ -23,7 +23,7 @@
         "notes" = {
           id = "notes";
           label = "Notes";
-          path = "~/notes";
+          path = "/home/padraic/notes";
           devices = [ "Oxygen" "Hydrogen" ];
           versioning = {
             type = "staggered";
