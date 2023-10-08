@@ -1,5 +1,11 @@
 { config, lib, pkgs, ... }:
 
+# The authKeyFile is typically a one-time authentication key created on the
+# website. Once authenticated, the tailscaled service will populate
+# /var/lib/tailscale with state to connect to the tailnet
+#
+# For adding newer devices, create an authentication key and the host should
+# autoconnect to the network
 {
   environment.systemPackages = [ pkgs.tailscale ];
 
