@@ -12,4 +12,6 @@
 
   networking.nameservers = [ "100.100.100.100" ];
   networking.search = [ "tail684cf.ts.net" ];
+
+  environment.persistence."/persist".files = [ "/var/lib/tailscale/" ];
 }
