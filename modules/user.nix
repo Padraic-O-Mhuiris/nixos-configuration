@@ -12,6 +12,7 @@
       group = "users";
       extraGroups = [ "wheel" ];
     };
+
   }))
   {
     users = {

@@ -43,12 +43,13 @@
     os.modules.nix
     os.modules.gpu.nvidia
     os.modules.networking
-    os.modules.shell.zsh
+    os.modules.shell.aliases
     os.modules.shell.direnv
     os.modules.shell.oh-my-posh
     os.modules.shell.starship
     os.modules.shell.tmux
     os.modules.shell.zoxide
+    os.modules.shell.zsh
     os.modules.sops
     os.modules.ssh
     os.modules.sudo
