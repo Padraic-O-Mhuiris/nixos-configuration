@@ -336,11 +336,11 @@ in (lib.os.hm (_:
         bindsym ${modifier}+m exec --no-startup-id "${
           lib.getExe i3toggle
         } -t -mt -acc -d 80%x80% ${lib.getExe pkgs.spotify}
-
-        bindsym ${modifier}+z exec --no-startup-id "${
-          lib.getExe i3toggle
-        } -t -mt -acc -d ${editorScreenRatio} $EDITOR
       '';
+
+      # bindsym ${modifier}+z exec --no-startup-id "${
+      #   lib.getExe i3toggle
+      # } -t -mt -acc -d ${editorScreenRatio} $EDITOR
 
       home.packages = with pkgs; [ xdotool wmctrl i3toggle ];
     })))
