@@ -7,14 +7,14 @@ lib.os.hm (user: {
     enable = true;
   };
 
-  services.emacs = {
-    package = inputs.emacs.packages.${pkgs.system}.default;
-    enable = true;
-    client.enable = true;
-    defaultEditor = true;
-    socketActivation.enable = true;
-    extraOptions = [ ];
-  };
+  # services.emacs = {
+  #   package = inputs.emacs.packages.${pkgs.system}.default;
+  #   enable = true;
+  #   client.enable = true;
+  #   defaultEditor = true;
+  #   socketActivation.enable = true;
+  #   extraOptions = [ ];
+  # };
 
    # stylix.targets.emacs.enable = true; # TODO Figure out how to import!
 })
