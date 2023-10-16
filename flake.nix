@@ -13,7 +13,7 @@
 
     hardware.url = "github:NixOS/nixos-hardware";
 
-    emacs.url = "github:nix-community/emacs-overlay";
+    emacs.url = "github:Padraic-O-Mhuiris/emacs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
