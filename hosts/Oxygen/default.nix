@@ -16,6 +16,7 @@
     os.modules.apps.discord
     os.modules.apps.libreoffice
     os.modules.apps.matrix
+    os.modules.apps.gimp
     os.modules.audio
     os.modules.bluetooth
     os.modules.backlight
@@ -60,7 +61,6 @@
     os.modules.virtualisation.docker
     os.modules.virtualisation.qemu
     os.modules.yubikey
-
   ];
 
   environment.persistence."/persist".files = [ "/etc/machine-id" ];
