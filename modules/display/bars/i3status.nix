@@ -83,7 +83,7 @@
         background = lib.os.colors.black;
       });
       fonts = {
-        names = [ config.stylix.fonts.serif.name ];
+        names = [ config.stylix.fonts.sansSerif.name ];
         size = config.stylix.fonts.sizes.desktop + 0.0;
       };
     in [
