@@ -3,13 +3,13 @@
 {
   stylix.fonts = {
     serif = {
-      package = pkgs.ubuntu_font_family;
-      name = "Ubuntu";
+      package = pkgs.iosevka-comfy.comfy-motion-duo;
+      name = "Iosevka Comfy Motion Duo";
     };
     sansSerif = config.stylix.fonts.serif;
     monospace = {
-      package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
-      name = "Iosevka NFP SemiBold";
+      package = pkgs.iosevka-comfy.comfy-fixed;
+      name = "Iosevka Comfy Fixed";
     };
     emoji = config.stylix.fonts.monospace;
   };
