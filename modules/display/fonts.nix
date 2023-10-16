@@ -6,7 +6,10 @@
       package = pkgs.iosevka-comfy.comfy-motion-duo;
       name = "Iosevka Comfy Motion Duo";
     };
-    sansSerif = config.stylix.fonts.serif;
+    sansSerif = {
+      package = pkgs.iosevka-comfy.comfy-duo;
+      name = "Iosevka Comfy Duo";
+    };
     monospace = {
       package = pkgs.iosevka-comfy.comfy-fixed;
       name = "Iosevka Comfy Fixed";
