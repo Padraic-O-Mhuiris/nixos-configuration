@@ -29,13 +29,7 @@
           label = "Notes";
           path = "~/notes";
           devices = [ "Oxygen" "Hydrogen" ];
-          versioning = {
-            type = "staggered";
-            params = {
-              cleanInterval = "3600";
-              maxAge = "15768000";
-            };
-          };
+          versioning = null;
         };
       };
       devices = {
