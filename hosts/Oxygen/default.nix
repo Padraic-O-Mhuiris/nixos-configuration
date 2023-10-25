@@ -17,6 +17,7 @@
     os.modules.apps.libreoffice
     os.modules.apps.matrix
     os.modules.apps.gimp
+    os.modules.apps.steam
     os.modules.apps.telegram
     os.modules.audio
     os.modules.bluetooth
