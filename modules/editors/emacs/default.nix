@@ -12,9 +12,11 @@ lib.os.hm (user: {
     enable = true;
     client.enable = true;
     defaultEditor = true;
-    socketActivation.enable = true;
+    # socketActivation.enable = true;
+    startWithUserSession = true;
     extraOptions = [ ];
   };
 
-   # stylix.targets.emacs.enable = true; # TODO Figure out how to import!
+  home.packages = with pkgs; [zotero];
+    # stylix.targets.emacs.enable = true; # TODO Figure out how to import!
 })
