@@ -107,11 +107,11 @@
         "wrapper-manager": "wrapper-manager"
       },
       "locked": {
-        "lastModified": 1698867596,
-        "narHash": "sha256-PAlYeM5Ys1Vce+wF7pBpV7aS1wl/cK9grxaSwdEsWIQ=",
+        "lastModified": 1698927821,
+        "narHash": "sha256-yrLXadBUNfXTHmsVhejAGCcKn1olsvlfycv5fO9gK9o=",
         "owner": "Padraic-O-Mhuiris",
         "repo": "emacs",
-        "rev": "0ef04fa19a0eba6aed5a6945ebec77140946aa71",
+        "rev": "3570af4d01574b3a3152f84e6f33cc405161656f",
         "type": "github"
       },
       "original": {
