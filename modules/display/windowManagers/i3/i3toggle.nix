@@ -323,7 +323,7 @@ in (lib.os.hm (_:
       editorScreenRatio = if nixosConfig.networking.hostName == "Oxygen" then
         "80%x95%"
       else
-        "100%x100%";
+        "99%x99%";
 
     in {
       xsession.windowManager.i3.extraConfig = ''

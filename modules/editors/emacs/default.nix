@@ -18,5 +18,4 @@ lib.os.hm (user: {
   };
 
   home.packages = with pkgs; [zotero];
-    # stylix.targets.emacs.enable = true; # TODO Figure out how to import!
 })

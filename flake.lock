@@ -107,11 +107,11 @@
         "wrapper-manager": "wrapper-manager"
       },
       "locked": {
-        "lastModified": 1698927821,
-        "narHash": "sha256-yrLXadBUNfXTHmsVhejAGCcKn1olsvlfycv5fO9gK9o=",
+        "lastModified": 1699387655,
+        "narHash": "sha256-J6ks0nfv81CV5Jb1pANVLha4gJTTR0m/RIpdF5VrzsE=",
         "owner": "Padraic-O-Mhuiris",
         "repo": "emacs",
-        "rev": "3570af4d01574b3a3152f84e6f33cc405161656f",
+        "rev": "f3c3dde01da24664e54ea818d55e3b51c500b1c4",
         "type": "github"
       },
       "original": {
@@ -599,11 +599,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1698878866,
-        "narHash": "sha256-hHHSoV7IBQHQeSSEQ6WtlSlzhH66TDeAMhNB9ZHlFzA=",
+        "lastModified": 1699536582,
+        "narHash": "sha256-xW16bouhkI9fx6wMLy8002cbLvB3UK4B3J10+Anq9BU=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a63b970f2be77e0416b7db7d7f2c4cbfc7319a7c",
+        "rev": "71d46644e40610ea90c7e97ba32667de90c5f1a5",
         "type": "github"
       },
       "original": {
