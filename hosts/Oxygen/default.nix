@@ -13,6 +13,7 @@
     ./monitors.nix
 
     os.modules.apps.spotify
+    os.modules.apps.slack
     os.modules.apps.discord
     os.modules.apps.libreoffice
     os.modules.apps.matrix
