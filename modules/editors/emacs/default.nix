@@ -2,7 +2,7 @@
 
 (lib.os.hm (user:
   let
-    emacsPkg = pkgs.emacs-unstable.override { withGTK3 = true; };
+    emacsPkg = pkgs.emacs-unstable;
   in {
     programs.emacs = {
       package = emacsPkg;
@@ -21,6 +21,8 @@
     home.packages = with pkgs; [
       (ripgrep.override { withPCRE2 = true; })
       fd
+      aspell
+      rust-analyzer
     ];
   }))
 // {
