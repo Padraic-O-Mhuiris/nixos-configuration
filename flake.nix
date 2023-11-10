@@ -28,6 +28,7 @@
     nix-ld.url = "github:Mic92/nix-ld";
 
     nur.url = "github:nix-community/NUR";
+    nil.url = "github:oxalica/nil";
 
     sops.url = "github:Mic92/sops-nix";
 

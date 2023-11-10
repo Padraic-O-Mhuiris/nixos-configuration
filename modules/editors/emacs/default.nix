@@ -23,8 +23,11 @@
       fd
       aspell
       rust-analyzer
+
+      nixfmt
+      nil
     ];
   }))
 // {
-  nixpkgs.overlays = [ inputs.emacs.overlay ];
+  nixpkgs.overlays = [ inputs.emacs.overlay inputs.nil.overlays.default ];
 }
