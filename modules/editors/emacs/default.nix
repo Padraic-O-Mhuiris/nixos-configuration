@@ -1,8 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 
 (lib.os.hm (user:
-  let
-    emacsPkg = pkgs.emacs-unstable;
+  let emacsPkg = pkgs.emacs-unstable;
   in {
     programs.emacs = {
       package = emacsPkg;
@@ -23,11 +22,9 @@
       fd
       aspell
       rust-analyzer
-
       nixfmt
       nil
     ];
-  }))
-// {
-  nixpkgs.overlays = [ inputs.emacs.overlay inputs.nil.overlays.default ];
-}
+  })) // {
+    nixpkgs.overlays = [ inputs.emacs.overlay inputs.nil.overlays.default ];
+  }
