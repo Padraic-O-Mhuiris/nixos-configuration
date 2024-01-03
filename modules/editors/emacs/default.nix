@@ -20,10 +20,14 @@
     home.packages = with pkgs; [
       (ripgrep.override { withPCRE2 = true; })
       fd
-      aspell
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       rust-analyzer
       nixfmt
       nil
+      marksman
+      vscode-langservers-extracted
+      semgrep
+      sqlfluff
     ];
   })) // {
     nixpkgs.overlays = [ inputs.emacs.overlay inputs.nil.overlays.default ];
