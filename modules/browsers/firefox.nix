@@ -168,6 +168,7 @@ in (lib.os.hm (user:
           "layers.acceleration.force-enabled" = true;
           "gfx.webrender.all" = true;
           "svg.context-properties.content.enabled" = true;
+          "network.protocol-handler.external.zoommtg" = true; # Needed for zoom
         };
       };
     };
