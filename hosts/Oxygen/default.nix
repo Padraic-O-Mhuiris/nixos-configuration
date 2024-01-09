@@ -20,6 +20,7 @@
     os.modules.apps.gimp
     os.modules.apps.steam
     os.modules.apps.telegram
+    os.modules.apps.zoom
     os.modules.audio
     os.modules.bluetooth
     os.modules.backlight
