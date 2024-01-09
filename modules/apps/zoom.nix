@@ -1,3 +1,3 @@
 { config, lib, pkgs, ... }:
 
-lib.os.hm (_: { home.packages = with pkgs; [ zoom ]; })
+lib.os.hm (_: { home.packages = with pkgs; [ zoom-us ]; })
