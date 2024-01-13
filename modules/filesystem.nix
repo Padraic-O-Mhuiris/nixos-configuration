@@ -1,6 +1,6 @@
 { lib, ... }:
 
-lib.os.hm (user:
+(lib.os.hm (user:
   ({ config, pkgs, ... }: {
     xdg = {
       enable = true;
@@ -19,12 +19,8 @@ lib.os.hm (user:
       };
     };
 
-    services.udiskie = {
-      enable = true;
-      automount = true;
-      notify = true;
-      tray = "auto";
-    };
-
     home.packages = with pkgs; [ gnome.nautilus ];
-  }))
+  }))) // {
+    services.udisks2.enable = true;
+    programs.gnome-disks.enable = true;
+  }
