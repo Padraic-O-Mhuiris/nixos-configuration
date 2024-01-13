@@ -38,7 +38,7 @@
 
     systems.url = "github:nix-systems/default";
   };
-
+  # Test
   outputs = { self, nixpkgs, systems, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
