@@ -10,7 +10,7 @@
       hashedPassword =
         "$6$7RhoYiLu0Xn50HZD$pOIypZUz6aALwRt4SlsckKmTFo0r6fHh5zbSTLBQGkrPuoJS.7bJirx936XensJSlkn0e472nKjzE7Y4tv7td0";
       group = "users";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "input" ];
     };
 
   }))

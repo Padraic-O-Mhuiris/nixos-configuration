@@ -21,6 +21,7 @@
     openssl
     pciutils
     patchelf
+    usbutils
     psmisc
     sd
     stdenv.cc.cc.lib
