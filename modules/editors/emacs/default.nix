@@ -26,6 +26,7 @@
       nil
       marksman
       vscode-langservers-extracted
+      nodePackages_latest.prettier
       semgrep
       sqlfluff
     ];
