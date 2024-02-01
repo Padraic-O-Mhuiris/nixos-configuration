@@ -149,15 +149,21 @@ in (lib.os.hm (user:
                 "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@nho" ];
             };
+
+            "Rust Crates" = {
+              urls = [{
+                template = "https://docs.rs/releases/search";
+                params = [{
+                  name = "query";
+                  value = "{searchTerms}";
+                }];
+              }];
+              icon =
+                "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@rc" ];
+            };
           };
         };
-        # bookmarks = [{
-        #   name = "Toolbar Bookmarks";
-        #   toolbar = true;
-        #   bookmarks = bookmarkUrls;
-        # }];
-        # userChrome = builtins.readFile ./userChrome.css;
-        # userContent = builtins.readFile ./userContent.css;
         settings = {
           "browser.aboutConfig.showWarning" = false;
           "browser.shell.checkDefaultBrowser" = false;
