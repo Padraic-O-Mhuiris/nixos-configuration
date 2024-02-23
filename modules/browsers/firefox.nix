@@ -59,7 +59,7 @@ in (lib.os.hm (user:
             Value = true;
             Locked = true;
             CryptoMining = true;
-            Fingerprinting = true;
+            Fingerprinting = false; # This messes with time
             EmailTracking = true;
           };
           FirefoxHome = {
@@ -151,13 +151,7 @@ in (lib.os.hm (user:
             };
 
             "Rust Crates" = {
-              urls = [{
-                template = "https://docs.rs/releases/search";
-                params = [{
-                  name = "query";
-                  value = "{searchTerms}";
-                }];
-              }];
+              urls = [{ template = "https://docs.rs/{searchTerms}"; }];
               icon =
                 "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@rc" ];
