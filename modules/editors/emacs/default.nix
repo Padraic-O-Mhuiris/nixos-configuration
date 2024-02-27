@@ -26,7 +26,6 @@
       nil
       marksman
       vscode-langservers-extracted
-      nodePackages_latest.prettier
       llvmPackages_9.clang-unwrapped
       ccls
       semgrep

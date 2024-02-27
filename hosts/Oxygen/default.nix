@@ -40,6 +40,7 @@
     os.modules.display.windowManagers.i3
     os.modules.documentation
     os.modules.editors.emacs
+    os.modules.editors.helix
     os.modules.filesystem
     os.modules.git
     os.modules.gnupg
