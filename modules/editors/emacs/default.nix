@@ -22,9 +22,10 @@
       fd
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       rust-analyzer
-      nixfmt
       nil
       marksman
+        emacsPackages.go-guru
+        emacsPackages.flycheck-golangci-lint
       vscode-langservers-extracted
       llvmPackages_9.clang-unwrapped
       ccls
